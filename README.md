@@ -5,9 +5,13 @@ The contents of the folder 'multisigmain' on the site is what's uploaded here - 
 
 This was converted using coinb.in code as the original template. Basically only these files were modified in order to create dogecoinmultisig.org: 
 (descending order by amount of modification):
+
 moist.js (new)
+
 index.html
+
 coinbin.js
+
 coin.js
 
 
