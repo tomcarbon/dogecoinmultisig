@@ -1,7 +1,7 @@
 $(document).ready(function() {
 /******************************************************************
 * Some folks don't like the word moist. Sorry. 
-* version .167
+* version .168
 ******************************************************************/
 //window.alert("Hello from the initialization portion of moist.js");
 var tx = coinjs.transaction();
