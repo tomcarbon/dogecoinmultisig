@@ -2,9 +2,13 @@
 Hello, Shibes
 
 This site is a wrapper for Dogecoin Multisigs. You can use this site to:
+
 Create Dogecoin Addresses
+
 Create Dogecoin Multisignature Addresses
+
 Spend From Dogecoin Addresses
+
 and much more.
 
 New is the so-called "DOGECOIN BANKINGS SUITE".
