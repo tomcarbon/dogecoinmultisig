@@ -1,7 +1,15 @@
 
 Hello, Shibes
 
-Found this regarding multisigs, quite by accident: that if you take any two public keys, and you squeeze them hard enough, you end up with the following things:
+This site is a wrapper for Dogecoin Multisigs. You can use this site to:
+Create Dogecoin Addresses
+Create Dogecoin Multisignature Addresses
+Spend From Dogecoin Addresses
+and much more.
+
+New is the so-called "DOGECOIN BANKINGS SUITE".
+
+It regards the following relationship regarding multisigs: that if you take any two public keys, and you squeeze them hard enough, you end up with the following things:
 
 1/1 multisig (Public Key 1 by itself)
 
