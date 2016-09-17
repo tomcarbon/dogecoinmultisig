@@ -7,7 +7,7 @@ Create Dogecoin Addresses
 
 Create Dogecoin Multisignature Addresses
 
-Spend From Dogecoin Addresses
+Spend From Dogecoin Multisig Addresses
 
 and much more.
 
