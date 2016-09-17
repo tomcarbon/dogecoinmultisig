@@ -1,7 +1,6 @@
 $(document).ready(function() {
 /******************************************************************
 * Some folks don't like the word moist. Sorry. 
-* version .168
 ******************************************************************/
 //window.alert("Hello from the initialization portion of moist.js");
 var tx = coinjs.transaction();
@@ -17,12 +16,100 @@ var work_balance;
 var work_unconfirmed_balance;
 var work_redeem_script;
 var work_private_key;
+var work_private_key2;
 var work_successful_transaction;
 
 var work_txs = [];
 var work_miners_fee;
 var work_redeem_transaction;
 var work_signed_transaction;
+var work_signed_transaction2;
+var work_message;
+
+
+/***************************************************************
+* has information been passed to  as in by a URL?
+* The input is currently passed as a GET statment in this format:
+* msg.FromAddress.redeemscript.ToAddress.Amt
+***************************************************************/
+var _spoon = _get("sign");
+if(_spoon[0]){
+var tt0 = _spoon[0];
+	var tx = tt0.slice(0); 
+	console.info("Fresh from spoon, here is the value of TX: " + tx ) ;
+       	$("#signTransaction").val(tx);
+}
+
+var _spoon2 = _get("broadcast");
+if(_spoon2[0]){
+var tt0 = _spoon2[0];
+	var tx = tt0.slice(0); 
+	console.info("Fresh from spoon2, here is the value of TX: " + tx ) ;
+       	$("#dogeScript3").val(tx);	// aptly named broadcast transaction
+	    setTimeout(function () {
+		if (tt0) {
+			$("#testola").click();	// broadcast
+		}
+	    }, 1000);
+}
+
+var _getVerify = _get("redeemMultiSig");
+if(_getVerify[0]){
+var tt0 = _getVerify[0];
+//	var arr = JSON.parse(_getVerify[0]);
+//	console.info(JSON.stringify(_getVerify[0], null, 4));
+
+	/* hide the redeem script and some other stuff, for streamlining */
+	$("#walletRefreshBox").addClass("hidden");
+
+	console.info("total length = " + _getVerify[0].length);  // 172 = 130 + 42
+	console.info("_getVerify[0] = " + _getVerify[0]);
+		var msg 		= tt0.slice(0,tt0.indexOf(".", 0));
+		var tt1 = tt0.slice((tt0.indexOf(".",0)+1));
+		var address 		= tt1.slice(0,tt1.indexOf(".", 0));
+		var tt2 = tt1.slice((tt1.indexOf(".",0)+1));
+		var redeem_script 	= tt2.slice(0,tt2.indexOf(".", 0));
+		var tt3 = tt2.slice((tt2.indexOf(".",0)+1));
+		var dest_addr 		= tt3.slice(0,tt3.indexOf(".", 0));
+		var tt4 = tt3.slice((tt3.indexOf(".",0)+1));
+		var to_amount 		= tt4.slice(0);
+		
+        	$("#dogeScript7").val(address);
+        	$("#dogeScript4").val(redeem_script);
+        	$("#dogeScript5").val(dest_addr);
+        	$("#dogeScript6").val(to_amount);
+		work_message = msg;
+        	//$("#newDogecoinAddress").val(address);
+	console.info("total length = " + _getVerify[0].length);  // 172 = 130 + 42
+	console.info("_getVerify[0] = " + _getVerify[0] + "\nmsg = " + msg);
+
+
+//        window.location.hash = "#redeemMultiSig";
+
+    setTimeout(function () {
+	if (address) {
+        	$("#walletRefresh").click();
+	}
+    }, 2000);
+
+}
+
+/*
+function get_next_string(stg,start_idx,control_character) {
+	var i = 0;
+	while (i < 999) {
+		if (stg[i] == control_character) {
+			var rv = stg.slice(0,i);
+			return rv;	
+		}
+		i++;
+	}
+console.info("Warning.get_next_string blew past expected bounds");
+return "missing value.";
+}
+
+*/
+
 
 /***************************************************
 * $("#moist2").click(function()): entry point 
@@ -56,7 +143,6 @@ $("#walletRefresh").click(function(){
 	}
 
 });
-
 
 
 
@@ -99,6 +185,7 @@ function dogecoin_wallet_balance() {
                 			document.getElementById("getWalletBalance").innerHTML = tt1;	// display to HTML
 				}
 				very_get_info("10778"); 	// start loading the unspent transactions
+//				very_get_info("20778"); 	// start loading the unspent transactions
                         }
                 });
 }
@@ -178,17 +265,38 @@ function do_the_redeemit() {
 				return true;
 			} else {
 				console.info("signature found (" + $("#redeemPrivateKey") + "). Will sign the transaction."); 
-				rc = sign_that_transaction();
+				rc = sign_that_transaction(0);
 			}
+//			alert("This is a temporary callback placeholder. Please continue.");
 			if (rc == true) {
 				if (work_number_signatures_required == 1) {
-					var ttext = "You can Verify this transaction, and when you're ready, press BROADCAST to send the withdraw.";
+					var ttext = "You can Verify this transaction. When you're ready, press BROADCAST to send the withdraw.";
 					console.info(ttext);
 					$("#redeemVerifyBtn2x").addClass("hidden");	// hide the 'verify' button
 				} else if (work_number_signatures_required == 2) {
-					var ttext = "You will need another signature. Give this Transaction ID to the next person, to sign.";
-					console.info(ttext);
-					alert(ttext);
+					console.info("work_private_key2.length of " + work_private_key2.length + " found.");
+					if (work_private_key2.length == 51) {  /* there's a second private key, and we need one, so let's use it. */
+						var tt1 = "Now signing the 2nd key. Please continue.";
+						console.info(tt1);
+						alert(tt1);		// callback placeholder TCC20160915
+						rc = sign_that_transaction(2);
+						if (rc == true) {
+							var ttext = "This transaction has been signed twice." + 
+								"You can Verify this transaction, and when you're ready, press BROADCAST to send the withdraw.";
+							console.info(ttext);
+							$("#redeemVerifyBtn2x").addClass("hidden");	// hide the 'verify' button templa new window.open (_blank)
+							$("#signedSuccessBox").addClass("hidden");
+						} else {
+							alert("sign_that_trans(2) returned non-true.");
+							return false;
+						}
+							
+					} else {
+						console.info("work_private_key2.length of " + work_private_key2.length + " found.");
+						var ttext = "You will need another signature. Give this Transaction ID to the next person, to sign.";
+						console.info(ttext);
+						alert(ttext);
+					}
 					$("#redeemVerifyBtn1x").addClass("hidden");	// hide the 'broadcast' button
 				} else { 	// oh uh...
 					alert("The number of signatures required can only be 1 or 2 at this time, provided value was: " + work_number_signatures_required);
@@ -212,28 +320,92 @@ return true;
 *********************************************************************/
 $('#redeemVerifyBtn1x').on('click', function() {
 	//console.info("top of redeemVerifyBtn1x()");
-	$("#redeemVerifyBtn1x").addClass("hidden");	// hide the 'broadcast' button
+	$("#redeemVerifyBtn1x").addClass("hidden");	
 	tempstring = $("#signedSuccessBox textarea").val();
-	$("#signedSuccessBox").addClass("hidden");
+//	$("#signedSuccessBox").addClass("hidden");
 	$("#pleaseWaitBox").removeClass("hidden");
 	setTimeout(function(){
 		very_get_info("10102");	 //such broadcast from the redeem screen.
 	}, 500);
 });
 /********************************************************************
-* This is actually the VERIFY button from the REDEEM screen
+* This brings the user to the 2nd SIGN screen if they have another sig.
 * (this is used for 2/2 and 2/3 multisigs (multiple signatures))
 *********************************************************************/
 $('#redeemVerifyBtn2x').on('click', function() {
 
 	//console.info("top of redeemVerifyBtn2x()");
 	tempstring = $("#signedSuccessBox textarea").val();
-	var ttxt = "Now, there are at least two ways to proceed:\n" + 
-			" 1: You can copy this block, then paste it into the VERIFY section of this site.\n" +
-			" 2: You can copy this block, then email it to the dude and say, 'Oh HERE, SIGN THIS and then BROADCAST it!\n" +
-			"You can do this.";
+	var ttxt = "I have another signature and I want to sign it again!";
 	console.info(ttxt);
-	alert(ttxt);
+        var tt1 = document.location.origin+''+document.location.pathname+'?sign='+
+                        tempstring + '#sign';
+        window.open(tt1);
+});
+/********************************************************************
+* This is a URL VERIFY MAKINGbutton from the REDEEM screen
+* it's the first take at a mini invoice
+* (this is used for 2/2 and 2/3 multisigs (multiple signatures))
+* that does not involve the Private Suite Key
+* opens a new window
+*********************************************************************/
+$('#redeemVerifyBtn4x').on('click', function() {
+	//console.info("top of redeemVerifyBtn2x()");
+	tempstring = $("#signedSuccessBox textarea").val();
+        var tt1 = document.location.origin+''+document.location.pathname+'?verify='+
+                        tempstring + '#verify';
+        window.open(tt1);
+});
+/********************************************************************
+* This is on the SIGN Screen and it's the BROADCAST BUTTON
+*********************************************************************/
+$('#signBtn2x').on('click', function() {
+	tempstring = $("#signDataText").val();
+        var tt1 = document.location.origin+''+document.location.pathname+'?broadcast='+
+                        tempstring + '#broadcast';
+        window.open(tt1);
+});
+/********************************************************************
+* This is on the SIGN Screen and it's the MAKE URL BUTTON
+*********************************************************************/
+$('#signBtn3x').on('click', function() {
+	tempstring = $("#signDataText").val();
+        var tt1 = document.location.origin+''+document.location.pathname+'?verify='+
+                        tempstring + '#verify';
+        window.open(tt1);
+});
+/********************************************************************
+* This is on the VERIFY (Transactions) Screen and it's the BROADCAST BUTTON
+*********************************************************************/
+$('#verifyBtn2x').on('click', function() {
+	tempstring = $("#verifyScript").val();
+        var tt1 = document.location.origin+''+document.location.pathname+'?broadcast='+
+                        tempstring + '#broadcast';
+        window.open(tt1);
+});
+/********************************************************************
+* This is on the VERIFY (Transactions) Screen and it's the SIGN BUTTON
+*********************************************************************/
+$('#verifyBtn3x').on('click', function() {
+	tempstring = $("#verifyScript").val();
+        var tt1 = document.location.origin+''+document.location.pathname+'?sign='+
+                        tempstring + '#sign';
+        window.open(tt1);
+});
+/********************************************************************
+* This is actually the 2nd BROADCAST button from the REDEEM screen
+* ( this is used for 2/2 and 2/3 multisigs)
+*********************************************************************/
+$('#redeemVerifyBtn3x').on('click', function() {
+	//console.info("top of redeemVerifyBtn1x()");
+	$("#redeemVerifyBtn3x").addClass("hidden");
+	$("#signedSuccessBox").addClass("hidden");
+	tempstring = $("#signedSuccessBox2 textarea").val();
+//	$("#signedSuccessBox2").addClass("hidden");
+	$("#pleaseWaitBox2").removeClass("hidden");
+	setTimeout(function(){
+		very_get_info("10102");	 //such broadcast from the redeem screen.
+	}, 500);
 });
 
 /********************************************************************
@@ -241,7 +413,11 @@ $('#redeemVerifyBtn2x').on('click', function() {
 *********************************************************************/
 $('#redeemVerifyReset').on('click', function() {
 //	console.info("top of #redeemVerifyReset()");
-    	location.reload();
+//    	location.reload();
+        var tt1 = document.location.origin + '' + document.location.pathname + '#redeemMultiSig';
+        console.info("Value is " + tt1);
+        window.open(tt1);
+
 });
 
 
@@ -428,7 +604,11 @@ function very_get_info(iindex){
 				work_successful_transaction = data.data.txid;
 				$("#withdrawlSuccessBox textarea").val(work_successful_transaction);
 				$("#withdrawlSuccessBox").removeClass("hidden");
+				$("#signedSuccessBox2").addClass("hidden");
                                 //window.alert("The Broadcast was successful. Go to F12 (Console) for more information.");
+				setTimeout(function(){ 	// wait a sec then refresh the wallet
+        				$("#walletRefresh").click();
+				}, 2000);
                         },
                         complete: function(data, status) {
                         //        window.alert("complete1");
@@ -487,33 +667,47 @@ function very_get_info(iindex){
 				console.info("10778 data.network = " + data.data.network);
 				console.info("10778 data.network = " + data.data.address);
 				console.info("10778 number of transactions to load: " + data.data.txs.length);
-				work_txs = data.data.txs;
+				work_txs = data.data.txs;		// tempola work_txs
 				
 				for (var i=0;i<data.data.txs.length;i++)		
 				{
 					console.info("TX(" + i + "): " + work_txs[i].txid + ", vout: " + work_txs[i].output_no + ", value: " + work_txs[i].value);
-//					console.info("              10778 txid of " + i + ", '" + data.data.txs[i].txid + "' found.");		// keep this
 				}
-
-/*
-				for (var i=0; i<result.length; i++)
-				    for (var txid in result[i]) {
-				        console.log("Item name: "+name);
-				    }
-*/
-/*
-				for (var i=0; i<result.length; i++)
-				    for (var name in result[i]) {
-				        console.log("Item name: "+name);
-				        console.log("Source: "+result[i][name].sourceUuid);
-				        console.log("Target: "+result[i][name].targetUuid);
-				    }
-*/
-//				console.info("10778. First txid is: %s.",work_tx0);
-
                         },
-                        complete: function(data, status) {
-                        //        window.alert("complete1");
+                       	complete: function(data, status) {
+                        }
+                });
+	break;
+	/*****************************************
+	* INDEX20778: Provide Balance Info from 
+	* address from dogechain.info
+	*****************************************/
+	case "20778":
+              	$.ajax ({
+                        type: "GET",
+                        //url: "https://chain.so/api/v2/get_tx_unspent/DOGE/" + work_multisig_address,
+                        url: "https://dogechain.info/api/v1/unspent/" + work_multisig_address,
+                        dataType: "json",
+                        error: function(data) {
+                                alert(JSON.stringify(data, null, 4));
+                                var tt1 = JSON.stringify(data, null, 4);
+				console.error("20778 fail: %s",tt1);
+                        },
+                        success: function(data) {
+                                alert(JSON.stringify(data, null, 4));                   
+                                var tt1 = JSON.stringify(data, null, 4);                   
+				console.info("20778 success: %s",tt1);
+				console.info("20778 data.network = " + data.data.network);
+				console.info("20778 data.network = " + data.data.address);
+				console.info("20778 number of transactions to load: " + data.data.txs.length);
+				work_txs = data.data.txs;		// tempola work_txs
+				
+				for (var i=0;i<data.data.txs.length;i++)		
+				{
+					console.info("TX(" + i + "): " + work_txs[i].txid + ", vout: " + work_txs[i].output_no + ", value: " + work_txs[i].value);
+				}
+                        },
+                       	complete: function(data, status) {
                         }
                 });
 	break;
@@ -1041,20 +1235,52 @@ return true;    // success
 
 
 /************************************
-* Ths function signs the transaction.
+* This function signs the transaction.
 ************************************/
-function sign_that_transaction() {
+function sign_that_transaction(signum) {
+        //var wifkey = $("#redeemPrivateKey");
         var wifkey = $("#redeemPrivateKey");
-	//work_private_key = $("#redeemPrivateKey").val();
-        var script = $("#transactionCreate2 textarea");
+//        var script = $("#transactionCreate2 textarea");
+	if (signum == 0) {
+        	var script = $("#transactionCreate2 textarea");
+	} else if (signum == 2) {
+        	var script = $("#signedSuccessBox textarea");
+	} else {
+		alert("a problem in signthattransaction.");
+		return false;
+	}
 	$("#transactionCreate2").addClass("hidden");
+	var tt1 = wifkey.val();
 
+	var priv1 = tt1.slice(0,51);
+	var priv2 = tt1.slice(51);
+	work_private_key1 = priv1;
+	work_private_key2 = priv2;
+	/*******************************************************
+	* Look through the messages
+	* Choose which private key to use here.
+	******************************************************/
+	if (work_message == 'personal2') {
+		console.info("personal2 message has been detected so using 2nd sig if it's a Private Suite Key(ordered by pubkey order)");	
+		if (priv2.length == 51) {
+			var private_key = priv2;
+		} else {
+		 	var private_key = priv1;
+		}
+	} else { 	// BAU
+		var private_key = (signum == 0 ? priv1 : priv2);
+	}
 
-
-                if(coinjs.addressDecode(wifkey.val())){
+	console.info("wifkey.val() = " + tt1 + "\npriv1 = " + priv1 + "\nand yes priv2 = " + priv2);
+	console.info("Using this as the private key for this transaction(signum = " + signum + "): " + private_key);
+	console.info("Here is the value of script: " + script);
+	
+	
+               // if(coinjs.addressDecode(wifkey.val())){
+                if(coinjs.addressDecode(private_key)){
 			console.info("validation: coinjs.addressDecode was Good.");
                 } else {
-			console.info("validation: coinjs.addressDecode was not Good.");
+			console.info("WARNING: failure in Private Key Validation.");
                 }
 
                 if((script.val()).match(/^[a-f0-9]+$/ig)){
@@ -1068,17 +1294,43 @@ function sign_that_transaction() {
                                 var tx = coinjs.transaction();
                                 var t = tx.deserialize(script.val());
 
-                                var work_signed_transaction = t.sign(wifkey.val());
+                                //var work_signed_transaction = t.sign(wifkey.val());
+				if (signum == 0) {	// BAU
+                                	var work_signed_transaction = t.sign(private_key);
+					console.info("return value from t.sign (work_signed_transaction) = " + work_signed_transaction);
+				} else if (signum == 2) { 	// 2nd signature
+                                	var work_signed_transaction2 = t.sign(private_key);
+					console.info("return value from t.sign (work_signed_transaction2) = " + work_signed_transaction2);
+				} else { 		// otherwise, BAU
+					console.error("unexpected signum found......!");
+					return false;
+				}
                         } catch(e) {
                                 console.error(e);
-				alert("There was an error in the signing, please go to F12 (Console)\n" + 
-					" for more information, and/or recheck your parameters.");
+				var tt1 = "There was an error in the signing, this usually indicates a mismatch between the paying address, the redeem script, and/or the private key(s).\n" + 
+				console.error(tt1);
+				alert(tt1);
                         }
 
-$("#signedSuccessBox textarea").val(work_signed_transaction);
-$("#signedSuccessBox").removeClass("hidden");
+if (signum == 0) {	// no frills, it's the original
+	$("#signedSuccessBox textarea").val(work_signed_transaction);
+	$("#signedSuccessBox").removeClass("hidden");
 	console.info("END of auto-sign mechanism. Check out this hash: " + work_signed_transaction);
+} else if (signum == 2) {	// this is the 2nd signature
+	$("#signedSuccessBox2 textarea").val(work_signed_transaction2);
+	$("#signedSuccessBox2").removeClass("hidden");
+	console.info("END of auto-sign mechanism. Check out this hash(2nd sig): " + work_signed_transaction2);
+} else { // unknown signum
+	var tt1 = "Unknown signum of " + signum + " found.";
+	console.error(tt1);
+	alert(tt1);
+	return false;
+}
+
+
+
 //	alert(	"The redeem script has been created and signed with one signature, no problems so far.\n" + 
+console.info("END of auto-sign mechanism. Check out this hash: " + work_signed_transaction);
 return true;
 }
 
@@ -1138,6 +1390,21 @@ return estTxSize;
 } /* end of function calculate_multisig_signed_size() */
 
 
+
+function _get(value) {
+        var dataArray = (document.location.search).match(/(([a-z0-9\_\[\]]+\=[a-z0-9\_\.\%\@]+))/gi);
+        var r = [];
+        if(dataArray) {
+                for(var x in dataArray) {
+                        if((dataArray[x]) && typeof(dataArray[x])=='string') {
+                                if((dataArray[x].split('=')[0].toLowerCase()).replace(/\[\]$/ig,'') == value.toLowerCase()) {
+                                        r.push(unescape(dataArray[x].split('=')[1]));
+                                }
+                        }
+                }
+        }
+        return r;
+}
 
 
 });   /* EOF */
