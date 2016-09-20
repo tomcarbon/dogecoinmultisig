@@ -212,13 +212,17 @@ var bs_multiSavings;
 var bs_multiDoGoodFund;
  
 
-	/* remove the "Go/Refresh" Button for x seconds */
+	/* remove the "Go/Refresh" Button, it'll stay hidden 20160920 */ 
         $("#bankSuiteLoadBtnWrap").addClass("hidden");	// hide the go/refresh button for seconds	
+
+	/* TCC I've decided to just hide the button after it's been clicked, it's too much trouble for now */
+/*
         $("#bankSuiteLoadBtnWrapWait").removeClass("hidden");	// replace with please wait button...
 	setTimeout(function () {
         	$("#bankSuiteLoadBtnWrap").removeClass("hidden");	//  then add it back again after x seconds
         	$("#bankSuiteLoadBtnWrapWait").addClass("hidden");	//and hide the please wait.
 	}, 4500); 
+*/
 
 //	console.info("top of #bankSuiteLoad.\nPubKey1 = " + bs_pubKey1 + "\nPubKey2 = " + bs_pubKey2);
 	/* check if this is a single public key or a double public key or unknown length*/

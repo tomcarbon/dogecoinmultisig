@@ -29,8 +29,6 @@ var work_message;
 
 /***************************************************************
 * has information been passed to  as in by a URL?
-* The input is currently passed as a GET statment in this format:
-* msg.FromAddress.redeemscript.ToAddress.Amt
 ***************************************************************/
 var _spoon = _get("sign");
 if(_spoon[0]){
@@ -58,7 +56,6 @@ if(_getVerify[0]){
 var tt0 = _getVerify[0];
 //	var arr = JSON.parse(_getVerify[0]);
 //	console.info(JSON.stringify(_getVerify[0], null, 4));
-
 	/* hide the redeem script and some other stuff, for streamlining */
 	$("#walletRefreshBox").addClass("hidden");
 
