@@ -373,8 +373,9 @@
 						</small>
 						<!-- removed until it works20160914input type="button" class="btn btn-warning btn-xs" value="Reset this Page" 	id="bankSuiteReset"-->
 
-						<input type="button" class="btn btn-success btn-xs" value="Make New Suite Keys" id="bankSuiteNewKeys">
-						<p>or enter the <b>Public Suite Key</b> below (or 2 public keys) and click Go/Refresh</p>
+						<input type="button" class="btn btn-success btn-xs" value="Make New Suite Keys" 
+							id="bankSuiteNewKeys"> or enter the <b>Public Suite Key</b> below (or 2 public keys) and click <button type="button" 
+							class="btn btn-danger btn-xs" id="bankSuiteLoad">here</button>
 						<textarea type="text" id="bankSuitePubKey1" class="form-control" placeholder="Insert Suite Key or Public Key here" cols="66" rows="1"></textarea>
 						<textarea type="text" id="bankSuitePubKey2" class="form-control" placeholder="(optional:) Insert another Public Key here" rows="1" cols="66"></textarea>
                                                 <div class="alert alert-success hidden" id="bankSuiteNewScreen01">
@@ -400,9 +401,6 @@
 							</span>
 						</div>
 						<br>
-						<div id="bankSuiteLoadBtnWrap">
-							<input type="button" class="btn btn-primary" value="Go/Refresh " id="bankSuiteLoad">
-						</div>
 						<div id="bankSuiteLoadBtnWrapWait" class="hidden">
 							<input type="button" class="btn btn-warning" value="Please Wait" >
 						</div>
