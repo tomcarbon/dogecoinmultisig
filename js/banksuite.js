@@ -11,6 +11,14 @@ var work_balance = [];
 var work_unconfirmed_balance = [];
 var work_balance_total = parseFloat("0.00000000");
 
+/* close these all at the start */
+$("#bankSuitePersonal1PayBox"	).toggle("fast","swing");
+$("#bankSuitePersonal2PayBox"	).toggle("fast","swing");
+$("#bankSuiteSlushPayBox"	).toggle("fast","swing");
+$("#bankSuiteCheckingPayBox"	).toggle("fast","swing");
+$("#bankSuiteSavingsPayBox"	).toggle("fast","swing");
+$("#bankSuiteDoGoodFundPayBox"	).toggle("fast","swing");
+
 /* user clicks the 'Split' option on the private key */
 $("#bankSuiteSplitPrivate").click(function(){
 	var PSKey = document.getElementById("bankSuiteNewPrivateSuiteKey").value;
@@ -48,9 +56,19 @@ $("#bankSuiteNewKeys").click(function(){
         $("#bankSuitePersonal2").val("");
         $("#bankSuitePersonal2URL").val("");
         $("#bankSuitePersonal2Balance").val("");
-        $("#bankSuitePersonal3").val("");
-        $("#bankSuitePersonal3URL").val("");
-        $("#bankSuitePersonal3Balance").val("");
+        $("#bankSuiteChecking").val("");
+        $("#bankSuiteCheckingURL").val("");
+        $("#bankSuiteCheckingBalance").val("");
+        $("#bankSuiteChecking").val("");
+        $("#bankSuiteSlush").val("");
+        $("#bankSuiteSlushURL").val("");
+        $("#bankSuiteSlushBalance").val("");
+        $("#bankSuiteSavings").val("");
+        $("#bankSuiteSavingsURL").val("");
+        $("#bankSuiteSavingsBalance").val("");
+        $("#bankSuiteDoGoodFund").val("");
+        $("#bankSuiteDoGoodFundURL").val("");
+        $("#bankSuiteDoGoodFundBalance").val("");
 
 	$("#bankSuitePubKey1").val(coin.pubkey);
 	$("#bankSuitePubKey2").val(coin2.pubkey);
@@ -59,7 +77,7 @@ $("#bankSuiteNewKeys").click(function(){
         $("#bankSuitePageURL").val(document.location.origin+''+document.location.pathname+  '?bankSuite='+coin.pubkey+coin2.pubkey+'#bankSuite');
 
 
-        $("#bankSuiteNewScreen01").removeClass("hidden");	// Show new Public Suite Key
+	//$("#bankSuiteNewScreen02").removeClass("hidden");	// show the URL with the Public Key in it. this is done in bank_suite_loader
 
         $("#bankSuiteNewScreen03").removeClass("hidden");	// show new Private Suite Key
 
@@ -71,12 +89,49 @@ $("#bankSuiteNewKeys").click(function(){
 			"Keep your Private Suite Key extra safe."+
 			"And then use the URL link for account access. The Public Suite Key is contained therein.";
 	console.info(tt1);
+	bank_suite_loader(1);
 
 
 });
 
+/* user presses one of the 6 'Spend Buttons that opens detail about one multisig */
+$("#bsTogBtn1").click(function(){	// PERSONAL 1
+//        $("#bankSuitePersonal1PayBox").removeClass("hidden");	
+	$("#bankSuitePersonal1PayBox").toggle();
+});
 
-/* user presses one of the 6 'Spend from multisig' buttons */
+
+/* user presses one of the 6 'Spend Buttons that opens detail about one multisig */
+$("#bsTogBtn2").click(function(){	// PERSONAL 1
+        $("#bankSuitePersonal2PayBox").toggle();
+});
+
+/* user presses one of the 6 'Spend Buttons that opens detail about one multisig */
+$("#bsTogBtn3").click(function(){	// PERSONAL 1
+        $("#bankSuiteSlushPayBox").toggle();
+});
+
+/* user presses one of the 6 'Spend Buttons that opens detail about one multisig */
+$("#bsTogBtn4").click(function(){	// PERSONAL 1
+        $("#bankSuiteCheckingPayBox").toggle();
+});
+
+/* user presses one of the 6 'Spend Buttons that opens detail about one multisig */
+$("#bsTogBtn5").click(function(){	// PERSONAL 1
+        $("#bankSuiteSavingsPayBox").toggle();
+});
+
+/* user presses one of the 6 'Spend Buttons that opens detail about one multisig */
+$("#bsTogBtn6").click(function(){	// PERSONAL 1
+        $("#bankSuiteDoGoodFundPayBox").toggle();
+});
+
+
+
+/******************************************************
+* The next SIX have to do with clicking the 'Next'
+* button to go to the WITHDRAW screen.
+******************************************************/
 $("#bankSuitePay1").click(function(){	// PERSONAL 1
 	var v1 	= document.getElementById("bankSuitePersonal1Redeem").value;
 	var redeem_script = v1.trim();
@@ -94,7 +149,6 @@ $("#bankSuitePay1").click(function(){	// PERSONAL 1
 	window.open(tt1);
 });
 
-/* user presses one of the 6 'Spend from multisig' buttons */
 $("#bankSuitePay2").click(function(){	// PERSONAL 2
 	var v1 	= document.getElementById("bankSuitePersonal2Redeem").value;
 	var redeem_script = v1.trim();
@@ -112,7 +166,6 @@ $("#bankSuitePay2").click(function(){	// PERSONAL 2
 	window.open(tt1);
 });
 
-/* user presses one of the 6 'Spend from multisig' buttons */
 $("#bankSuitePay3").click(function(){
 	var v1 	= document.getElementById("bankSuiteSlushRedeem").value;
 	var redeem_script = v1.trim();
@@ -130,7 +183,6 @@ $("#bankSuitePay3").click(function(){
 	window.open(tt1);
 });
 
-/* user presses one of the 6 'Spend from multisig' buttons */
 $("#bankSuitePay4").click(function(){
 	var v1 	= document.getElementById("bankSuiteCheckingRedeem").value;
 	var redeem_script = v1.trim();
@@ -148,7 +200,6 @@ $("#bankSuitePay4").click(function(){
 	window.open(tt1);
 });
 
-/* user presses one of the 6 'Spend from multisig' buttons */
 $("#bankSuitePay5").click(function(){
 	var v1 	= document.getElementById("bankSuiteSavingsRedeem").value;
 	var redeem_script = v1.trim();
@@ -166,7 +217,6 @@ $("#bankSuitePay5").click(function(){
 	window.open(tt1);
 });
 
-/* user presses one of the 6 'Spend from multisig' buttons */
 $("#bankSuitePay6").click(function(){
 	var v1 	= document.getElementById("bankSuiteDoGoodFundRedeem").value;
 	var redeem_script = v1.trim();
@@ -200,7 +250,16 @@ if(_getVerify[0]){
 }
 
 /* this is for clicking the 'next' button on the Bank Suite screen, which loads up six multisigs */
+/********************************************
+** variance = 0 - load the wallet addresses 
+*  variance = 1 - just display the multisigs
+*********************************************/
 $("#bankSuiteLoad").click(function(){
+	bank_suite_loader(0);
+});
+
+
+function bank_suite_loader(variance) {
 var bs_pubKey1 = document.getElementById("bankSuitePubKey1").value;		// retrieve the pubkeys from the html
 var bs_pubKey2 = document.getElementById("bankSuitePubKey2").value;
 var keys = [];
@@ -211,6 +270,8 @@ var bs_multiChecking;
 var bs_multiSavings;
 var bs_multiDoGoodFund;
  
+
+	$("#bankSuiteNewScreen02").removeClass("hidden");	// show the URL with the Public Key in it.
 
 	/* remove the "Go/Refresh" Button, it'll stay hidden 20160920 */ 
         $("#bankSuiteLoadBtnWrap").addClass("hidden");	// hide the go/refresh button for seconds	
@@ -230,8 +291,9 @@ var bs_multiDoGoodFund;
 		console.info("A single public key has been brought into port 1:");
 		keys.push(bs_pubKey1);
 		keys.push(bs_pubKey2);	// the assumption is that it's been populated, but meh
+        	keys.sort();	// order the keys alphabetically
 		$("#bankSuitePubKey1").val(bs_pubKey1);
-//		$("#bankSuitePubKey2").val(bs_pubKey2);
+		$("#bankSuitePubKey2").val(bs_pubKey2);
 	} else if (bs_pubKey1.length == 260) {
 		    var res1 = bs_pubKey1.slice(0,130);		// first key
 		    var res2 = bs_pubKey1.slice(130);		// second key
@@ -240,15 +302,15 @@ var bs_multiDoGoodFund;
 		console.info("Two public keys have been brought into port 1.");
 		keys.push(res1);
 		keys.push(res2);
-		$("#bankSuitePubKey1").val(res1);
-		$("#bankSuitePubKey2").val(res2);
+        	keys.sort();	// order the keys alphabetically
+		$("#bankSuitePubKey1").val(keys[0]);
+		$("#bankSuitePubKey2").val(keys[1]);
 	} else {
 		console.error("A public length of " + bs_pubKey1.length + " bytes is not supported.");
 		return false;
 	}
 
-	/* order the two public keys alphabetically*/
-        keys.sort();
+//        keys.sort();	// order the keys alphabetically
 
 	/* check for duplicates */
        for (var i=0;i<keys.length;i++) {
@@ -267,38 +329,6 @@ var bs_multiDoGoodFund;
 	}
 	console.info("PubKey1 (sorted) = " + keys[0]);
 	console.info("PubKey2 (sorted) = " + keys[1]);
-/*
-        var _getVerify = _get("verify");
-        if(_getVerify[0]){
-                $("#verifyScript").val(_getVerify[0]);
-                $("#verifyBtn").click();
-                window.location.hash = "#verify";
-        }
-*/
-	
-
-/*
-       if(pubkey.length==66 || pubkey.length==130){
-                try {
-                        $("#verifyPubKey .address").val(coinjs.pubkey2address(pubkey));
-                        $("#verifyPubKey").removeClass("hidden");
-                        $(".verifyLink").attr('href','?verify='+$("#verifyScript").val());
-                        return true;
-                } catch (e) {
-                        return false;
-                }
-        } else {
-                return false;
-        }
-*/
-
-/*
-	var tt1 = JSON.stringify(keys[0]);
-	console.info("first value tt1 = " + tt1);
-        var multisig =  coinjs.pubkeys2MultisigAddress(tt1,1);
-        var tt1 = JSON.stringify(multisig, null, 4);
-	console.info("Personal 1 multisig value is:" + tt1);
-*/
 
 	/* here's the URL for this page. */
         $("#bankSuitePageURL").val(document.location.origin+''+document.location.pathname+  '?bankSuite='+bs_pubKey1+bs_pubKey2+'#bankSuite');
@@ -380,6 +410,30 @@ var bs_multiDoGoodFund;
 */
 
 	work_balance_total = 0;
+	/* if the variance = 1 do not show the balance info */
+	if (variance == 1) {
+				var el_tempvaro = "Balance: zero";
+				document.getElementById("bankSuitePersonal1Balance").innerHTML = el_tempvaro; //display to HTML
+				document.getElementById("bankSuitePersonal2Balance").innerHTML = el_tempvaro; //display to HTML
+				document.getElementById("bankSuitePersonal3Balance").innerHTML = el_tempvaro; //display to HTML
+				document.getElementById("bankSuitePersonal4Balance").innerHTML = el_tempvaro; //display to HTML
+				document.getElementById("bankSuitePersonal5Balance").innerHTML = el_tempvaro; //display to HTML
+				document.getElementById("bankSuitePersonal6Balance").innerHTML = el_tempvaro; //display to HTML
+		/* if the variance = 1 just show zero balances */
+		$("bankSuitePersonal1Balance").hide(100, function(){
+		});
+		$("bankSuitePersonal2Balance").hide(100, function(){
+		});
+		$("bankSuitePersonal3Balance").hide(100, function(){
+		});
+		$("bankSuitePersonal4Balance").hide(200, function(){
+		});
+		$("bankSuitePersonal5Balance").hide(200, function(){
+		});
+		$("bankSuitePersonal6Balance").hide(200, function(){
+		});
+	} else {
+		/* variance = 0, retrieve the balances */
 		bankSuite_wallet_balance(multisig1,"bankSuitePersonal1Balance",0);
 		bankSuite_wallet_balance(multisig2,"bankSuitePersonal2Balance",1);
 		bankSuite_wallet_balance(multisig3,"bankSuitePersonal3Balance",2);
@@ -398,13 +452,15 @@ var bs_multiDoGoodFund;
 		});
 		$("bankSuitePersonal6Balance").hide(2000, function(){
 		});
-	/* display the total cumulative balance */
-	setTimeout(function () {
-		var totaltemp = "Cumulative Balance: " + work_balance_total;
-		//document.getElementById("bankSuiteCumBalance").innerHTML = totaltemp; //display to HTML   // no don't display it TCC20160916
-		document.getElementById("bankSuiteCumBalance").innerHTML = "Here are your accounts:"; //display to HTML // whooptee hooptee doo. UFN
-	}, 9000);
-});
+		/* display the total cumulative balance */
+		setTimeout(function () {
+			var totaltemp = "Cumulative Balance: " + work_balance_total;
+			//document.getElementById("bankSuiteCumBalance").innerHTML = totaltemp; //display to HTML   // no don't display it TCC20160916
+			document.getElementById("bankSuiteCumBalance").innerHTML = "Here are your accounts:"; //display to HTML // whooptee hooptee doo. UFN
+		}, 9000);
+	}
+}
+
 
 /* get from chain.so, then wait before displaying */
 function bankSuite_wallet_balance(multisig, urlName, idx) {
