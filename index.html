@@ -104,7 +104,7 @@
 							<p><a class="btn btn-primary btn-lg" href="#about" role="button">Learn more &raquo;</a></p>
 						</div>
 
-						<hr>
+						<hr size="5">
 
 						<!--div class="row">
 							<div class="col-md-4">
@@ -349,12 +349,7 @@
 						<a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo1.jpg" style="height:180px" ></a>
 						<h1>You Hold The Keys</h1>
 
-						<h2>Dogecoin Bankings Suite 
-							<small>
-							<br> 
-							Enter Your Public Suite Key or any two public keys to see its bank suite relationship.
-							</small>
-						</h2>
+						<h2>Dogecoin Bankings Suite </h2>
 
 						<p><small>You keep one piece of information safe. In return you own the six dogecoin accounts mathematically associated with it.</p>
 						<p><small>You may share the Public Suite Key, or keep it to yourself.</p>
@@ -372,7 +367,7 @@
 						</small>
 						</small>
 						<!-- removed until it works20160914input type="button" class="btn btn-warning btn-xs" value="Reset this Page" 	id="bankSuiteReset"-->
-
+						<hr size="5">
 						<input type="button" class="btn btn-success btn-xs" value="Make New Suite Keys" 
 							id="bankSuiteNewKeys"> or enter the <b>Public Suite Key</b> below (or 2 public keys) and click <button type="button" 
 							class="btn btn-danger btn-xs" id="bankSuiteLoad">here</button>
@@ -389,16 +384,16 @@
                                                         <input id="bankSuiteNewPrivateSuiteKeyS1" type="text" class="form-control address hidden" value="" readonly>
                                                         <input id="bankSuiteNewPrivateSuiteKeyS2" type="text" class="form-control address hidden" value="" readonly>
                                                 </div>
-                                                <div class="alert-success" id="bankSuiteNewScreen02">
+                                                <div class="alert-success hidden" id="bankSuiteNewScreen02">
 						<p><b>Here is your shareable URL for this page</b><small><small> (it contains your Public Suite Key)</small></small>:</p>
-							<span>
+							<div class="input-group">
 								<input id="bankSuitePageURL" type="text" class="form-control address" value="" readonly>
 								<span class="input-group-btn">
 									<button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
 									<span class="glyphicon glyphicon-qrcode"></span>
 									</button>
 								</span>
-							</span>
+							</div>
 						</div>
 						<br>
 						<div id="bankSuiteLoadBtnWrapWait" class="hidden">
@@ -408,11 +403,12 @@
 						<div>
 							<b><p id="bankSuiteCumBalance"></p></b>
 						</div>
+						<hr size="5">
 
 						<br>
 						<h4><b>Personal 1 (1/1 multisig):</b></h4>
-								<p>Multisig Address:</p>
 							<div class="input-group">
+								<span class="input-group-addon">Address:</span>
 								<input id="bankSuitePersonal1" type="text" class="form-control address" value="" readonly>
 								<span class="input-group-btn">
 									<button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
@@ -424,26 +420,23 @@
 							<div class="hidden">
 								<input id="bankSuitePersonal1Redeem" type="text" class="form-control address" value="" readonly>
 							</div>
-								<p>Shareable URL:</p>
 							<div class="input-group">
+								<span class="input-group-addon">URL:</span>
 								<input id="bankSuitePersonal1URL" type="text" class="form-control address" value="" readonly>
-								<span class="input-group-btn">
-									<button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
-									<span class="glyphicon glyphicon-qrcode"></span>
-									</button>
-								</span>
 							</div>
 							<b><p id="bankSuitePersonal1Balance"></p></b>
 							<b><p id="bankSuitePersonal1UCBalance"></b></p>
-							<input type="button" class="btn btn-info" value="Spend" id="bankSuitePay1">
+							<input type="button" class="btn btn-info" value="Spend" id="bsTogBtn1">
                                                 	<div class="alert alert-success" id="bankSuitePersonal1PayBox">
-								<span>To Addr:<input id="bankSuitePersonal1ToAddr" type="text" class="form-control address" value=""></span>
+								<span>To Address:<input id="bankSuitePersonal1ToAddr" type="text" class="form-control address" value=""></span>
 								<span>Amount:<input id="bankSuitePersonal1ToAmt" type="text" class="form-control address" value=""></span>
+								<input type="button" class="btn btn-info" value="Next" id="bankSuitePay1">
 							</div>
 							<br>
+						<hr size="5">
 						<h4><b>Personal 2 (1/1 multisig):</b></h4>
-								<p>Multisig Address:</p>
 							<div class="input-group">
+								<span class="input-group-addon">Address:</span>
 								<input id="bankSuitePersonal2" type="text" class="form-control address" value="" readonly>
 								<span class="input-group-btn">
 									<button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
@@ -455,26 +448,23 @@
 							<div class="hidden">
 								<input id="bankSuitePersonal2Redeem" type="text" class="form-control address" value="" readonly>
 							</div>
-								<p>Shareable URL:</p>
 							<div class="input-group">
+								<span class="input-group-addon">URL:</span>
 								<input id="bankSuitePersonal2URL" type="text" class="form-control address" value="" readonly>
-								<span class="input-group-btn">
-									<button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
-									<span class="glyphicon glyphicon-qrcode"></span>
-									</button>
-								</span>
 							</div>
 							<b><p id="bankSuitePersonal2Balance"></p></b>
 							<b><p id="bankSuitePersonal2UCBalance"></p></b>
-							<input type="button" class="btn btn-info" value="Spend" id="bankSuitePay2">
-                                                	<div class="alert alert-success" id="bankSuitePersonal2PayBox">
+							<input type="button" class="btn btn-info" value="Spend" id="bsTogBtn2">
+                                                	<div class="alert alert-success " id="bankSuitePersonal2PayBox">
 								<span>To Address:<input id="bankSuitePersonal2ToAddr" type="text" class="form-control address" value=""></span>
 								<span>Amount:<input id="bankSuitePersonal2ToAmt" type="text" class="form-control address" value=""></span>
+								<input type="button" class="btn btn-info" value="Next" id="bankSuitePay2">
 							</div>
 							<br>
+						<hr size="5">
 						<h4><b>Slush Fund (1/2 multisig):</b></h4>
-								<p>Multisig Address:</p>
 							<div class="input-group">
+								<span class="input-group-addon">Address:</span>
 								<input id="bankSuiteSlush" type="text" class="form-control address" value="" readonly>
 								<span class="input-group-btn">
 									<button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
@@ -486,26 +476,23 @@
 							<div class="hidden">
 								<input id="bankSuiteSlushRedeem" type="text" class="form-control address" value="" readonly>
 							</div>
-								<p>Shareable URL:</p>
 							<div class="input-group">
+								<span class="input-group-addon">URL:</span>
 								<input id="bankSuiteSlushURL" type="text" class="form-control address" value="" readonly>
-								<span class="input-group-btn">
-									<button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
-									<span class="glyphicon glyphicon-qrcode"></span>
-									</button>
-								</span>
 							</div>
 							<b><p id="bankSuitePersonal3Balance"></p></b>
 							<b><p id="bankSuitePersonal3UCBalance"></p></b>
-							<input type="button" class="btn btn-info" value="Spend" id="bankSuitePay3">
-                                                	<div class="alert alert-success" id="bankSuiteSlushPayBox">
+							<input type="button" class="btn btn-info" value="Spend" id="bsTogBtn3">
+                                                	<div class="alert alert-success " id="bankSuiteSlushPayBox">
 								<span>To Address:<input id="bankSuiteSlushToAddr" type="text" class="form-control address" value=""></span>
 								<span>Amount:<input id="bankSuiteSlushToAmt" type="text" class="form-control address" value=""></span>
+								<input type="button" class="btn btn-info" value="Next" id="bankSuitePay3">
 							</div>
 							<br>
+						<hr size="5">
 						<h4><b>Checking Account (1/2 multisig):</b></h4>
-								<p>Multisig Address:</p>
 							<div class="input-group">
+								<span class="input-group-addon">Address:</span>
 								<input id="bankSuiteChecking" type="text" class="form-control address" value="" readonly>
 								<span class="input-group-btn">
 									<button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
@@ -517,26 +504,23 @@
 							<div class="hidden">
 								<input id="bankSuiteCheckingRedeem" type="text" class="form-control address" value="" readonly>
 							</div>
-								<p>Shareable URL:</p>
 							<div class="input-group">
+								<span class="input-group-addon">URL:</span>
 								<input id="bankSuiteCheckingURL" type="text" class="form-control address" value="" readonly>
-								<span class="input-group-btn">
-									<button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
-									<span class="glyphicon glyphicon-qrcode"></span>
-									</button>
-								</span>
 							</div>
 							<b><p id="bankSuitePersonal4Balance"></p></b>
 							<b><p id="bankSuitePersonal4UCBalance"></p></b>
-							<input type="button" class="btn btn-info" value="Spend" id="bankSuitePay4">
-                                                	<div class="alert alert-success" id="bankSuiteCheckingPayBox">
+							<input type="button" class="btn btn-info" value="Spend" id="bsTogBtn4">
+                                                	<div class="alert alert-success " id="bankSuiteCheckingPayBox">
 								<span>To Address:<input id="bankSuiteCheckingToAddr" type="text" class="form-control address" value=""></span>
 								<span>Amount:<input id="bankSuiteCheckingToAmt" type="text" class="form-control address" value=""></span>
+								<input type="button" class="btn btn-info" value="Next" id="bankSuitePay4">
 							</div>
 							<br>
+						<hr size="5">
 						<h4><b>Savings Account (2/2 multisig):</b></h4>
-								<p>Multisig Address:</p>
 							<div class="input-group">
+								<span class="input-group-addon">Address:</span>
 								<input id="bankSuiteSavings" type="text" class="form-control address" value="" readonly>
 								<span class="input-group-btn">
 									<button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
@@ -548,26 +532,23 @@
 							<div class="hidden">
 								<input id="bankSuiteSavingsRedeem" type="text" class="form-control address" value="" readonly>
 							</div>
-								<p>Shareable URL:</p>
 							<div class="input-group">
+								<span class="input-group-addon">URL:</span>
 								<input id="bankSuiteSavingsURL" type="text" class="form-control address" value="" readonly>
-								<span class="input-group-btn">
-									<button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
-									<span class="glyphicon glyphicon-qrcode"></span>
-									</button>
-								</span>
 							</div>
 							<b><p id="bankSuitePersonal5Balance"></p></b>
 							<b><p id="bankSuitePersonal5UCBalance"></p></b>
-							<input type="button" class="btn btn-info" value="Spend" id="bankSuitePay5">
-                                                	<div class="alert alert-success" id="bankSuiteSavingsPayBox">
+							<input type="button" class="btn btn-info" value="Spend" id="bsTogBtn5">
+                                                	<div class="alert alert-success " id="bankSuiteSavingsPayBox">
 								<span>To Address:<input id="bankSuiteSavingsToAddr" type="text" class="form-control address" value=""></span>
 								<span>Amount:<input id="bankSuiteSavingsToAmt" type="text" class="form-control address" value=""></span>
+								<input type="button" class="btn btn-info" value="Next" id="bankSuitePay5">
 							</div>
 							<br>
+						<hr size="5">
 						<h4><b>Do Good Fund (2/2 multisig):</b></h4>
-								<p>Multisig Address:</p>
 							<div class="input-group">
+								<span class="input-group-addon">Address:</span>
 								<input id="bankSuiteDoGoodFund" type="text" class="form-control address" value="" readonly>
 								<span class="input-group-btn">
 									<button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
@@ -579,24 +560,21 @@
 							<div class="hidden">
 								<input id="bankSuiteDoGoodFundRedeem" type="text" class="form-control address" value="" readonly>
 							</div>
-								<p>Shareable URL:</p>
 							<div class="input-group">
+								<span class="input-group-addon">URL:</span>
 								<input id="bankSuiteDoGoodFundURL" type="text" class="form-control address" value="" readonly>
-								<span class="input-group-btn">
-									<button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
-									<span class="glyphicon glyphicon-qrcode"></span>
-									</button>
-								</span>
 							</div>
 							<b><p id="bankSuitePersonal6Balance"></p></b>
 							<b><p id="bankSuitePersonal6UCBalance"></p></b>
-							<input type="button" class="btn btn-info" value="Spend" id="bankSuitePay6">
-                                                	<div class="alert alert-success" id="bankSuiteDoGoodFundPayBox">
+							<input type="button" class="btn btn-info" value="Spend" id="bsTogBtn6">
+                                                	<div class="alert alert-success " id="bankSuiteDoGoodFundPayBox">
 								<span>To Address:<input id="bankSuiteDoGoodFundToAddr" type="text" class="form-control address" value=""></span>
 								<span>Amount:<input id="bankSuiteDoGoodFundToAmt" type="text" class="form-control address" value=""></span>
+								<input type="button" class="btn btn-info" value="Next" id="bankSuitePay6">
 							</div>
 							<br>
 						<br>
+						<hr size="5">
 						<!--h4><b>2:3 Multisig (add one public key, two signatures required):</b></h4>
 								<p>Multisig Address:</p>
 							<div class="input-group">
@@ -1091,7 +1069,7 @@
 
 						<div class="hidden verifyData" id="verifyRsData">
 							<h4>The Wonderful Ðogecoin Redeem Script</h4>
-							<p><span style="float:right"><a href="javascript:;" target="_blank" class="verifyLink" title="Link to this page"><span class="glyphicon glyphicon-link"></span></a></span>The above redeem script has been decoded</p>
+							<p><span style="float:right"><a href="javascript:;" target="_blank" class="verifyLink" title="Link to this page"><span class="glyphicon glyphicon-link"></span></a></span>The redeem script above has been decoded</p>
 
 							<div class="hidden" id="verifyRsDataMultisig">
                                 <label>Multi Signature Address</label>
