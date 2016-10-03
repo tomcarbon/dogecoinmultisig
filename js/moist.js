@@ -20,6 +20,7 @@ var work_private_key2;
 var work_successful_transaction;
 
 var work_txs = [];
+var work_txs_temp = [];
 var work_miners_fee;
 var work_redeem_transaction;
 var work_signed_transaction;
@@ -172,7 +173,8 @@ function dogecoin_wallet_balance() {
 					if (parseFloat(work_unconfirmed_balance) > parseFloat("0.00000000")) {
 						var tt1 = "Confirmed Balance: " + parseFloat(work_balance);
 					} else {
-						var tt1 = "Confirmed Balance: " + parseFloat((parseFloat(work_balance) + parseFloat(work_unconfirmed_balance)));
+						var tt1 = "Confirmed Balance: " + parseFloat((parseFloat(work_balance) + 
+										parseFloat(work_unconfirmed_balance)));
 					}
                 			document.getElementById("getWalletBalance").innerHTML = tt1;	// display to HTML
                				document.getElementById("getWalletUCBalance").innerHTML = tempvar; // display to HTML
@@ -183,6 +185,7 @@ function dogecoin_wallet_balance() {
 				}
 				very_get_info("10778"); 	// start loading the unspent transactions
 //				very_get_info("20778"); 	// start loading the unspent transactions
+				// TCCDEBUG tempola 20160928 20778 (dogechain.info API support) is INCOMPLETE until I figure out the label names issue with the rest of my code.
                         }
                 });
 }
@@ -601,6 +604,7 @@ function very_get_info(iindex){
 				work_successful_transaction = data.data.txid;
 				$("#withdrawlSuccessBox textarea").val(work_successful_transaction);
 				$("#withdrawlSuccessBox").removeClass("hidden");
+				$("#signedSuccessBox").addClass("hidden");
 				$("#signedSuccessBox2").addClass("hidden");
                                 //window.alert("The Broadcast was successful. Go to F12 (Console) for more information.");
 				setTimeout(function(){ 	// wait a sec then refresh the wallet
@@ -668,7 +672,7 @@ function very_get_info(iindex){
 				
 				for (var i=0;i<data.data.txs.length;i++)		
 				{
-					console.info("TX(" + i + "): " + work_txs[i].txid + ", vout: " + work_txs[i].output_no + ", value: " + work_txs[i].value);
+					console.info("chain.so:TX(" + i + "): " + work_txs[i].txid + ", vout: " + work_txs[i].output_no + ", value: " + work_txs[i].value);
 				}
                         },
                        	complete: function(data, status) {
@@ -680,32 +684,43 @@ function very_get_info(iindex){
 	* address from dogechain.info
 	*****************************************/
 	case "20778":
+  	var dogeaddress = prompt("20778 - Please provide the address you would like to check","A9A3sB2S7J5VLKTwNvF1rTkyyQ35PkaTU4"); //777
               	$.ajax ({
                         type: "GET",
                         //url: "https://chain.so/api/v2/get_tx_unspent/DOGE/" + work_multisig_address,
-                        url: "https://dogechain.info/api/v1/unspent/" + work_multisig_address,
+                        //url: "https://dogechain.info/api/v1/unspent/" + work_multisig_address,
+                        url: "https://dogechain.info/api/v1/unspent/" + dogeaddress,
                         dataType: "json",
                         error: function(data) {
-                                alert(JSON.stringify(data, null, 4));
                                 var tt1 = JSON.stringify(data, null, 4);
 				console.error("20778 fail: %s",tt1);
                         },
                         success: function(data) {
-                                alert(JSON.stringify(data, null, 4));                   
                                 var tt1 = JSON.stringify(data, null, 4);                   
 				console.info("20778 success: %s",tt1);
-				console.info("20778 data.network = " + data.data.network);
-				console.info("20778 data.network = " + data.data.address);
-				console.info("20778 number of transactions to load: " + data.data.txs.length);
-				work_txs = data.data.txs;		// tempola work_txs
+				console.info("20778 data.address = " + data.unspent_outputs[0].address);
+				console.info("20778 number of transactions to load: " + data.unspent_outputs.length);
+				work_txs_temp = data.unspent_outputs;		// tempola work_txs
 				
-				for (var i=0;i<data.data.txs.length;i++)		
+				for (var i=0;i<data.unspent_outputs.length;i++)		
 				{
-					console.info("TX(" + i + "): " + work_txs[i].txid + ", vout: " + work_txs[i].output_no + ", value: " + work_txs[i].value);
+					console.info("TX(" + i + "): " + work_txs_temp[i].tx_hash + ", vout: " + work_txs_temp[i].tx_output_n + ", value: " + work_txs_temp[i].value);
+					console.info("work_txs_temp[" + i + "].tx_hash = " + work_txs_temp[i].tx_hash);
+					
+//					work_txs[i].output_no = data.unspent_outputs[i].tx_output_n;
+//					work_txs[i].txid = wt.tx_hash;
+//					work_txs[i].value = wt.value/100000000;
+				}
+				/* now, it should have been converted to be the same format as with chain.so */
+				for (var i=0;i<data.unspent_outputs.length;i++)		
+				{
+//					console.info("dogechain.info:TX(" + i + "): " + work_txs[i].txid + ", vout: " + work_txs[i].output_no + ", value: " + work_txs[i].value);
 				}
                         },
-                       	complete: function(data, status) {
+                        complete: function(data, status) {
+                        //        window.alert("complete1");
                         }
+
                 });
 	break;
 
@@ -740,6 +755,31 @@ function very_get_info(iindex){
               $.ajax ({
                         type: "GET",
                         url: "https://chain.so/api/v2/get_tx_unspent/DOGE/" + dogeaddress,
+                        dataType: "json",
+                        error: function(data) {
+                                console.error(JSON.stringify(data, null, 4));
+                        },
+                        success: function(data) {
+                                console.info(JSON.stringify(data, null, 4));                  
+                        },
+                        complete: function(data, status) {
+                        //        window.alert("complete1");
+                        }
+                });
+
+           break;
+	/*****************************************
+	* INDEX1778:  Get Unspent TXs for Addr
+	* dogechain.info
+	*****************************************/
+        case "1778":
+	//GET /api/v2/get_tx_unspent/{NETWORK}/{ADDRESS}[/{AFTER TXID}]
+        var dogeaddress = prompt("1778 - Please provide the address you would like to check unspent transactions for","A9A3sB2S7J5VLKTwNvF1rTkyyQ35PkaTU4");
+              $.ajax ({
+                        type: "GET",
+                        //url: "https://chain.so/api/v2/get_tx_unspent/DOGE/" + dogeaddress,
+                        //url: "https://dogechain.info/api/v1/address/balance/" + dogeaddress,		// the balance
+                        url: "https://dogechain.info/api/v1/unspent/" + dogeaddress,
                         dataType: "json",
                         error: function(data) {
                                 console.error(JSON.stringify(data, null, 4));

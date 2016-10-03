@@ -11,13 +11,153 @@ var work_balance = [];
 var work_unconfirmed_balance = [];
 var work_balance_total = parseFloat("0.00000000");
 
-/* close these all at the start */
+/* first time */
 $("#bankSuitePersonal1PayBox"	).toggle("fast","swing");
 $("#bankSuitePersonal2PayBox"	).toggle("fast","swing");
 $("#bankSuiteSlushPayBox"	).toggle("fast","swing");
 $("#bankSuiteCheckingPayBox"	).toggle("fast","swing");
 $("#bankSuiteSavingsPayBox"	).toggle("fast","swing");
 $("#bankSuiteDoGoodFundPayBox"	).toggle("fast","swing");
+$("#bankSuitePageURL").val(document.location.origin+''+document.location.pathname+'#bankSuite');
+
+
+
+
+var copyTextareaBtn1 = document.querySelector('.js-textareacopybtn1');
+copyTextareaBtn1.addEventListener('click', function(event) {
+  var copyTextarea = document.querySelector('.js-copytextarea1');
+  copyTextarea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+});
+
+
+var copyTextareaBtn2 = document.querySelector('.js-textareacopybtn2');
+copyTextareaBtn2.addEventListener('click', function(event) {
+  var copyTextarea = document.querySelector('.js-copytextarea2');
+  copyTextarea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+});
+
+var copyTextareaBtn3 = document.querySelector('.js-textareacopybtn3');
+copyTextareaBtn3.addEventListener('click', function(event) {
+  var copyTextarea = document.querySelector('.js-copytextarea3');
+  copyTextarea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+});
+
+var copyTextareaBtn4 = document.querySelector('.js-textareacopybtn4');
+copyTextareaBtn4.addEventListener('click', function(event) {
+  var copyTextarea = document.querySelector('.js-copytextarea4');
+  copyTextarea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+});
+
+var copyTextareaBtn5 = document.querySelector('.js-textareacopybtn5');
+copyTextareaBtn5.addEventListener('click', function(event) {
+  var copyTextarea = document.querySelector('.js-copytextarea5');
+  copyTextarea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+});
+
+var copyTextareaBtn6 = document.querySelector('.js-textareacopybtn6');
+copyTextareaBtn6.addEventListener('click', function(event) {
+  var copyTextarea = document.querySelector('.js-copytextarea6');
+  copyTextarea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+});
+
+/* this copies the main URL to the clipboard. */
+var copyTextareaBtn7 = document.querySelector('.js-textareacopybtn7');
+copyTextareaBtn7.addEventListener('click', function(event) {
+  var copyTextarea = document.querySelector('.js-copytextarea7');
+  copyTextarea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+});
+
+/* this copies the private suite keys to the clipboard */
+var copyTextareaBtn8 = document.querySelector('.js-textareacopybtn8');
+copyTextareaBtn8.addEventListener('click', function(event) {
+  var copyTextarea = document.querySelector('.js-copytextarea8');
+  copyTextarea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+});
+
+/* this is used on the ToolBox screen for copying ANY URL to QR code or clipboard */ 
+var copyTextareaBtn9 = document.querySelector('.js-textareacopybtn9');
+copyTextareaBtn9.addEventListener('click', function(event) {
+  var copyTextarea = document.querySelector('.js-copytextarea9');
+  copyTextarea.select();
+
+  try {
+    var successful = document.execCommand('copy');
+    var msg = successful ? 'successful' : 'unsuccessful';
+    console.log('Copying text command was ' + msg);
+  } catch (err) {
+    console.log('Oops, unable to copy');
+  }
+});
+
+/* user clicks the Ramin button */ 
+$("#rsi").click(function(){
+	var tt1 = document.location.origin+''+document.location.pathname+'#ramin';
+	window.open(tt1);
+});
 
 /* user clicks the 'Split' option on the private key */
 $("#bankSuiteSplitPrivate").click(function(){
@@ -36,6 +176,15 @@ $("#bankSuiteSplitPrivate").click(function(){
 });
 
 
+/* user clicks on the 'Quick Instructions' */
+$("#bankSuiteQuickInstructions").click(function(){
+	var tt1 = 	"Step 1: Click the GREEN Button (Make New Suite Keys) to make a new account.\n" +
+			"Step 2: Save the Private Suite Key (in the BLUE Box) to a safe, secure location.\n" + 
+			"Step 3: Bookmark or Save the 'shareable URL'.\n\n" +
+			"Your DBS (Dogecoin Bankings Suite) Account is now ready for use.";
+	console.info(tt1);
+        $("#bankSuiteNewScreen04").removeClass("hidden");	// show new Private Suite Key
+});
 
 /* user clicks the 'create new Dogecoin Bankings Suite' button on the bankSuite Interface*/
 $("#bankSuiteNewKeys").click(function(){
@@ -434,12 +583,12 @@ var bs_multiDoGoodFund;
 		});
 	} else {
 		/* variance = 0, retrieve the balances */
-		bankSuite_wallet_balance(multisig1,"bankSuitePersonal1Balance",0);
-		bankSuite_wallet_balance(multisig2,"bankSuitePersonal2Balance",1);
-		bankSuite_wallet_balance(multisig3,"bankSuitePersonal3Balance",2);
-		bankSuite_wallet_balance(multisig4,"bankSuitePersonal4Balance",3);
-		bankSuite_wallet_balance(multisig5,"bankSuitePersonal5Balance",4);
-		bankSuite_wallet_balance(multisig6,"bankSuitePersonal6Balance",5);
+		bankSuite_wallet_balance(multisig1,"bankSuitePersonal1Balance","bankSuitePersonal1UCBalance",0);
+		bankSuite_wallet_balance(multisig2,"bankSuitePersonal2Balance","bankSuitePersonal2UCBalance",0);
+		bankSuite_wallet_balance(multisig3,"bankSuitePersonal3Balance","bankSuitePersonal3UCBalance",0);
+		bankSuite_wallet_balance(multisig4,"bankSuitePersonal4Balance","bankSuitePersonal4UCBalance",0);
+		bankSuite_wallet_balance(multisig5,"bankSuitePersonal5Balance","bankSuitePersonal5UCBalance",0);
+		bankSuite_wallet_balance(multisig6,"bankSuitePersonal6Balance","bankSuitePersonal6UCBalance",0);
 		$("bankSuitePersonal1Balance").hide(1000, function(){
 		});
 		$("bankSuitePersonal2Balance").hide(1000, function(){
@@ -463,7 +612,7 @@ var bs_multiDoGoodFund;
 
 
 /* get from chain.so, then wait before displaying */
-function bankSuite_wallet_balance(multisig, urlName, idx) {
+function bankSuite_wallet_balance(multisig, urlName, UCurlName, idx) {
 var tt1 = [];
 var tt2 = [];
 	var ttimer = (1050 * parseInt(idx));	// a good long time
@@ -484,14 +633,36 @@ var tt2 = [];
                         },
                         success: function(data) {
                                 tt1[idx] = JSON.stringify(data, null, 4);
-				console.info("bankSuite_wallet_balance: " + tt1[idx]);
 				work_balance[idx] = data.data.confirmed_balance;
-				work_balance_total += parseFloat(data.data.confirmed_balance);
-				var el_tempvaro = "Balance: " + work_balance[idx];
-				document.getElementById(urlName).innerHTML = el_tempvaro; //display to HTML
+				work_unconfirmed_balance[idx] = data.data.unconfirmed_balance;
+				console.info("bankSuite_wallet_balance: " + tt1[idx]);
+				//work_balance_total += parseFloat(data.data.confirmed_balance);
                         },
                         complete: function(data, status) {
+//				var el_tempvaro = "Balance: " + work_balance[idx];
+//				document.getElementById(urlName).innerHTML = el_tempvaro; //display to HTML
+//				console.info("bankSuite_wallet_balance is complete for idx = " + idx);
+
+                                var tempvar = "Unconfirmed Balance: " + work_unconfirmed_balance[idx]; // now set unconfirmed if non-0
+                                if (parseFloat(work_unconfirmed_balance[idx]) > parseFloat("0.00000000") ||
+                                    parseFloat(work_unconfirmed_balance[idx]) < parseFloat("0.00000000")) {
+                                        if (parseFloat(work_unconfirmed_balance[idx]) > parseFloat("0.00000000")) {
+                                                var tt1 = "Confirmed Balance: " + parseFloat(work_balance[idx]);
+                                        } else {
+                                                var tt1 = "Confirmed Balance: " + parseFloat((parseFloat(work_balance[idx]) + 
+                                                                                parseFloat(work_unconfirmed_balance[idx])));
+                                        }
+                                        document.getElementById(urlName).innerHTML = tt1;    // display to HTML
+                                        document.getElementById(UCurlName).innerHTML = tempvar; // display to HTML
+                                        //$("#getWalletUCBalance").removeClass("hidden");
+                                        $(UCurlName).removeClass("hidden");
+                                } else {
+                                        var tt1 = "Confirmed Balance: " + parseFloat(work_balance[idx]);
+                                        document.getElementById(urlName).innerHTML = tt1;    // display to HTML
+                                }
+
 				console.info("bankSuite_wallet_balance is complete for idx = " + idx);
+				console.info("tempvar = " + tempvar);
                         }
                 });
 	}, ttimer);
