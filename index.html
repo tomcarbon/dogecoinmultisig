@@ -39,6 +39,7 @@
 		<script type="text/javascript" src="js/coinbin.js"></script>
 		<script type="text/javascript" src="js/moist.js"></script>
 		<script type="text/javascript" src="js/banksuite.js"></script>
+		<script type="text/javascript" src="js/ramin.js"></script>
 	</head>
 
 	<body>
@@ -77,6 +78,7 @@
 							<li><a href="#broadcast" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span> Broadcast</a></li>
 							<li><a href="#cpToolbox" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span> Tools</a></li>
 							<li><a href="#bankSuite" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span>Bank Suite</a></li>
+							<!--li><a href="#ramin" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span>ramin</a></li-->
 							<!--li><a href="#wallet" data-toggle="tab"><span class="glyphicon glyphicon-briefcase"></span> Wallet</a></li-->
 							<!--li><a href="#about" data-toggle="tab"><span class="glyphicon glyphicon-info-sign"></span> About</a></li-->
 
@@ -256,6 +258,21 @@
 					<div class="tab-pane tab-content" id="cpToolbox">
 						<a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo2.jpg" style="height:180px" ></a>
 						<h2>WELCOME to 'CP' ToolBox!.</h2>
+						<p>Put any text here, then make a QR code or copy to clipboard:</p>
+                                                        <div class="input-group">
+                                                                <input id="anynamehere001" type="text" class="js-copytextarea9 form-control address" value="" >
+                                                                <span class="input-group-btn">
+                                                                        <button class="btn btn-default js-textareacopybtn9" type="button">
+                                                                        <span class="glyphicon glyphicon-copy"></span>
+                                                                        </button>
+                                                                </span>
+                                                                <span class="input-group-btn">
+                                                                        <button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
+                                                                        <span class="glyphicon glyphicon-qrcode"></span>
+                                                                        </button>
+                                                                </span>
+                                                        </div>
+						<br>
 						<h3>Such a very place. </h3>
 						<p></p>
 						<p>Here you'll find several low level functions, if you need or want them!</p>
@@ -343,29 +360,105 @@
 					</div>
 
 
+					<div class="tab-pane tab-content" id="ramin">
+						<a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo2.jpg" style="height:180px" ></a>
+						<h2>Ramin's Special Instructions</h2>
+						<p>Hi Ramin, these instructions are just for you. If your name is not Ramin, TAKE HEED:</p>
+						<br>
+						<p> these are Ramin's special instructions</p>
+						<br>
+						<p>Let's get through this:</p>
+						<a href="#ramin"><input type="button" class="btn btn-success" value="Let's Go!" id="rb01"></a>
+							<!--li><a href="#ramin" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span>ramin</a></li-->
+						<div class="alert-success hidden" id="rBox01">
+							<p>First of all, How are you?</p>
+							<input type="button" class="btn btn-success" value="Good, thank you" id="rb02">
+							<input type="button" class="btn btn-primary" value="So so" id="rb03">
+							<input type="button" class="btn btn-danger" value="I would rather not say" id="rb04">
+						</div>
+						<div class="alert-success hidden" id="rBox02">
+							<p>I'm sorry to hear that! Well, let's cheer you up.</p>
+							<p>If all went well, this webpage opened in a new window</p>
+							<p>and you are now able to switch</p>
+							<p>between the two dogecoinmultisig.org websites </p>
+							<p>effortlessly!</p>
+							<p>Are you ready?</p>
+							<input type="button" class="btn btn-success" value="YES I AM" id="rb05">
+							<input type="button" class="btn btn-primary" value="No Thanks" id="rb05a">
+							<input type="button" class="btn btn-info" value="I am uncertain" id="rb06">
+						</div>
+						<div class="alert-success hidden" id="rBox03">
+							<p><small><small>
+							<center>It's okay to be uncertain.</center>
+							<center>It is a part of life.</center>
+							<center>Since we cannot change it,  we can accept it.</center>
+							<center>Or we can ignore it.</center>
+							<center>But we do not want to do that.</center>
+							<center>Do we, Ramin.</center>
+							<center>No, it's fine to be uncertain because</center>
+							<center>it is part of growth.</center>
+							<center>You can do this.</center>
+							</small></small>
+							<center><p><input type="button" class="btn btn-large btn-success" value="Yes I can do this, Tom!" id="rb07"></p></center>
+							<center><p><input type="button" class="btn btn-primary" value="Nope" id="rb08" ></p></center>
+							<center><p><input type="button" class="btn btn-warning" value="I am doing this against my will and do not wish to participate" id="rb09"></p></center>
+						</div>
+						<div class="alert-info hidden" id="rBox04">
+							<iframe width="560" height="315" src="https://www.youtube.com/embed/oxYot_RdrpE" frameborder="0" allowfullscreen></iframe>
+							<h1>LET'S DO THIS!</h1>
+							<h2>Mission Objective:<small>Secure Website Address and Private Suite Key.</small></h2>
+							<h3>On the DBS page, press the green button and save the two pieces of information that appear in the blue and green boxes.</h3>
+							<p><small><small>(watch the video)</small></small></p>
+							<br>
+							<p><bold>Use the 'copy to clipboard' icons this time</bold></p>
+							<p><small><small>(sorry about last time)</small></small></p>
+							<br>
+							<p>Save both the blue and the green parts to somewhere convenient for now, like notepad.exe</p>
+							<p><input type="button" class="btn btn-xs btn-primary" value="or this button if you're logged onto gmail" id="rb11"></p>
+							<p>or an email draft folder as we're not putting a whole bunch of money into it, just a few pennies worth or whtvr. That said, it makes sense to investigate the</p>
+							<p>basics of good security practices, which saving to your gmail drafts would not be. </p>
+							<br>
+							<p><input type="button" class="btn btn-small btn-success" value="OMG I did it" id="rb10" ></p>
+							<p><input type="button" class="btn btn-small btn-warning" value="I am making failboats" id="rb12" ></p>
+						</div>
+						<div class="alert-success hidden" id="rBox05">
+							<h1>SUCCESS!</h1>
+							<p>If you have some dogecoin you can deposit it there, and </p>
+							<p>you can practice paying between your six accounts.</p>
+							<p>Keep in mind, Ramin, it is MINING FEES that makes this website</p>
+							<p>operate and so a doge or two will be coming off with</p>
+							<p>every transaction. Same fee as you would pay to any address.</p>
+							<p>Something like $.00025 per transaction.</p>
+							<p>Very Multsigs. Such Dogecoin. <bold>Wow.</bold></p>
+						</div>
+					</div>
 
 
 					<div class="tab-pane tab-content" id="bankSuite">
 						<a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo1.jpg" style="height:180px" ></a>
 						<h1>You Hold The Keys</h1>
 
-						<h2>Dogecoin Bankings Suite </h2>
-
+						<h2>Dogecoin Bankings Suite</h2>
 						<p><small>You keep one piece of information safe. In return you own the six dogecoin accounts mathematically associated with it.</p>
+						<input id="bankSuiteQuickInstructions" type="button" class="btn btn-xs btn-info" value="Click Here for Super Quick Instructions" >
+                                                <div class="alert-success hidden" id="bankSuiteNewScreen04">
+							<p><b>Step 1:</b> Click the GREEN Button (Make New Suite Keys) to make a new account.</p>
+							<p><b>Step 2:</b> Save the Private Suite Key (in the BLUE Box) to a safe, secure location.</p>
+							<p><b>Step 3:</b> Bookmark or Save the 'shareable URL'.</p>
+							<h3>Your DBS (Dogecoin Bankings Suite) Account is now ready for use.</h3>
+							<a href="https://www.youtube.com/watch?v=oxYot_RdrpE&index=4&list=PLKNyF61Wqa0YBwXKodoDA7gnG3CHoVONd">Here's a quick demonstration Video!</a>
+							<input type="button" class="btn btn-success" value="Ramin's Special Instructions" id="rsi">
+						</div>
 						<p><small>You may share the Public Suite Key, or keep it to yourself.</p>
-						<p><small>These static dogecoin multisignatures can be computed from either Suite Key.</p>
+						<p><small>These static dogecoin multisignatures can be computed from the Private Suite Key.</p>
 						<p><small>Do NOT lose your Private Suite Key. Record it and save it.</p>
 						<p><small>(if you bandy your Private Key about it is susceptible to theft)</p>
 						<p><small>These accounts are disposable. You may make as many of them as you like. </small></p>
 						<p><small>You can break a Suite Key in half, and then share it with another person, etc. Geekspeak, they are just 2 Pub/PrivKeys put together!</p>
 						<p><small>You can run this page offline.</small></p>
 						<p><small>This program will create identical multisig values as compared to core.</small></p>
-						</small>
-						</small>
-						</small>
-						</small>
-						</small>
-						</small>
+						</small> </small> </small> </small> </small> </small>
+
 						<!-- removed until it works20160914input type="button" class="btn btn-warning btn-xs" value="Reset this Page" 	id="bankSuiteReset"-->
 						<hr size="5">
 						<input type="button" class="btn btn-success btn-xs" value="Make New Suite Keys" 
@@ -379,15 +472,25 @@
                                                 </div>
                                                 <div class="alert alert-info hidden" id="bankSuiteNewScreen03">
 							<label>Here is your new Private Suite Key (SAVE THIS IMMEDIATELY!):</label>
-                                                        <input id="bankSuiteNewPrivateSuiteKey" type="text" class="form-control address" value="" readonly>
+                                                        <input id="bankSuiteNewPrivateSuiteKey" type="text" class="js-copytextarea8 form-control address" value="" readonly>
+							<span class="input-group-btn">
+								<button class="btn btn-default js-textareacopybtn8" type="button">
+								<span class="glyphicon glyphicon-copy"></span>
+								</button>
+							</span>
 							<input type="button" class="btn btn-warning" value="Split into Two Private Keys" id="bankSuiteSplitPrivate">
                                                         <input id="bankSuiteNewPrivateSuiteKeyS1" type="text" class="form-control address hidden" value="" readonly>
                                                         <input id="bankSuiteNewPrivateSuiteKeyS2" type="text" class="form-control address hidden" value="" readonly>
                                                 </div>
-                                                <div class="alert-success hidden" id="bankSuiteNewScreen02">
+                                                <div class="alert-success" id="bankSuiteNewScreen02">
 						<p><b>Here is your shareable URL for this page</b><small><small> (it contains your Public Suite Key)</small></small>:</p>
 							<div class="input-group">
-								<input id="bankSuitePageURL" type="text" class="form-control address" value="" readonly>
+								<input id="bankSuitePageURL" type="text" class="js-copytextarea7 form-control address" value="" readonly>
+								<span class="input-group-btn">
+									<button class="btn btn-default js-textareacopybtn7" type="button">
+									<span class="glyphicon glyphicon-copy"></span>
+									</button>
+								</span>
 								<span class="input-group-btn">
 									<button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
 									<span class="glyphicon glyphicon-qrcode"></span>
@@ -422,7 +525,12 @@
 							</div>
 							<div class="input-group">
 								<span class="input-group-addon">URL:</span>
-								<input id="bankSuitePersonal1URL" type="text" class="form-control address" value="" readonly>
+								<input id="bankSuitePersonal1URL" type="text" class="js-copytextarea1 form-control address" value="" readonly>
+								<span class="input-group-btn">
+									<button class="btn btn-default js-textareacopybtn1" type="button">
+									<span class="glyphicon glyphicon-copy"></span>
+									</button>
+								</span>
 							</div>
 							<b><p id="bankSuitePersonal1Balance"></p></b>
 							<b><p id="bankSuitePersonal1UCBalance"></b></p>
@@ -430,6 +538,9 @@
                                                 	<div class="alert alert-success" id="bankSuitePersonal1PayBox">
 								<span>To Address:<input id="bankSuitePersonal1ToAddr" type="text" class="form-control address" value=""></span>
 								<span>Amount:<input id="bankSuitePersonal1ToAmt" type="text" class="form-control address" value=""></span>
+								<p><small><small>
+								<small>(the mining fee will be added on top of this amount, unless full amount, then it's subtracted!)</small>
+								</small></small></p>
 								<input type="button" class="btn btn-info" value="Next" id="bankSuitePay1">
 							</div>
 							<br>
@@ -450,7 +561,12 @@
 							</div>
 							<div class="input-group">
 								<span class="input-group-addon">URL:</span>
-								<input id="bankSuitePersonal2URL" type="text" class="form-control address" value="" readonly>
+								<input id="bankSuitePersonal2URL" type="text" class="js-copytextarea2 form-control address" value="" readonly>
+								<span class="input-group-btn">
+									<button class="btn btn-default js-textareacopybtn2" type="button">
+									<span class="glyphicon glyphicon-copy"></span>
+									</button>
+								</span>
 							</div>
 							<b><p id="bankSuitePersonal2Balance"></p></b>
 							<b><p id="bankSuitePersonal2UCBalance"></p></b>
@@ -458,6 +574,9 @@
                                                 	<div class="alert alert-success " id="bankSuitePersonal2PayBox">
 								<span>To Address:<input id="bankSuitePersonal2ToAddr" type="text" class="form-control address" value=""></span>
 								<span>Amount:<input id="bankSuitePersonal2ToAmt" type="text" class="form-control address" value=""></span>
+								<p><small><small>
+								<small>(the mining fee will be added on top of this amount, unless full amount, then it's subtracted!)</small>
+								</small></small></p>
 								<input type="button" class="btn btn-info" value="Next" id="bankSuitePay2">
 							</div>
 							<br>
@@ -478,7 +597,12 @@
 							</div>
 							<div class="input-group">
 								<span class="input-group-addon">URL:</span>
-								<input id="bankSuiteSlushURL" type="text" class="form-control address" value="" readonly>
+								<input id="bankSuiteSlushURL" type="text" class="js-copytextarea3 form-control address" value="" readonly>
+								<span class="input-group-btn">
+									<button class="btn btn-default js-textareacopybtn3" type="button">
+									<span class="glyphicon glyphicon-copy"></span>
+									</button>
+								</span>
 							</div>
 							<b><p id="bankSuitePersonal3Balance"></p></b>
 							<b><p id="bankSuitePersonal3UCBalance"></p></b>
@@ -486,6 +610,9 @@
                                                 	<div class="alert alert-success " id="bankSuiteSlushPayBox">
 								<span>To Address:<input id="bankSuiteSlushToAddr" type="text" class="form-control address" value=""></span>
 								<span>Amount:<input id="bankSuiteSlushToAmt" type="text" class="form-control address" value=""></span>
+								<p><small><small>
+								<small>(the mining fee will be added on top of this amount, unless full amount, then it's subtracted!)</small>
+								</small></small></p>
 								<input type="button" class="btn btn-info" value="Next" id="bankSuitePay3">
 							</div>
 							<br>
@@ -506,7 +633,12 @@
 							</div>
 							<div class="input-group">
 								<span class="input-group-addon">URL:</span>
-								<input id="bankSuiteCheckingURL" type="text" class="form-control address" value="" readonly>
+								<input id="bankSuiteCheckingURL" type="text" class="js-copytextarea4 form-control address" value="" readonly>
+								<span class="input-group-btn">
+									<button class="btn btn-default js-textareacopybtn4" type="button">
+									<span class="glyphicon glyphicon-copy"></span>
+									</button>
+								</span>
 							</div>
 							<b><p id="bankSuitePersonal4Balance"></p></b>
 							<b><p id="bankSuitePersonal4UCBalance"></p></b>
@@ -514,6 +646,9 @@
                                                 	<div class="alert alert-success " id="bankSuiteCheckingPayBox">
 								<span>To Address:<input id="bankSuiteCheckingToAddr" type="text" class="form-control address" value=""></span>
 								<span>Amount:<input id="bankSuiteCheckingToAmt" type="text" class="form-control address" value=""></span>
+								<p><small><small>
+								<small>(the mining fee will be added on top of this amount, unless full amount, then it's subtracted!)</small>
+								</small></small></p>
 								<input type="button" class="btn btn-info" value="Next" id="bankSuitePay4">
 							</div>
 							<br>
@@ -534,7 +669,12 @@
 							</div>
 							<div class="input-group">
 								<span class="input-group-addon">URL:</span>
-								<input id="bankSuiteSavingsURL" type="text" class="form-control address" value="" readonly>
+								<input id="bankSuiteSavingsURL" type="text" class="js-copytextarea5 form-control address" value="" readonly>
+								<span class="input-group-btn">
+									<button class="btn btn-default js-textareacopybtn5" type="button">
+									<span class="glyphicon glyphicon-copy"></span>
+									</button>
+								</span>
 							</div>
 							<b><p id="bankSuitePersonal5Balance"></p></b>
 							<b><p id="bankSuitePersonal5UCBalance"></p></b>
@@ -542,6 +682,9 @@
                                                 	<div class="alert alert-success " id="bankSuiteSavingsPayBox">
 								<span>To Address:<input id="bankSuiteSavingsToAddr" type="text" class="form-control address" value=""></span>
 								<span>Amount:<input id="bankSuiteSavingsToAmt" type="text" class="form-control address" value=""></span>
+								<p><small><small>
+								<small>(the mining fee will be added on top of this amount, unless full amount, then it's subtracted!)</small>
+								</small></small></p>
 								<input type="button" class="btn btn-info" value="Next" id="bankSuitePay5">
 							</div>
 							<br>
@@ -562,7 +705,12 @@
 							</div>
 							<div class="input-group">
 								<span class="input-group-addon">URL:</span>
-								<input id="bankSuiteDoGoodFundURL" type="text" class="form-control address" value="" readonly>
+								<input id="bankSuiteDoGoodFundURL" type="text" class="js-copytextarea6 form-control address" value="" readonly>
+								<span class="input-group-btn">
+									<button class="btn btn-default js-textareacopybtn6" type="button">
+									<span class="glyphicon glyphicon-copy"></span>
+									</button>
+								</span>
 							</div>
 							<b><p id="bankSuitePersonal6Balance"></p></b>
 							<b><p id="bankSuitePersonal6UCBalance"></p></b>
@@ -570,6 +718,9 @@
                                                 	<div class="alert alert-success " id="bankSuiteDoGoodFundPayBox">
 								<span>To Address:<input id="bankSuiteDoGoodFundToAddr" type="text" class="form-control address" value=""></span>
 								<span>Amount:<input id="bankSuiteDoGoodFundToAmt" type="text" class="form-control address" value=""></span>
+								<p><small><small>
+								<small>(the mining fee will be added on top of this amount, unless full amount, then it's subtracted!)</small>
+								</small></small></p>
 								<input type="button" class="btn btn-info" value="Next" id="bankSuitePay6">
 							</div>
 							<br>
@@ -1374,7 +1525,7 @@
 					<div class="tab-pane tab-content" id="about">
 						<h2>About <small>this website.</small></h2>
 						<p>This project was started with coinb.in open source source code. Please donate to them at: <a href="bitcoin:1CWHWkTWaq1K5hevimJia3cyinQsrgXUvg">1CWHWkTWaq1K5hevimJia3cyinQsrgXUvg</a> (BTC)</p>
-						<p>Version .090 (in development this statement last touched 20160715)</p>
+						<p>Version .224</p>
 						<p>Compatible with dogecoin-qt</p>
 						<!--p>Github <a href="https://github.com/OutCast3k/coinbin/">https://github.com/OutCast3k/coinbin/</a></p-->
 						<!--p>TOR <a href="http://4zpinp6gdkjfplhk.onion">4zpinp6gdkjfplhk.onion</a></p-->
@@ -1484,7 +1635,7 @@
 
 		<div id="footer">
 			<div class="container text-right">
-	        		<p class="text-muted">Version 1.2</p>
+	        		<p class="text-muted">Version .224</p>
 			</div>
 		</div>
 
