@@ -1,6 +1,8 @@
 
 Hello, Shibes
 
+Here's a description for the Dogecoin Bankings Suite: https://redd.it/5697o0
+
 This site is a wrapper for Dogecoin Multisigs. You can use this site to:
 
 Create Dogecoin Addresses
@@ -11,7 +13,7 @@ Spend From Dogecoin Multisig Addresses
 
 and much more.
 
-New is the so-called "DOGECOIN BANKINGS SUITE". It regards the following relationship regarding multisigs: that if you take any two public keys, and you squeeze them hard enough, you end up with the following things:
+New is the so-called "DOGECOIN BANKINGS SUITE". It's a wallet. It regards the following relationship regarding multisigs: that if you take any two public keys, and you squeeze them hard enough, you end up with the following things:
 
 1/1 multisig (Public Key 1 by itself)
 
