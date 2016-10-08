@@ -18,6 +18,7 @@ $("#bankSuiteSlushPayBox"	).toggle("fast","swing");
 $("#bankSuiteCheckingPayBox"	).toggle("fast","swing");
 $("#bankSuiteSavingsPayBox"	).toggle("fast","swing");
 $("#bankSuiteDoGoodFundPayBox"	).toggle("fast","swing");
+$("#bankSuiteNewScreen04"	).toggle("fast","swing");
 $("#bankSuitePageURL").val(document.location.origin+''+document.location.pathname+'#bankSuite');
 
 
@@ -153,6 +154,12 @@ copyTextareaBtn9.addEventListener('click', function(event) {
   }
 });
 
+/* user clicks the link for the more detailed information */ 
+$("#rsddi").click(function(){
+	var tt1 = "https://redd.it/5697o0";
+	window.open(tt1);
+});
+
 /* user clicks the Ramin button */ 
 $("#rsi").click(function(){
 	var tt1 = document.location.origin+''+document.location.pathname+'#ramin';
@@ -183,7 +190,8 @@ $("#bankSuiteQuickInstructions").click(function(){
 			"Step 3: Bookmark or Save the 'shareable URL'.\n\n" +
 			"Your DBS (Dogecoin Bankings Suite) Account is now ready for use.";
 	console.info(tt1);
-        $("#bankSuiteNewScreen04").removeClass("hidden");	// show new Private Suite Key
+//        $("#bankSuiteNewScreen04").removeClass("hidden");	// show new Private Suite Key
+	$("#bankSuiteNewScreen04").toggle();
 });
 
 /* user clicks the 'create new Dogecoin Bankings Suite' button on the bankSuite Interface*/
