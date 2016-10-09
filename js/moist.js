@@ -116,7 +116,7 @@ return "missing value.";
 ***************************************************/
 $("#moist2").click(function(){
 
-        var iindex = prompt("Please enter your number (click ok then please wait).", "99");
+        var iindex = prompt("Please enter your number.", "778");
 	// the map of possible iindex values is currently provided in index.html (TCC20160712)
 
 	tempstring = $("#dogeScript").val();
@@ -858,7 +858,9 @@ function very_get_info(iindex){
 
 
 	   default:
-//		window.alert("Sorry shibe, " + iindex + " is not on the menu.");
+		var tt0 = "Sorry Shibe, " + iindex + " is not a valid menu item.";
+		console.info(tt0);
+		alert(tt0);
 	   break;
 	}
 }

@@ -251,10 +251,18 @@ $("#bankSuiteNewKeys").click(function(){
 
 });
 
+/* user clicks the 'pay here screen' button (1) */
+$("#bsphBtn1").click(function(){	// PERSONAL 1
+//        $("#bankSuitePersonal1PayBox").removeClass("hidden");	
+	//o	$("#bankSuitePersonal1PayBox").toggle();
+	alert("Hello, Shibe! Come back later!");
+});
+
 /* user presses one of the 6 'Spend Buttons that opens detail about one multisig */
 $("#bsTogBtn1").click(function(){	// PERSONAL 1
 //        $("#bankSuitePersonal1PayBox").removeClass("hidden");	
 	$("#bankSuitePersonal1PayBox").toggle();
+	$("#bsphBtn1").toggle();
 });
 
 
