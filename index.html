@@ -258,35 +258,42 @@
 					<div class="tab-pane tab-content" id="cpToolbox">
 						<a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo2.jpg" style="height:180px" ></a>
 						<h2>WELCOME to 'CP' ToolBox!.</h2>
-						<p>Put any text here, then make a QR code or copy to clipboard:</p>
-                                                        <div class="input-group">
-                                                                <input id="anynamehere001" type="text" class="js-copytextarea9 form-control address" value="" >
-                                                                <span class="input-group-btn">
-                                                                        <button class="btn btn-default js-textareacopybtn9" type="button">
-                                                                        <span class="glyphicon glyphicon-copy"></span>
-                                                                        </button>
-                                                                </span>
-                                                                <span class="input-group-btn">
-                                                                        <button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
-                                                                        <span class="glyphicon glyphicon-qrcode"></span>
-                                                                        </button>
-                                                                </span>
-                                                        </div>
-						<br>
-						<h3>Such a very place. </h3>
-						<p></p>
-						<p>Here you'll find several low level functions, if you need or want them!</p>
-						<p> (use the F12 Console for this)</p>
-						<p></p>
-						<p>Codes:</p>
-						<p>99 get doge network info.</p>
-						<p>100 send Signed Transaction </p> 
-						<p>777 get Balance for Ðogecoin address</p>
-						<p>778 get Unspent transactions for Ðogecoin address</p>
-						<p>779 get info about a txid</p>
-						<p>780 get Spent transactions for Ðogecoin address</p>
-						<!--textarea type="text" id="dogeScript" class="form-control" style="height:125px"></textarea-->
-						<input type="button" class="btn btn-primary" value="Moon!" id="moist2">
+						<div class="alert-danger">
+							<h3><b>Such a very place.</b></h3>
+						</div>
+						<hr>
+						<div class="alert-success">
+							<p><b>Here you'll find several low level functions, if you need or want them!</b></p>
+							<p> (use the F12 Console for this)</p>
+							<p></p>
+							<p>Codes:</p>
+							<!--p>99 get doge network info.</p-->
+							<p>100 send Signed Transaction </p> 
+							<p>777 get Balance for Ðogecoin address</p>
+							<p>778 get Unspent transactions for Ðogecoin address</p>
+							<p>779 get info about a txid</p>
+							<p>780 get Spent transactions for Ðogecoin address</p>
+							<!--textarea type="text" id="dogeScript" class="form-control" style="height:125px"></textarea-->
+							<input type="button" class="btn btn-primary" value="Moon!" id="moist2">
+						</div>
+						<hr>
+						<div class="alert-info">
+							<p><b>Put any text here, then make a QR code or copy to clipboard:</b></p>
+								<div class="input-group">
+									<input id="anynamehere001" type="text" class="js-copytextarea9 form-control address" value="" >
+									<span class="input-group-btn">
+										<button class="btn btn-default js-textareacopybtn9" type="button">
+										<span class="glyphicon glyphicon-copy"></span>
+										</button>
+									</span>
+									<span class="input-group-btn">
+										<button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
+										<span class="glyphicon glyphicon-qrcode"></span>
+										</button>
+									</span>
+								</div>
+							<br>
+						</div>
 					</div>
 
 
@@ -543,6 +550,7 @@
 								</small></small></p>
 								<input type="button" class="btn btn-info" value="Next" id="bankSuitePay1">
 							</div>
+							<input type="button" class="btn btn-info" value="(coming soon!)" id="bsphBtn1">
 							<br>
 						<hr size="5">
 						<h4><b>Personal 2 (1/1 multisig):</b></h4>
@@ -1433,7 +1441,7 @@
 					<div class="tab-pane tab-content" id="broadcast">
 						<a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo3.jpg" style="height:180px" ></a>
 						<h2>Broadcast Transaction <small>into the Ðogecoin network</small></h2>
-						<a href="#settings" style="float:right;"><span class="glyphicon glyphicon-cog"></span></a>
+						<!--a href="#settings" style="float:right;"><span class="glyphicon glyphicon-cog"></span></a-->
 						<p>Enter your txid here:</p>
 						<textarea type="text" id="dogeScript3" class="form-control" style="height:125px"></textarea>
 						
@@ -1634,7 +1642,7 @@
 
 		<div id="footer">
 			<div class="container text-right">
-	        		<p class="text-muted">Version .226</p>
+	        		<p class="text-muted">Version .228</p>
 			</div>
 		</div>
 
