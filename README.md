@@ -13,7 +13,9 @@ Spend From Dogecoin Multisig Addresses
 
 and much more.
 
-New is the so-called "DOGECOIN BANKINGS SUITE". It's a wallet. It regards the following relationship regarding multisigs: that if you take any two public keys, and you squeeze them hard enough, you end up with the following things:
+New is a 2/3 Multisig wrapper called 'TripleShibe'. It has a button to interface with reddit, among other features.
+
+Also new is the so-called "DOGECOIN BANKINGS SUITE". It's a wallet. It regards the following relationship regarding multisigs: that if you take any two public keys, and you squeeze them hard enough, you end up with the following things:
 
 1/1 multisig (Public Key 1 by itself)
 
