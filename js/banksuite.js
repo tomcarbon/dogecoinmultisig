@@ -19,7 +19,7 @@ $("#bankSuiteCheckingPayBox"	).toggle("fast","swing");
 $("#bankSuiteSavingsPayBox"	).toggle("fast","swing");
 $("#bankSuiteDoGoodFundPayBox"	).toggle("fast","swing");
 $("#bankSuiteNewScreen04"	).toggle("fast","swing");
-$("#bankSuitePageURL").val(document.location.origin+''+document.location.pathname+'#bankSuite');
+$("#bankSuitePageURL").val(document.location.origin+''+document.location.pathname+'#bankSuite');	// to give to a friend
 
 
 
@@ -251,13 +251,6 @@ $("#bankSuiteNewKeys").click(function(){
 
 });
 
-/* user clicks the 'pay here screen' button (1) */
-$("#bsphBtn1").click(function(){	// PERSONAL 1
-//        $("#bankSuitePersonal1PayBox").removeClass("hidden");	
-	//o	$("#bankSuitePersonal1PayBox").toggle();
-	alert("Hello, Shibe! Come back later!");
-});
-
 /* user presses one of the 6 'Spend Buttons that opens detail about one multisig */
 $("#bsTogBtn1").click(function(){	// PERSONAL 1
 //        $("#bankSuitePersonal1PayBox").removeClass("hidden");	
@@ -398,6 +391,7 @@ $("#bankSuitePay6").click(function(){
 	console.info("Value is " + tt1);
 	window.open(tt1);
 });
+
 
 
 
@@ -600,11 +594,11 @@ var bs_multiDoGoodFund;
 	} else {
 		/* variance = 0, retrieve the balances */
 		bankSuite_wallet_balance(multisig1,"bankSuitePersonal1Balance","bankSuitePersonal1UCBalance",0);
-		bankSuite_wallet_balance(multisig2,"bankSuitePersonal2Balance","bankSuitePersonal2UCBalance",0);
-		bankSuite_wallet_balance(multisig3,"bankSuitePersonal3Balance","bankSuitePersonal3UCBalance",0);
-		bankSuite_wallet_balance(multisig4,"bankSuitePersonal4Balance","bankSuitePersonal4UCBalance",0);
-		bankSuite_wallet_balance(multisig5,"bankSuitePersonal5Balance","bankSuitePersonal5UCBalance",0);
-		bankSuite_wallet_balance(multisig6,"bankSuitePersonal6Balance","bankSuitePersonal6UCBalance",0);
+		bankSuite_wallet_balance(multisig2,"bankSuitePersonal2Balance","bankSuitePersonal2UCBalance",1);
+		bankSuite_wallet_balance(multisig3,"bankSuitePersonal3Balance","bankSuitePersonal3UCBalance",2);
+		bankSuite_wallet_balance(multisig4,"bankSuitePersonal4Balance","bankSuitePersonal4UCBalance",3);
+		bankSuite_wallet_balance(multisig5,"bankSuitePersonal5Balance","bankSuitePersonal5UCBalance",4);
+		bankSuite_wallet_balance(multisig6,"bankSuitePersonal6Balance","bankSuitePersonal6UCBalance",5);
 		$("bankSuitePersonal1Balance").hide(1000, function(){
 		});
 		$("bankSuitePersonal2Balance").hide(1000, function(){

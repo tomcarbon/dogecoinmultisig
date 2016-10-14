@@ -805,10 +805,10 @@ function very_get_info(iindex){
                         url: "https://chain.so/api/v2/get_tx/DOGE/" + dogeaddress,
                         dataType: "json",
                         error: function(data) {
-                                alert(JSON.stringify(data, null, 4));
+                                console.info(JSON.stringify(data, null, 4));
                         },
                         success: function(data) {
-                                alert(JSON.stringify(data, null, 4));                   
+                                console.info(JSON.stringify(data, null, 4));                   
                         },
                         complete: function(data, status) {
                         //	window.alert("complete1");
@@ -828,10 +828,10 @@ function very_get_info(iindex){
                         url: "https://chain.so/api/v2/get_tx_spent/DOGE/" + dogeaddress,
                         dataType: "json",
                         error: function(data) {
-                                alert(JSON.stringify(data, null, 4));
+                                console.info(JSON.stringify(data, null, 4));
                         },
                         success: function(data) {
-                                alert(JSON.stringify(data, null, 4));                   // THIS IS GOLD DON'T LOSE IT
+                                console.info(JSON.stringify(data, null, 4));                   // THIS IS GOLD DON'T LOSE IT
                         },
                         complete: function(data, status) {
                         //        window.alert("complete1");
