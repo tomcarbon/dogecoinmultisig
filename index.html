@@ -40,6 +40,8 @@
 		<script type="text/javascript" src="js/moist.js"></script>
 		<script type="text/javascript" src="js/banksuite.js"></script>
 		<script type="text/javascript" src="js/ramin.js"></script>
+		<script type="text/javascript" src="js/tripleshibe.js"></script>
+		<script type="text/javascript" src="js/payspot.js"></script>
 	</head>
 
 	<body>
@@ -78,6 +80,7 @@
 							<li><a href="#broadcast" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span> Broadcast</a></li>
 							<li><a href="#cpToolbox" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span> Tools</a></li>
 							<li><a href="#bankSuite" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span>Bank Suite</a></li>
+							<li><a href="#tripleshibe" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span>TripleShibe</a></li>
 							<!--li><a href="#ramin" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span>ramin</a></li-->
 							<!--li><a href="#wallet" data-toggle="tab"><span class="glyphicon glyphicon-briefcase"></span> Wallet</a></li-->
 							<!--li><a href="#about" data-toggle="tab"><span class="glyphicon glyphicon-info-sign"></span> About</a></li-->
@@ -366,6 +369,165 @@
 						<br>
 					</div>
 
+                                        <div class="tab-pane tab-content" id="payspot">
+                                                <a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo3.jpg" style="height:180px" ></a>
+                                                <a href="#payspot" ><img src="images/dcmslogo3.jpg" class="hidden" style="height:180px" ></a>
+                                                <h2>Pay Spot  <small>  Dogecoin is accepted here.</small></h2>
+
+                                                <div class="alert-info" id="psmultiSigData">
+                                                        <p><b>Address:</b></p>
+                                                        <div class="row">
+                                                                <div class="col-lg-6">
+                                                                        <div class="input-group">
+                                                                                <input id="psAddress" type="text" class="js-pscopytextarea2 form-control address" value="" readonly>
+                                                                                <span class="input-group-btn">
+                                                                                        <button class="btn btn-default js-pstextareacopybtn2" type="button">
+                                                                                        <span class="glyphicon glyphicon-copy"></span>
+                                                                                        </button>
+                                                                                </span>
+                                                                                <span class="input-group-btn">
+                                                                                        <button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" 
+                                                                                        data-target="#modalQrcode"><span class="glyphicon glyphicon-qrcode"></span>
+                                                                                        </button>
+                                                                                </span>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                        <b><p id="psBalance"></p></b>
+                                                        <b><p id="psUCBalance"></b></p>
+                                                        <br>
+                                                        <p><b>Shareable URL for this page</b></p>
+                                                        <div class="input-group">
+                                                                <input id="psRedeemScript" type="text" class="form-control hidden" value="" readonly>
+
+
+                                                                <input id="psPageURL" type="text" class="js-pscopytextarea1 form-control address" value="" readonly>
+                                                                <span class="input-group-btn">
+                                                                        <button class="btn btn-default js-pstextareacopybtn1" type="button">
+                                                                        <span class="glyphicon glyphicon-copy"></span>
+                                                                        </button>
+                                                                </span>
+                                                                <span class="input-group-btn">
+                                                                        <button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
+                                                                        <span class="glyphicon glyphicon-qrcode"></span>
+                                                                        </button>
+                                                                </span>
+                                                        </div>
+                                                        <br>
+                                                        <input type="button" class="btn btn-danger" value="Reddit" id="psRedditBtn">
+                                                        <hr>
+                                                </div>
+                                        </div>
+
+
+					<div class="tab-pane tab-content" id="tripleshibe">
+                                                <a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo3.jpg" style="height:180px" ></a>
+                                                <h2>TripleShibe  <small>Dogecoin 2/3 Multisig</small></h2>
+
+						<input id="tsQuickInstructions" type="button" class="btn btn-xs btn-success" value="Click Here for Instructions!" >
+                                                <div class="alert-success" id="tsNewScreen01">
+							<h3>INSTRUCTIONS</h3>
+							<hr>
+							<p><b>This webpage will enable you to do the following:</b></p>
+							<p>	1) Create a 2/3 Multisig Address,</p>
+							<p>	2) Look at it whenever you want, and </p>
+							<p>	3) Spend Dogecoin from it assuming you've got the Private Keys.</p>
+							<hr>
+							<p>Once you've created your <b>TripleShibe Multisig</b>, save the URL in the blue box for future use.</p>
+							<hr>
+							<p>The multisig featured here is made from 3 Public Keys and 3 Private Keys. In order to spend the Dogecoin, 2 of the 3 Private Keys must be utilized.</p>
+							<p>Do not offer your Public Key if you do not have a Private Key for it, because you will not have a Private Key to spend from the multisig with!</p>
+							<p>(if you have neither a Public Key nor a Private Key you need to make a New Dogecoin Address - see the top menu)</p>
+							<hr>
+							<p>You can use a <b>Private Suite Key</b> with the TripleShibe Multisig. To make a Private Suite Key, append two Private Keys together.</p>
+							<hr>
+						</div>
+
+                                                <div class="alert-warning" id="tsmultisigPubKeys">
+							<hr>
+							<p>Place three Public Keys into the boxes below and click Next</p>
+							<input type="text" class="form-control pubkey" id="tsPubKey1" value="">
+							<br>
+							<input type="text" class="form-control pubkey" id="tsPubKey2" value="">
+							<br>
+							<input type="text" class="form-control pubkey" id="tsPubKey3" value="">
+							<br>
+							<div>
+								<input type="checkbox" id="tsc1" name="tscc" checked />
+								<label for="c1">Sort PubKeys Alphabetically?</label>
+							</div>
+							<br>
+                                                	<input type="button" class="btn btn-info" value="Next" id="newtsMultiSigAddress">
+							<hr>
+                                                </div>
+                                                <div class="alert-info hidden" id="tsmultiSigData">
+							<p><b>Address:</b></p>
+                                                        <div class="row">
+                                                                <div class="col-lg-6">
+                                                                        <div class="input-group">
+										<input id="tsAddress" type="text" class="js-tscopytextarea2 form-control address" value="" readonly>
+										<span class="input-group-btn">
+											<button class="btn btn-default js-tstextareacopybtn2" type="button">
+											<span class="glyphicon glyphicon-copy"></span>
+											</button>
+										</span>
+                                                                                <span class="input-group-btn">
+                                                                                        <button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" 
+											data-target="#modalQrcode"><span class="glyphicon glyphicon-qrcode"></span>
+											</button>
+                                                                                </span>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+							<b><p id="tsBalance"></p></b>
+							<b><p id="tsUCBalance"></b></p>
+							<br>
+							<p><b>Shareable URL for this page</b></p>
+							<div class="input-group">
+								<input id="tsRedeemScript" type="text" class="form-control hidden" value="" readonly>
+
+
+                                                                <input id="tsPageURL" type="text" class="js-tscopytextarea1 form-control address" value="" readonly>
+                                                                <span class="input-group-btn">
+                                                                        <button class="btn btn-default js-tstextareacopybtn1" type="button">
+                                                                        <span class="glyphicon glyphicon-copy"></span>
+                                                                        </button>
+                                                                </span>
+								<span class="input-group-btn">
+									<button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
+									<span class="glyphicon glyphicon-qrcode"></span>
+									</button>
+								</span>
+							</div>
+							<br>
+							<input type="button" class="btn btn-info" value="Spend"      id="tsTogBtn1">
+                                                	<input type="button" class="btn btn-primary" value="Verify" id="tsVerifyBtn">
+                                                	<input type="button" class="btn btn-danger" value="Reddit" id="tsRedditBtn">
+                                                        <input type="button" class="btn btn-warning" value="Pay Spot" id="tsPaySpotBtn">
+							<hr>
+						</div>
+						<div class="alert alert-info" id="tsPayBox">
+							<span>To Address:<input id="tsToAddr" type="text" class="form-control address" value=""></span>
+							<span>Amount:<input id="tsToAmt" type="text" class="form-control address" value=""></span>
+							<p><small><small>
+							<small>(the mining fee will be added on top of this amount, unless full amount, then it's subtracted!)</small>
+							</small></small></p>
+							<input type="button" class="btn btn-info" value="Next" id="tsPayBtn">
+						</div>
+
+                                                <br>
+                                                <div class="alert-success hidden" id="tsmultisigPubKeysAfter">
+							<hr>
+							<br>
+							<p>These Public Keys in this order were used:</p>
+							<input type="text" class="form-control pubkey" id="tsPubKeyAfter1" value="" readonly>
+							<input type="text" class="form-control pubkey" id="tsPubKeyAfter2" value="" readonly>
+							<input type="text" class="form-control pubkey" id="tsPubKeyAfter3" value="" readonly>
+                                                </div>
+
+					</div>
+
+
 
 					<div class="tab-pane tab-content" id="ramin">
 						<a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo2.jpg" style="height:180px" ></a>
@@ -541,7 +703,7 @@
 							</div>
 							<b><p id="bankSuitePersonal1Balance"></p></b>
 							<b><p id="bankSuitePersonal1UCBalance"></b></p>
-							<input type="button" class="btn btn-info" value="Spend" id="bsTogBtn1">
+							<input type="button" class="btn btn-info" value="Spend"      id="bsTogBtn1">
                                                 	<div class="alert alert-success" id="bankSuitePersonal1PayBox">
 								<span>To Address:<input id="bankSuitePersonal1ToAddr" type="text" class="form-control address" value=""></span>
 								<span>Amount:<input id="bankSuitePersonal1ToAmt" type="text" class="form-control address" value=""></span>
@@ -550,7 +712,6 @@
 								</small></small></p>
 								<input type="button" class="btn btn-info" value="Next" id="bankSuitePay1">
 							</div>
-							<input type="button" class="btn btn-info" value="(coming soon!)" id="bsphBtn1">
 							<br>
 						<hr size="5">
 						<h4><b>Personal 2 (1/1 multisig):</b></h4>
@@ -1642,7 +1803,7 @@
 
 		<div id="footer">
 			<div class="container text-right">
-	        		<p class="text-muted">Version .228</p>
+	        		<p class="text-muted">Version .235</p>
 			</div>
 		</div>
 
