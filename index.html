@@ -373,6 +373,17 @@
                                                 <a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo3.jpg" style="height:180px" ></a>
                                                 <a href="#payspot" ><img src="images/dcmslogo3.jpg" class="hidden" style="height:180px" ></a>
                                                 <h2>Pay Spot  <small>  Dogecoin is accepted here.</small></h2>
+						<input id="psQuickInstructions" type="button" class="btn btn-xs btn-success" value="Click Here for Instructions!" >
+                                                <div class="alert-success" id="psNewScreen01">
+							<h3>INSTRUCTIONS</h3>
+							<hr>
+							<p>This is the Pay Spot page.</p>
+							<p>Its primary purpose is to display one Dogecoin Multisig Address, and its balance.</p>
+							<p>Mobile to Mobile, the webpage is easily transferable via URL or QR code.</p>
+							<p>It's also linkable to reddit.</p>
+							<p>This page does not store sensitive data (only the address itself is used).</p>
+							<hr>
+						</div>
 
                                                 <div class="alert-info" id="psmultiSigData">
                                                         <p><b>Address:</b></p>
@@ -501,9 +512,9 @@
 							</div>
 							<br>
 							<input type="button" class="btn btn-info" value="Spend"      id="tsTogBtn1">
+                                                        <input type="button" class="btn btn-warning" value="Pay Spot" id="tsPaySpotBtn">
                                                 	<input type="button" class="btn btn-primary" value="Verify" id="tsVerifyBtn">
                                                 	<input type="button" class="btn btn-danger" value="Reddit" id="tsRedditBtn">
-                                                        <input type="button" class="btn btn-warning" value="Pay Spot" id="tsPaySpotBtn">
 							<hr>
 						</div>
 						<div class="alert alert-info" id="tsPayBox">
@@ -576,7 +587,7 @@
 							<iframe width="560" height="315" src="https://www.youtube.com/embed/oxYot_RdrpE" frameborder="0" allowfullscreen></iframe>
 							<h1>LET'S DO THIS!</h1>
 							<h2>Mission Objective:<small>Secure Website Address and Private Suite Key.</small></h2>
-							<h3>On the DBS page, press the green button and save the two pieces of information that appear in the blue and green boxes.</h3>
+							<h3>On the DBS page, press the blue button and save the two pieces of information that appear in the blue and green boxes.</h3>
 							<p><small><small>(watch the video)</small></small></p>
 							<br>
 							<p><bold>Use the 'copy to clipboard' icons this time</bold></p>
@@ -609,9 +620,9 @@
 
 						<h2>Dogecoin Bankings Suite</h2>
 						<p><small>You keep one piece of information safe. In return you own the six dogecoin addresses mathematically associated with it.</p>
-						<input id="bankSuiteQuickInstructions" type="button" class="btn btn-xs btn-info" value="Click Here for Instructions!" >
+						<input id="bankSuiteQuickInstructions" type="button" class="btn btn-xs btn-success" value="Click Here for Instructions!" >
                                                 <div class="alert-success" id="bankSuiteNewScreen04">
-							<p><b>Step 1:</b> Click the GREEN Button (Make New Suite Keys) to make a new account.</p>
+							<p><b>Step 1:</b> Click the BLUE Button (Make New Suite Keys) to make a new account.</p>
 							<p><b>Step 2:</b> Save the Private Suite Key (in the BLUE Box) to a safe, secure location.</p>
 							<p><b>Step 3:</b> Bookmark or Save the 'shareable URL'.</p>
 							<a href="https://www.youtube.com/watch?v=oxYot_RdrpE&index=4&list=PLKNyF61Wqa0YBwXKodoDA7gnG3CHoVONd">Here's a quick demonstration Video!</a>
@@ -630,7 +641,7 @@
 
 						<!-- removed until it works20160914input type="button" class="btn btn-warning btn-xs" value="Reset this Page" 	id="bankSuiteReset"-->
 						<hr size="5">
-						<input type="button" class="btn btn-success btn-xs" value="Make New Suite Keys" 
+						<input type="button" class="btn btn-info btn-xs" value="Make New Suite Keys" 
 							id="bankSuiteNewKeys"> or enter the <b>Public Suite Key</b> below (or 2 public keys) and click <button type="button" 
 							class="btn btn-danger btn-xs" id="bankSuiteLoad">here</button>
 						<textarea type="text" id="bankSuitePubKey1" class="form-control" placeholder="Insert Suite Key or Public Key here" cols="66" rows="1"></textarea>
@@ -666,6 +677,8 @@
 									</button>
 								</span>
 							</div>
+                                                        <!--input type="button" class="btn btn-danger" value="Reddit" id="bsRedditBtn1"-->
+							<hr>
 						</div>
 						<br>
 						<div id="bankSuiteLoadBtnWrapWait" class="hidden">
@@ -692,7 +705,7 @@
 							<div class="hidden">
 								<input id="bankSuitePersonal1Redeem" type="text" class="form-control address" value="" readonly>
 							</div>
-							<div class="input-group">
+							<div class="input-group hidden">
 								<span class="input-group-addon">URL:</span>
 								<input id="bankSuitePersonal1URL" type="text" class="js-copytextarea1 form-control address" value="" readonly>
 								<span class="input-group-btn">
@@ -704,6 +717,8 @@
 							<b><p id="bankSuitePersonal1Balance"></p></b>
 							<b><p id="bankSuitePersonal1UCBalance"></b></p>
 							<input type="button" class="btn btn-info" value="Spend"      id="bsTogBtn1">
+                                                        <input type="button" class="btn btn-warning" value="Pay Spot" id="bsPaySpotBtn1">
+                                                	<input type="button" class="btn btn-primary" value="Verify" id="bsVerifyBtn1">
                                                 	<div class="alert alert-success" id="bankSuitePersonal1PayBox">
 								<span>To Address:<input id="bankSuitePersonal1ToAddr" type="text" class="form-control address" value=""></span>
 								<span>Amount:<input id="bankSuitePersonal1ToAmt" type="text" class="form-control address" value=""></span>
@@ -728,7 +743,7 @@
 							<div class="hidden">
 								<input id="bankSuitePersonal2Redeem" type="text" class="form-control address" value="" readonly>
 							</div>
-							<div class="input-group">
+							<div class="input-group hidden">
 								<span class="input-group-addon">URL:</span>
 								<input id="bankSuitePersonal2URL" type="text" class="js-copytextarea2 form-control address" value="" readonly>
 								<span class="input-group-btn">
@@ -740,6 +755,8 @@
 							<b><p id="bankSuitePersonal2Balance"></p></b>
 							<b><p id="bankSuitePersonal2UCBalance"></p></b>
 							<input type="button" class="btn btn-info" value="Spend" id="bsTogBtn2">
+                                                        <input type="button" class="btn btn-warning" value="Pay Spot" id="bsPaySpotBtn2">
+                                                	<input type="button" class="btn btn-primary" value="Verify" id="bsVerifyBtn2">
                                                 	<div class="alert alert-success " id="bankSuitePersonal2PayBox">
 								<span>To Address:<input id="bankSuitePersonal2ToAddr" type="text" class="form-control address" value=""></span>
 								<span>Amount:<input id="bankSuitePersonal2ToAmt" type="text" class="form-control address" value=""></span>
@@ -764,7 +781,7 @@
 							<div class="hidden">
 								<input id="bankSuiteSlushRedeem" type="text" class="form-control address" value="" readonly>
 							</div>
-							<div class="input-group">
+							<div class="input-group hidden">
 								<span class="input-group-addon">URL:</span>
 								<input id="bankSuiteSlushURL" type="text" class="js-copytextarea3 form-control address" value="" readonly>
 								<span class="input-group-btn">
@@ -776,6 +793,8 @@
 							<b><p id="bankSuitePersonal3Balance"></p></b>
 							<b><p id="bankSuitePersonal3UCBalance"></p></b>
 							<input type="button" class="btn btn-info" value="Spend" id="bsTogBtn3">
+                                                        <input type="button" class="btn btn-warning" value="Pay Spot" id="bsPaySpotBtn3">
+                                                	<input type="button" class="btn btn-primary" value="Verify" id="bsVerifyBtn3">
                                                 	<div class="alert alert-success " id="bankSuiteSlushPayBox">
 								<span>To Address:<input id="bankSuiteSlushToAddr" type="text" class="form-control address" value=""></span>
 								<span>Amount:<input id="bankSuiteSlushToAmt" type="text" class="form-control address" value=""></span>
@@ -800,7 +819,7 @@
 							<div class="hidden">
 								<input id="bankSuiteCheckingRedeem" type="text" class="form-control address" value="" readonly>
 							</div>
-							<div class="input-group">
+							<div class="input-group hidden">
 								<span class="input-group-addon">URL:</span>
 								<input id="bankSuiteCheckingURL" type="text" class="js-copytextarea4 form-control address" value="" readonly>
 								<span class="input-group-btn">
@@ -812,6 +831,8 @@
 							<b><p id="bankSuitePersonal4Balance"></p></b>
 							<b><p id="bankSuitePersonal4UCBalance"></p></b>
 							<input type="button" class="btn btn-info" value="Spend" id="bsTogBtn4">
+                                                        <input type="button" class="btn btn-warning" value="Pay Spot" id="bsPaySpotBtn4">
+                                                	<input type="button" class="btn btn-primary" value="Verify" id="bsVerifyBtn4">
                                                 	<div class="alert alert-success " id="bankSuiteCheckingPayBox">
 								<span>To Address:<input id="bankSuiteCheckingToAddr" type="text" class="form-control address" value=""></span>
 								<span>Amount:<input id="bankSuiteCheckingToAmt" type="text" class="form-control address" value=""></span>
@@ -836,7 +857,7 @@
 							<div class="hidden">
 								<input id="bankSuiteSavingsRedeem" type="text" class="form-control address" value="" readonly>
 							</div>
-							<div class="input-group">
+							<div class="input-group hidden">
 								<span class="input-group-addon">URL:</span>
 								<input id="bankSuiteSavingsURL" type="text" class="js-copytextarea5 form-control address" value="" readonly>
 								<span class="input-group-btn">
@@ -848,6 +869,8 @@
 							<b><p id="bankSuitePersonal5Balance"></p></b>
 							<b><p id="bankSuitePersonal5UCBalance"></p></b>
 							<input type="button" class="btn btn-info" value="Spend" id="bsTogBtn5">
+                                                        <input type="button" class="btn btn-warning" value="Pay Spot" id="bsPaySpotBtn5">
+                                                	<input type="button" class="btn btn-primary" value="Verify" id="bsVerifyBtn5">
                                                 	<div class="alert alert-success " id="bankSuiteSavingsPayBox">
 								<span>To Address:<input id="bankSuiteSavingsToAddr" type="text" class="form-control address" value=""></span>
 								<span>Amount:<input id="bankSuiteSavingsToAmt" type="text" class="form-control address" value=""></span>
@@ -872,7 +895,7 @@
 							<div class="hidden">
 								<input id="bankSuiteDoGoodFundRedeem" type="text" class="form-control address" value="" readonly>
 							</div>
-							<div class="input-group">
+							<div class="input-group hidden">
 								<span class="input-group-addon">URL:</span>
 								<input id="bankSuiteDoGoodFundURL" type="text" class="js-copytextarea6 form-control address" value="" readonly>
 								<span class="input-group-btn">
@@ -884,6 +907,8 @@
 							<b><p id="bankSuitePersonal6Balance"></p></b>
 							<b><p id="bankSuitePersonal6UCBalance"></p></b>
 							<input type="button" class="btn btn-info" value="Spend" id="bsTogBtn6">
+                                                        <input type="button" class="btn btn-warning" value="Pay Spot" id="bsPaySpotBtn6">
+                                                	<input type="button" class="btn btn-primary" value="Verify" id="bsVerifyBtn6">
                                                 	<div class="alert alert-success " id="bankSuiteDoGoodFundPayBox">
 								<span>To Address:<input id="bankSuiteDoGoodFundToAddr" type="text" class="form-control address" value=""></span>
 								<span>Amount:<input id="bankSuiteDoGoodFundToAmt" type="text" class="form-control address" value=""></span>
@@ -1803,7 +1828,7 @@
 
 		<div id="footer">
 			<div class="container text-right">
-	        		<p class="text-muted">Version .236</p>
+	        		<p class="text-muted">Version .239</p>
 			</div>
 		</div>
 
