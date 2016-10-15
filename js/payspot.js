@@ -13,11 +13,17 @@ var work_unconfirmed_balance;
 var work_redeem_script;
 
 //$("#tsNewScreen01"   	).toggle("fast","swing");	// hide this at initialization time
-//$("#tsPayBox"   	).toggle("fast","swing");	// hide this at initialization time
+$("#psNewScreen01"  	).toggle("fast","swing");	// hide this at initialization time
 
 /* user presses the Spend button, this opens up the Spend Dialog Box */ 
-$("#psTogBtn1").click(function(){       // SPEND
-        $("#tsPayBox").toggle();
+/*$("#psTogBtn1").click(function(){       // SPEND
+        $("#psPayBox").toggle();
+});
+*/
+
+/* user clicks on the 'Quick Instructions' */
+$("#psQuickInstructions").click(function(){
+        $("#psNewScreen01").toggle();
 });
 
 
@@ -88,7 +94,7 @@ var keys = [];
         if (work_address.length == 34) {
                 console.info("A single address and this is correct.");
  //               keys.push(ps_address);
-                $("#tsAddress").val(work_address);
+                $("#psAddress").val(work_address);
 	} else {
 		var tt1 = "ERROR: Address is not the expected size." + 
 			"Length: "   + work_address.length +  " (expected: 34)" ;
@@ -98,7 +104,7 @@ var keys = [];
 		return false;
 	}
 
-	$("#tsmultiSigData").removeClass("hidden");			// HAPPY PATH!
+//	$("#psmultiSigData").removeClass("hidden");			// HAPPY PATH!
 //	$("#tsmultisigPubKeysAfter").removeClass("hidden");			// HAPPY PATH! but keep it hidden because we need it in the back.
 /*	$("#tsPubKeyAfter1").val(bs_pubKey1);		// these 3 display the readonly pubkeys..
 	$("#tsPubKeyAfter2").val(bs_pubKey2);	

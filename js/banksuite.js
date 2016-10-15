@@ -22,6 +22,102 @@ $("#bankSuiteNewScreen04"	).toggle("fast","swing");
 $("#bankSuitePageURL").val(document.location.origin+''+document.location.pathname+'#bankSuite');	// to give to a friend
 
 
+/* user clicks on Verify 1*/
+$("#bsVerifyBtn1").click(function(){
+        var v1  = document.getElementById("bankSuitePersonal1Redeem").value;
+        var redeem_script = v1.trim();
+        var tt0 = document.location.origin+''+document.location.pathname+'?verify='+redeem_script+'#verify';
+        window.open(tt0);
+});
+/* user clicks on Verify 2*/
+$("#bsVerifyBtn2").click(function(){
+        var v1  = document.getElementById("bankSuitePersonal2Redeem").value;
+        var redeem_script = v1.trim();
+        var tt0 = document.location.origin+''+document.location.pathname+'?verify='+redeem_script+'#verify';
+        window.open(tt0);
+});
+/* user clicks on Verify 3*/
+$("#bsVerifyBtn3").click(function(){
+        var v1  = document.getElementById("bankSuiteSlushRedeem").value;
+        var redeem_script = v1.trim();
+        var tt0 = document.location.origin+''+document.location.pathname+'?verify='+redeem_script+'#verify';
+        window.open(tt0);
+});
+/* user clicks on Verify 4*/
+$("#bsVerifyBtn4").click(function(){
+        var v1  = document.getElementById("bankSuiteCheckingRedeem").value;
+        var redeem_script = v1.trim();
+        var tt0 = document.location.origin+''+document.location.pathname+'?verify='+redeem_script+'#verify';
+        window.open(tt0);
+});
+/* user clicks on Verify 5*/
+$("#bsVerifyBtn5").click(function(){
+        var v1  = document.getElementById("bankSuiteSavingsRedeem").value;
+        var redeem_script = v1.trim();
+        var tt0 = document.location.origin+''+document.location.pathname+'?verify='+redeem_script+'#verify';
+        window.open(tt0);
+});
+/* user clicks on Verify 6*/
+$("#bsVerifyBtn6").click(function(){
+        var v1  = document.getElementById("bankSuiteDoGoodFundRedeem").value;
+        var redeem_script = v1.trim();
+        var tt0 = document.location.origin+''+document.location.pathname+'?verify='+redeem_script+'#verify';
+        window.open(tt0);
+});
+
+/* user clicks on Reddit Link 1*/
+/*
+$("#bsRedditBtn1").click(function(){
+var bs_pubKey1 = document.getElementById("bankSuitePubKey1").value;             // retrieve the pubkeys from the html
+var bs_pubKey2 = document.getElementById("bankSuitePubKey2").value;             // retrieve the pubkeys from the html
+        var tt0 = 'https://www.reddit.com/search?q=%22' + document.location.origin+''+document.location.pathname+  '?bankSuite='+bs_pubKey1+bs_pubKey2+'#bankSuite' + '%22';
+        window.open(tt0);
+});
+*/
+
+/* user clicks on PaySpot #1 */
+$("#bsPaySpotBtn1").click(function(){
+        var v1  = document.getElementById("bankSuitePersonal1").value;
+        var v2 = v1.trim();
+        var tt0 = document.location.origin+''+document.location.pathname+'?payspot='+v2+'#payspot';
+        window.open(tt0);
+});
+/* user clicks on PaySpot #2 */
+$("#bsPaySpotBtn2").click(function(){
+        var v1  = document.getElementById("bankSuitePersonal2").value;
+        var v2 = v1.trim();
+        var tt0 = document.location.origin+''+document.location.pathname+'?payspot='+v2+'#payspot';
+        window.open(tt0);
+});
+/* user clicks on PaySpot #3 */
+$("#bsPaySpotBtn3").click(function(){
+        var v1  = document.getElementById("bankSuiteSlush").value;
+        var v2 = v1.trim();
+        var tt0 = document.location.origin+''+document.location.pathname+'?payspot='+v2+'#payspot';
+        window.open(tt0);
+});
+/* user clicks on PaySpot #4 */
+$("#bsPaySpotBtn4").click(function(){
+        var v1  = document.getElementById("bankSuiteChecking").value;
+        var v2 = v1.trim();
+        var tt0 = document.location.origin+''+document.location.pathname+'?payspot='+v2+'#payspot';
+        window.open(tt0);
+});
+/* user clicks on PaySpot #5 */
+$("#bsPaySpotBtn5").click(function(){
+        var v1  = document.getElementById("bankSuiteSavings").value;
+        var v2 = v1.trim();
+        var tt0 = document.location.origin+''+document.location.pathname+'?payspot='+v2+'#payspot';
+        window.open(tt0);
+});
+/* user clicks on PaySpot #6 */
+$("#bsPaySpotBtn6").click(function(){
+        var v1  = document.getElementById("bankSuiteDoGoodFund").value;
+        var v2 = v1.trim();
+        var tt0 = document.location.origin+''+document.location.pathname+'?payspot='+v2+'#payspot';
+        window.open(tt0);
+});
+
 
 
 var copyTextareaBtn1 = document.querySelector('.js-textareacopybtn1');
