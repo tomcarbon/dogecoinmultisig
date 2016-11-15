@@ -14,7 +14,8 @@ var work_destination_address;
 var work_amount_to_withdraw;
 var work_balance;
 var work_unconfirmed_balance;
-var work_redeem_script;
+var work_script_hex;		// vanilla dogecoin addresses, or
+var work_redeem_script;		// multisig dogecoin addresses... it's one or the other
 var work_private_key;
 var work_private_key2;
 var work_successful_transaction;
@@ -165,7 +166,6 @@ function dogecoin_wallet_balance() {
                         },
                         complete: function(data, status) {
                                 console.info("dogecoin_wallet_balance(): work_multisig_address = " + work_multisig_address);
-// tcctempola removed for QR 20160827                		document.getElementById("multisigAddress").innerHTML = work_multisig_address;
 				
 				var tempvar = "Unconfirmed Balance: " + work_unconfirmed_balance; // now set unconfirmed if non-0
 				if (parseFloat(work_unconfirmed_balance) > parseFloat("0.00000000") || 
@@ -185,7 +185,6 @@ function dogecoin_wallet_balance() {
 				}
 				very_get_info("10778"); 	// start loading the unspent transactions
 //				very_get_info("20778"); 	// start loading the unspent transactions
-				// TCCDEBUG tempola 20160928 20778 (dogechain.info API support) is INCOMPLETE until I figure out the label names issue with the rest of my code.
                         }
                 });
 }
@@ -233,8 +232,12 @@ function do_the_redeemit() {
 			work_number_pubkeys = decode.pubkeys.length;
 			console.info("The number of signatures required for this multisig is: " + 
 				work_number_signatures_required + " and number of Key Holders (pubkeys) is " + work_number_pubkeys);
-                }
-
+		} else if (work_multisig_address.charAt(0) == 'D') {			// vanilla dogecoin address
+                        work_number_signatures_required = 1;
+			work_number_pubkeys = 1;
+			console.info("The number of signatures required for this multisig is: 1 and 1" ); 
+		}
+			
 	/* display the address, redeem script, and balance... */
 	console.info("The supplied Multisig address is '%s'.",work_multisig_address);
 	console.info("The supplied DEST address is '%s'.",work_destination_address);
@@ -299,7 +302,31 @@ function do_the_redeemit() {
 					}
 					$("#redeemVerifyBtn1x").addClass("hidden");	// hide the 'broadcast' button
 				} else { 	// oh uh...
-					alert("The number of signatures required can only be 1 or 2 at this time, provided value was: " + work_number_signatures_required);
+//					alert("The number of signatures required can only be 1 or 2 at this time, provided value was: " + work_number_signatures_required);
+					console.info("work_private_key2.length of " + work_private_key2.length + " found.");
+					if (work_private_key2.length == 51) {  /* there's a second private key, and we need one, so let's use it. */
+						var tt1 = "Now signing the 2nd key. Please continue.";
+						console.info(tt1);
+						alert(tt1);		// callback placeholder TCC20160915
+						rc = sign_that_transaction(2);
+						if (rc == true) {
+							var ttext = "This transaction has been signed twice." + 
+								"\nYou're going to need one more signature to get this bad boy moving.";
+							console.info(ttext);
+							$("#redeemVerifyBtn2x").addClass("hidden");	// hide the 'verify' button templa new window.open (_blank)
+							$("#signedSuccessBox").addClass("hidden");
+						} else {
+							alert("sign_that_trans(2) returned non-true.");
+							return false;
+						}
+							
+					} else {
+						console.info("work_private_key2.length of " + work_private_key2.length + " found.");
+						var ttext = "You will need another signature. Give this Transaction ID to the next person, to sign.";
+						console.info(ttext);
+						alert(ttext);
+					}
+					$("#redeemVerifyBtn1x").addClass("hidden");	// hide the 'broadcast' button
 				}
 			}
 			else {
@@ -354,6 +381,26 @@ $('#redeemVerifyBtn4x').on('click', function() {
 	tempstring = $("#signedSuccessBox textarea").val();
         var tt1 = document.location.origin+''+document.location.pathname+'?verify='+
                         tempstring + '#verify';
+        window.open(tt1);
+});
+/********************************************************************
+* This brings the user to another SIGN screen if they have another sig.
+* (this is used for 2/2 and 2/3 multisigs (multiple signatures))
+*********************************************************************/
+$('#redeemVerifyBtn5x').on('click', function() {
+
+	var tval = $("#signDataText").val();
+        var tt1 = document.location.origin+''+document.location.pathname+'?sign='+
+                        tval + '#sign';
+        window.open(tt1);
+});
+/*********************************************************************
+* This is for 3/3 for the 3rd signature
+********************************************************************/
+$('#redeemVerifyBtn6x').on('click', function() {
+	tempstring = $("#signedSuccessBox2 textarea").val();
+        var tt1 = document.location.origin+''+document.location.pathname+'?sign='+
+                        tempstring + '#sign';
         window.open(tt1);
 });
 /********************************************************************
@@ -442,7 +489,7 @@ $("#testola").click(function(){
 	$("#testola").addClass("hidden");
 	$("#broadcastPleaseWaitBox").removeClass("hidden");
 	setTimeout(function(){
-		very_get_info("10101");	// tempola it's a 10101!
+		very_get_info("10101");	
 	}, 500);
 
 });
@@ -668,7 +715,7 @@ function very_get_info(iindex){
 				console.info("10778 data.network = " + data.data.network);
 				console.info("10778 data.network = " + data.data.address);
 				console.info("10778 number of transactions to load: " + data.data.txs.length);
-				work_txs = data.data.txs;		// tempola work_txs
+				work_txs = data.data.txs;		// work_txs
 				
 				for (var i=0;i<data.data.txs.length;i++)		
 				{
@@ -700,7 +747,7 @@ function very_get_info(iindex){
 				console.info("20778 success: %s",tt1);
 				console.info("20778 data.address = " + data.unspent_outputs[0].address);
 				console.info("20778 number of transactions to load: " + data.unspent_outputs.length);
-				work_txs_temp = data.unspent_outputs;		// tempola work_txs
+				work_txs_temp = data.unspent_outputs;		// work_txs
 				
 				for (var i=0;i<data.unspent_outputs.length;i++)		
 				{
@@ -879,14 +926,18 @@ function populate_unspent_txid() {
 		var add_a_change_address = false;
 		var maximum_possible_miners_fee = 1;
 		var number_multi_transactions_added = 0;
-
-//console.info("top of populate_unspent_txid()");
-
-                var currentScript = work_redeem_script;
 		var atw= work_amount_to_withdraw;
+		var currentScript = null;
+
+		if (work_multisig_address.charAt(0) == 'D') {			// vanilla dogecoin address
+			console.info("TCCDEBUG: moist regular dogecoin address detected.");
+		} else {						// multisig address
+			currentScript = work_redeem_script;
+			console.info("TCCDEBUG: moist multi, currentScript = " + currentScript);
+		}
 
 		/*********************************************
-		****** KINDA IMPORTANT ************tempola****
+		****** KINDA IMPORTANT ***********************
 		*********************************************/
 		if (work_txs.length > 100)
 			work_txs.length = 100;	// we'll do 100 at a time, maximum, until further notice.
@@ -982,9 +1033,15 @@ function populate_unspent_txid() {
 				* INPUTS
 				* Add the (solo) input.
 				**********************/
-                                tx.addinput(	work_txs[single_transaction_id].txid,
-                                            	work_txs[single_transaction_id].output_no,
-						currentScript,null);
+				if (work_multisig_address.charAt(0) == 'D') {			// vanilla dogecoin address
+					tx.addinput(	work_txs[single_transaction_id].txid,
+							work_txs[single_transaction_id].output_no,
+							work_txs[single_transaction_id].script_hex,null);
+				} else {						// multisig address
+					tx.addinput(	work_txs[single_transaction_id].txid,
+							work_txs[single_transaction_id].output_no,
+							currentScript,null);
+				}
 
 				/******************************************************
 				* OUTPUTS
@@ -1061,9 +1118,15 @@ function populate_unspent_txid() {
 				for (var i=0; i<maximum_transactions_to_process;i++) {
 					cum_balance = parseFloat(cum_balance) + parseFloat(work_txs[i].value);
 					console.info("SWEEPING tx# " + i + ". cumulative balance = " + cum_balance);
-					tx.addinput(	work_txs[i].txid,
-							work_txs[i].output_no,
-							currentScript,null);
+					if (work_multisig_address.charAt(0) == 'D') {			// vanilla dogecoin address
+						tx.addinput(	work_txs[i].txid,
+								work_txs[i].output_no,
+								work_txs[i].script_hex,null);
+					} else {						// multisig address
+						tx.addinput(	work_txs[i].txid,
+								work_txs[i].output_no,
+								currentScript,null);
+					}
 				}
 
 				/* figure out the miners fee. */
@@ -1157,9 +1220,15 @@ function populate_unspent_txid() {
 					cum_balance = parseFloat(cum_balance) + parseFloat(work_txs[i].value);
 					cum_balance = cum_balance.toFixed(8);
 					console.info("MULTI tx# " + i + ". cumulative balance = " + cum_balance);
-					tx.addinput(	work_txs[i].txid,
-							work_txs[i].output_no,
-							currentScript,null);
+					if (work_multisig_address.charAt(0) == 'D') {			// vanilla dogecoin address
+						tx.addinput(	work_txs[i].txid,
+								work_txs[i].output_no,
+								work_txs[i].script_hex,null);
+					} else {						// multisig address
+						tx.addinput(	work_txs[i].txid,
+								work_txs[i].output_no,
+								currentScript,null);
+					}
 					/* if the cumulative balance is greater than the amount to withdraw, next check to see if the miners fee fits */
 					if (parseFloat(cum_balance) > parseFloat(work_amount_to_withdraw)) {
 						var signed_size = calculate_multisig_signed_size(

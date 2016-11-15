@@ -19,6 +19,7 @@ $("#rb01").click(function(){
 /* 02 Good */ 
 $("#rb02").click(function(){
         $("#rBox01").addClass("hidden");
+        $("#rBox02a").removeClass("hidden");		// yeah good for you
         $("#rBox02").removeClass("hidden");
 });
 
@@ -26,22 +27,28 @@ $("#rb02").click(function(){
 $("#rb03").click(function(){
         $("#rBox01").addClass("hidden");
         $("#rBox02").removeClass("hidden");
+        $("#rBox02b").removeClass("hidden");		// bummer, dude
 });
 
 /* 04 rather not */ 
 $("#rb04").click(function(){
         $("#rBox01").addClass("hidden");
         $("#rBox02").removeClass("hidden");
+        $("#rBox02b").removeClass("hidden");		// bummer, dude
 });
 
 
 /* 05 goes to box 4*/ 
 $("#rb05").click(function(){
+        $("#rBox02a").addClass("hidden");
+        $("#rBox02b").addClass("hidden");
         $("#rBox02").addClass("hidden");
         $("#rBox04").removeClass("hidden");	//  
 });
 /* 05a goes to box 4*/ 
 $("#rb05a").click(function(){
+        $("#rBox02a").addClass("hidden");
+        $("#rBox02b").addClass("hidden");
         $("#rBox02").addClass("hidden");
 	alert("I think you meant 'yes'");
         $("#rBox04").removeClass("hidden");	//  
@@ -49,6 +56,8 @@ $("#rb05a").click(function(){
 
 /* 06 uncertainty speech */ 
 $("#rb06").click(function(){
+        $("#rBox02a").addClass("hidden");
+        $("#rBox02b").addClass("hidden");
         $("#rBox02").addClass("hidden");
         $("#rBox03").removeClass("hidden");
 });
