@@ -1,6 +1,8 @@
 
 Hello, Shibes
 
+new is the instruction manual for TripleShibe!
+
 Here's a description for the Dogecoin Bankings Suite: https://redd.it/5697o0
 
 This site is a wrapper for Dogecoin Multisigs. You can use this site to:
