@@ -1,87 +1,30 @@
 
 Hello, Shibes
 
-new is the instruction manual for TripleShibe!
+New is the instruction manual for TripleShibe! Translations in other languages are underway.
 
-Here's a description for the Dogecoin Bankings Suite: https://redd.it/5697o0
+This site contains two wallets but can really be thought of being a tool for working with multisigs. You can use this site to:
 
-This site is a wrapper for Dogecoin Multisigs. You can use this site to:
+  Create Dogecoin Addresses,or Dogecoin Multisig Addresses, online or offline.
 
-Create Dogecoin Addresses
+  Spend From Dogecoin Addresses (regular or multisig).
 
-Create Dogecoin Multisignature Addresses
+  Access Unspent Transactions. Sign Transactions offline (and Broadcast them online).
+    
+  Create your own QR codes and other miscellaneous tools.
 
-Spend From Dogecoin Multisig Addresses
+  and much more.
 
-and much more.
+You keep the Private Keys to yourself. This program is written in Javascript, meaning all computations are performed by your browser (allowing for offline use), so the private keys stay on the your (the client) side.
 
-New is a 2/3 Multisig wrapper called 'TripleShibe'. It has a button to interface with reddit, among other features.
+There are two primary wallets contained within this site:
 
-Also new is the so-called "DOGECOIN BANKINGS SUITE". It's a wallet. It regards the following relationship regarding multisigs: that if you take any two public keys, and you squeeze them hard enough, you end up with the following things:
+The "Dogecoin Bankings Suite", or DBS, wallet utilizes two public keys and yields six Dogecoin Addresses, and these are organized with names like "Personal 1", "Checking Account", "Savings Account".
 
-1/1 multisig (Public Key 1 by itself)
+The "TripleShibe" wallet utilizes three public keys, featuring an interface for a single 2/3 Dogecoin Multisig. There is also a small 'more' button that opens the remainder of the TripleShibe interface, which includes several more addresses and three DBS accounts. Three public keys put together in this fashion, they're pretty powerful, see..
 
-1/1 multisig (Public Key 2 by itself)
-
-1/2 multisig (PK1, PK2)
-
-1/2 multisig (PK2, PK1) 
-
-2/2 multisig (PK1, PK2)
-
-2/2 multisig (PK2, PK1)
+Both sites have a so-called 'Pay Spot' button, these in turn have 'Reddit' buttons that utilize the search capability of reddit for organizational purposes. Here's an example leveraging this capability for a charitable endeavor: http://dogecoinmultisig.org/multisigmain/index.html?payspot=9vnaTWu71XWimFCW3hctSxryQgYg7rRZ7y#payspot
 
 
-And this is consistent because multisigs aren't random; they are generated based on public keys.
-
-Restated:  “put two public keys together as one, then derive the six multikeys that the combination of the two public keys provide, and then provide as a package to the end user and also as a development tool for shibes/devsquads to start making some really kick ass stuff.”
-
-
-
-Here's some things you can currently do with the Dogecoin Bankings Suite page:
-
-USAGE EXAMPLE #1 -- Single user controls the Private Suite Key 
-
-Personal Bank Account with six sub-accounts (including Checking, Savings, etc)
-
-Bank account trainer for kid.
-
-
-
-USAGE EXAMPLE #2 -- Two person use. There is no Private Suite Key, only two private keys (each party provided a PubKey and kept/keeps their own PrivKeys)
-Six Addresses:
-
-Personal 1: A (determined by alphabetical PubKey order)
-
-Personal 2: B (determined by alphabetical PubKey order)
-
-Slush Fund: A or B (either can spend from)
-
-Checking: A or B  (either can spend from)
-
-Savings: A and B (both need to sign)
-
-Do Good Fund: A and B (both need to sign)
-
-
-Regarding the “Personal” addresses, if you had one of these accounts on facebook, everyone connected to you could see your very public “Personal”  address. Might have to be renamed. Can be developed further.
-
-You can do a lot of cool things with a tool like this. Take a copy of this and tweak index.html, moist.js, and banksuite.js.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+The entire site is turnkey and can be run offline as well... you can copy it to a memory stick and run index.html.
 
