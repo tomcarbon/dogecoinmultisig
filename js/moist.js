@@ -453,6 +453,15 @@ $('#verifyBtn3x').on('click', function() {
         window.open(tt1);
 });
 /********************************************************************
+* This is on the SIGN  Screen and it's the VERIFY BUTTON
+*********************************************************************/
+$('#verifyBtn4x').on('click', function() {
+	tempstring = $("#signTransaction").val();
+        var tt1 = document.location.origin+''+document.location.pathname+'?verify='+
+                        tempstring + '#verify';
+        window.open(tt1);
+});
+/********************************************************************
 * This is actually the 2nd BROADCAST button from the REDEEM screen
 * ( this is used for 2/2 and 2/3 multisigs)
 *********************************************************************/
