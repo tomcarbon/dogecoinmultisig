@@ -222,6 +222,19 @@ function do_the_redeemit() {
 	work_destination_address = $("#dogeScript5").val();
 	work_amount_to_withdraw = $("#dogeScript6").val();
 
+		/********************************************************
+		* The work destination address must be a dogecoin address
+		********************************************************/
+		if (	work_destination_address.charAt(0) == 'D' ||
+  			work_destination_address.charAt(0) == '9' ||
+			work_destination_address.charAt(0) == 'A' ) {
+			/* these seem to be valid dogecoin addresses... do nothing here */
+		} else {
+			var tt1 = "Error: The Destination Address is not a valid Dogecoin Address.";
+			console.info(tt1);		
+			alert(tt1);
+			return false;
+		}
 		/*************************************************
 		* Get the number of signatures required for this.
 		*************************************************/
