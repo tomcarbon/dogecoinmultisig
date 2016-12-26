@@ -829,7 +829,16 @@ function very_get_info(iindex){
                                 console.error(JSON.stringify(data, null, 4));
                         },
                         success: function(data) {
-                                console.info(JSON.stringify(data, null, 4));                  
+                                var tt1 = JSON.stringify(data, null, 4);                   
+				console.info("10778 success: %s",tt1);
+				console.info("10778 data.network = " + data.data.network);
+				console.info("10778 data.network = " + data.data.address);
+				var temp_txs = data.data.txs;		// work_txs
+				
+				for (var i=0;i<data.data.txs.length;i++)		
+				{
+					console.info("chain.so:TX(" + i + "): " + temp_txs[i].txid + ", vout: " + temp_txs[i].output_no + ", value: " + temp_txs[i].value);
+				}
                         },
                         complete: function(data, status) {
                         //        window.alert("complete1");
