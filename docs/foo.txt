@@ -1,0 +1,1 @@
+I am a foo.txt file. Delete me.
