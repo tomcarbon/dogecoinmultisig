@@ -28,3 +28,18 @@ Both sites have a so-called 'Pay Spot' button, these in turn have 'Reddit' butto
 
 The entire site is turnkey and can be run offline as well... you can copy it to a memory stick and run index.html.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

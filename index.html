@@ -90,7 +90,16 @@
 							<!--li><a href="#ramin" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span>ramin</a></li-->
 							<!--li><a href="#wallet" data-toggle="tab"><span class="glyphicon glyphicon-briefcase"></span> Wallet</a></li-->
 							<!--li><a href="#about" data-toggle="tab"><span class="glyphicon glyphicon-info-sign"></span> About</a></li-->
-
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span> Help<b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li class="divider"></li>
+									<li><a href="#menuAbout" data-toggle="tab">About</a></li>
+									<li class="divider"></li>
+									<li><a href="#menuHowTo" data-toggle="tab">How To (Videos, etc)</a></li>
+									<li class="divider"></li>
+								</ul>
+							</li>
 							<li class="hidden"><a href="#settings" data-toggle="tab"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
 						</ul>
 					</div>
@@ -308,6 +317,125 @@
 
 
 
+					<div class="tab-pane tab-content" id="menuAbout">
+		<h2>About<small> this website.</small></h2>
+		<p><strong>If you don't know anything about multisigs, or dogecoin/cryptocurrencies for that matter, but you are ready to dive in, then this site is for you.</strong></p>
+		<p>This site/project is associated with the <a href="https://reddit.com/r/dogecoin/">R/DOGECOIN</a> community on reddit. Visit that reddit and say hi, become a shibe.</p>
+
+		<p><strong>The <a href="index.html#bankSuite">Dogecoin Bankings Suite</a> (DBS) is a wallet. Well, it's six addresses held with one password.</strong>
+		<span>And DBS sits <strong>right </strong>on the blockchain.</span>
+		<span>Some users might appreciate being so close to the blockchain!<a href="https://redd.it/5697o0/"> Here</a> is an entry point to learn more.</span></p>
+
+		<hr>
+		<p><strong>The <a href="index.html#tripleshibe">TripleShibe 2/3 Multisig </a> is another wallet. It has the basic functionality required to support the 2/3 Dogecoin Multisig</strong>. And more.</p>
+		<p>Find the Instruction Manual for the Triple Shibe, in the following languages:</p>
+			<p><a href="docs/TSdoc_v.001.pdf"          >English</a></p>
+			<p><a href="docs/TSdoc_v.001(Russian).pdf" >Pусский</a></p>
+			<p><a href="docs/TSdoc_v.001(Finnish).pdf" >Suomalainen</a></p>
+			<p><a href="docs/TSdoc_v.001(Spanish).pdf" >Español</a></p>
+			<p><small>(these are available offline)</small></p>
+		<hr>
+
+		<p>This website is basically a large blob of different tools and functionalities. And it's growing. It's like a Swiss Army knife with the DBS and TripleShibe as the big blades. It's like the vi of dogecoin multisigs. A big wallet with tools.</p>
+
+		<p>Use a QR code reading program on your phone to enable peer-to-peer processing with this site. You'll be reading in QRs for URL (website) addresses and/or addresses, possibly more.</p>
+		<p>The user can also get closer to the blockchain, using this site.</p>
+		<p>If using the dogecoin-qt (core) for transactions processing is considered Advanced, and usage of fully wrapped transactions processing (dogetipbot on reddit or dogechain.info) is considered Easy, then consider this website to be<strong> INTERMEDIATE LEVEL</strong>
+		<strong>. This site is centered between ease-of-use and maximizing security for the user<em>. You hold onto your keys, we will never see them. </em>
+		</strong> Check out the 'How To' section for videos showing you how to use this site. You will need basic cut n'pasting skills, and a little patience.</p>
+
+		<p><strong>All computations are performed in Javascript within the browser. The so-called "Broadcast" transaction takes this Javascript output and loads it to the Dogecoin Network. This means that you are able<em> to create your dogecoin addresses and multisig address (and handle the private key, etc) OFFLINE</em></strong><em> (this is a security feature).</em></p>
+		<p><strong>This program will support up to 75 unspent transactions per pass.</strong></p>
+		<p>This site is a self-service bankings tool; it does not have a formalized support system.</p>
+		<p><strong>Use F12-Console for detailed information on what the program is doing, etc.</strong></p>
+		<p>Version .253 (this statement last touched 20161226). This website is in<strong> Beta</strong>. This is open source freeware.</p>
+		<p><strong>This site is a work in progress</strong><strong> that will continue growing over time.</strong></p>
+		<p>Here's the source code:<a title="dogecoinmultisig.org" href="https://github.com/tomcarbon/dogecoinmultisig/">https://github.com/tomcarbon/dogecoinmultisig</a>. dogecoinmultisig.org is turnkey. Just copy it from github,and run index.html</p>
+		<hr> <p></p>
+
+		<h3><strong>Acknowledgements</strong></h3>
+		<p>This site was started with coinb.in open source source code. Please help support them at: 1CWHWkTWaq1K5hevimJia3cyinQsrgXUvg(BTC)</p>
+		<p><a title="very" href="https://chain.so/DOGE/">chain.so</a> is the primary dogecoin network interface. Please help support them at: 1HTL18EnUAgCjb8n2x3NN7bmVUmmDcnzBZ (BTC)</p>
+		<p>岡崎正広created the logo! If you like it let him know with doge! 9vfQTSv7GtBA5YaU58VwhZFKBgGne7rcpX (DOGE)</p>
+		<p>The community at <a title="to" href="https://reddit.com/r/dogecoin/">r/dogecoin</a>. Special thanks to u/1waterhole, u/erkan_yilmaz, u/greenbigfrog, u/pta2002, u/buurp, u/cody50055 and u/neuro-tic (very testing). u/Bomsusik for Russian Translations. Very special thanks to u/peoplma (such guidance). </p>
+		<p></p> <hr>
+		<h3><strong>What is Dogecoin?</strong></h3>
+		<p><strong><a title="dogecoin.com" href="http://dogecoin.com">Dogecoin</a> is money with a picture of a dog on it.</strong> The dogecoin network is quite similar to the bitcoin network, but with a few changes made that serve to differentiate it from the bitcoin network.</p>
+		<p>With its 5.2B coin annual rate of inflation, Dogecoin stands alone among its peers. While other coins such as bitcoin are more <em><strong>deflationary</strong></em> in nature, the dogecoin network is<strong><em> inflationary </em></strong>in nature, lending to a more predictable as well as an ostensibly more decentralized and rationally sustainable worldwide economic monetary system.</p>
+		<p>The Dogecoin Network inflates at the rate of 5.2 Billion dogecoins created per year.This network can handle several times the volume of the Bitcoin Network, as measured in terms of transactions per second. In this way dogecoin and other cryptocurrencies are assisting Bitcoin as regards possibly looming bandwidth issues.</p>
+		<hr>
+		<p><strong>Prepare me for Multisigs</strong></p>
+		<p>You can think of a standard Dogecoin Address as having three primary components:</p>
+		<p>       <em> PrivateKey->PublicKey->Address</em></p>
+		<p>The Private Key can create the Public Key, and the Public Key can create the Address(es).</p>
+		<p>The Private Key can make everything, that's why we need to keep it safe.</p>
+		<p>The Public Key can be used to generate both regular and multisig Dogecoin addresses.</p>
+		<p>So, it's the Public Keys that are used to make Multisig Addresses.</p>
+		<p><strong>What is a Multisig?</strong></p>
+		<p>A Multi-Signature &ETH;ogecoin address, or Multisig, is a special &ETH;ogecoin address that is created from one or more regular &ETH;ogecoin Addresses. &ETH;ogecoin multisigs always start with an 'A' or a '9' (regular addresses start with a 'D'). Multisigs do not have a random number generator but instead are created from combinations of Public Keys.</p>
+		<p>Here is a sample multisig Address: 9sxA7zvcNyJ57W7vND3CfrqaocrEid2p8Z.</p>
+		<p>Multisigs can be powerful tools. We're really just learning about their potential.</p>
+		
+		<p><strong>More about Multisigs:</strong><strong> Key Holders</strong>,<strong> PRIVATE KEYS</strong> and<strong> Signatures</strong></p>
+		<p>Multisigs have<strong> Key Holders</strong>. These are individuals who are assigned to hold a<strong> PRIVATE KEY</strong>, which is basically a string of 50 or so random looking characters and digits(don't lose it).One Key Holder can hold multiple keys, as in the case of<strong> Personal Use.</strong></p>
+
+		<p>Here's a sample<strong> PRIVATE KEY</strong>: QP5crz1QEYtfjedrx9oN2sT7V5y1SBsH3tNfm72FdwGkxkf7DP2M.To learn more about it, copy it and plug it in <a href="index.html#verify">here.</a></p>
+
+		<p>The number of<strong> Key Holders</strong> is assigned at multisig creation time and can never be changed. Each<strong> Key Holder</strong> gets their own<strong> PRIVATE KEY</strong>.</p>
+		<p>When a<strong> Key Holder</strong> provides their<strong> PRIVATE KEY</strong>, it is called a<strong> Signature.</strong> Along with choosing the number<strong> Key Holders</strong> when you're making the multisig, you also choose the number of<strong> Signatures</strong> required to unlock the funds.</p>
+		<p>Afterthe<strong> Key Holders</strong> agree on a location to send x amount of &ETH;ogecoins, and then after the required number of<strong> Signatures</strong> are collected, the money moves!</p>
+		<p></p>
+
+		<p><strong>What are somethings you can do with a multisig?</strong></p>
+		<p>Of course, you can smoosh them altogether into the<a href="index.html#bankSuite"> DBS</a> or the <a href="index.html#tripleshibe">TripleShibe</a>. You can share the private keys or just keep them to yourself and use it personally. Here's a rundown on what we've got, with how-to-use examples:</p>
+
+		<p>A<strong> 1/1 Multisig</strong> is like giving any regular &ETH;ogecoin address an additional address. One Private Key yieldstwo Dogecoin addresses to use: The regular address, and the "new" 1/1 multisig address associated with the Public Key.</p>
+		<p>A<strong> 1/2</strong><strong> Multisig</strong> is like a shared checkingaccount. Except you could create 50 of them, for free, and use them anywhere around the world, instantly, 24 hours/day.</p>
+		<p>A<strong> 1/3 Multisig</strong> is a fund where any of the 3 people holding keys can take the funds -- How abouta 'break-glass-in-case-of-emergency' type of fund, or even just a pre-budgeted spending pool? You'll get to trace where the money went, and how much -- that's recorded in the dogecoin public ledger, for all to see. Or use it like a checking account.</p>
+		<p>A<strong> 2/2</strong><strong> MultiSig</strong> is another versatile option. Both Key Holders are needed to move the funds to an agreed-upon location. Maybe you want to store the private keys for each in different locations, for security purposes. Or maybe you're trying to get two people to work together, for whatever reason. If you want any two people to have to agree on how to spend the money, 2/2 is a great option.</p>
+		<p>A<strong> 2/3 MultiSig</strong> means that there are 3<strong> Key Holders,</strong> and 2<strong> Signatures</strong> are required to unlock the funds. This 2/3 arrangement is typical for an Arbitrated MultiSig contract. Or let's pretend someone has an idea for a charity effort, goes to the community for a crowdfunding push and wins the support of two trusted players in that community. A 2/3 multisig could be created for that charity and any funds collected can be moved out of the fund in a few different ways, but never by a single person. Wow!</p>
+		<p></p>
+		<h3><strong>More Information</strong></h3>
+		<p>This website is an interface to the Dogecoin Network, and while it is tuned for handling multi-signature transactions, non-multisig Dogecoin addresses (the regular ones) can also be used here. The website is designed to be usable offline.</p>
+		<p>Compatible with dogecoin-qt</p>
+		<p>Privacy: Keys are generated on client side and we never ever see them. Nor do we want to see them.</p>
+		<p>Contact: u/tomcarbon</p> 
+		<h3><strong>Thank You</strong></h3>
+</div>
+					<div class="tab-pane tab-content" id="menuHowTo">
+		<h1 style="font-family: 'Open Sans', sans-serif; line-height: 28px; color: #333333; text-rendering: optimizelegibility; font-size: 26px; margin: 12px 0px 12px 0px;">DOGECOINMULTISIG.org</h1>
+		<h1 style="font-family: 'Open Sans', sans-serif; line-height: 28px; color: #333333; text-rendering: optimizelegibility; font-size: 26px; margin: 12px 0px 12px 0px;">The HOW TO section</h1>
+		<h1 style="font-family: 'Open Sans', sans-serif; line-height: 28px; color: #333333; text-rendering: optimizelegibility; font-size: 26px; margin: 12px 0px 12px 0px;">  </h1>
+		<p>Instruction Manual for TripleShibe, these also have instructions for withdraw transactions:</p>
+			<p><a href="docs/TSdoc_v.001.pdf"          >English</a></p>
+			<p><a href="docs/TSdoc_v.001(Russian).pdf" >Pусский</a></p>
+			<p><a href="docs/TSdoc_v.001(Finnish).pdf" >Suomalainen</a></p>
+			<p><a href="docs/TSdoc_v.001(Spanish).pdf" >Español</a></p>
+			<p><small>(these are available offline)</small></p>
+
+		<br>
+		<hr>
+		<br>
+<p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;">Here are some quick videos and stuff that demonstrate How To:</p>
+<p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;"> </p>
+<p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;"><strong>BEGINNER/EASY</strong></p>
+<p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;"><strong>1) Create a "Dogecoin Bankings Suite" (DBS ) 6 dogecoin addresses) in 35 seconds (new!):</strong>  <strong><a href="https://www.youtube.com/watch?v=oxYot_RdrpE&amp;feature=youtu.be">Playlist 001: Create Dogecoin Bankings Suite</a></strong></p>
+<p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;"> </p>
+<p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;"> </p>
+<p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;"><strong>INTERMEDIATE/ADVANCED</strong></p>
+<p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;"> </p>
+<p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;"><strong>2) Create two Dogecoin Addresses: <a href="https://www.youtube.com/watch?v=JnFCRGeFAc0&amp;index=1&amp;list=PLKNyF61Wqa0YBwXKodoDA7gnG3CHoVONd">Playlist 002: Create 2 Dogecoin Addresses</a></strong></p>
+<p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;"><strong>3) Create a 2/2 Multisig Address: <a href="https://www.youtube.com/watch?v=GEli3Atr-KQ&amp;list=PLKNyF61Wqa0YBwXKodoDA7gnG3CHoVONd&amp;index=2">Playlist 003: Create 2/2 Dogecoin Multisig Address</a></strong></p>
+<p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;"><strong>4) Withdraw from 1/2 Multisig Address: <a href="https://www.youtube.com/watch?v=v3fjCHBLr7Q&amp;list=PLKNyF61Wqa0YBwXKodoDA7gnG3CHoVONd&amp;index=3">Playlist 004: Withdraw from 1/2 Dogecoin Multsig Address</a></strong></p>
+
+<p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;"><strong>5) Access list of Unspent Transactions: <a href="http://imgur.com/a/x56L6">InfoGraphic 001: Get Unspent Transactions</a></strong></p>
+
+<p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;"> </p>
+<p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;"> </p>
+<p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;"> </p>
+<p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;"> more videos coming soon!</p>
+					</div>
+
 					<div class="tab-pane tab-content" id="newAddress">
 						<a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo2.jpg" style="height:180px" ></a>
 						<h2>New Ðogecoin Address <small>create a new address</small></h2>
@@ -446,10 +574,11 @@
                                                 <div class="alert-success" id="tsNewScreen01">
 							<h2>INSTRUCTIONS</h2>
 							<hr>
-                                                	<h3>Instruction Manual:</h3>
-                                                	<p><a href="TSdoc_v.001.pdf"          >English</a></p>
-                                                	<p><a href="TSdoc_v.001(Russian).pdf" >Pусский</a></p>
-                                                	<p><a href="TSdoc_v.001(Finnish).pdf" >Suomalainen</a></p>
+                                                	<p><a href="docs/TSdoc_v.001.pdf"          >English</a></p>
+                                                	<p><a href="docs/TSdoc_v.001(Russian).pdf" >Pусский</a></p>
+                                                	<p><a href="docs/TSdoc_v.001(Finnish).pdf" >Suomalainen</a></p>
+                                                	<p><a href="docs/TSdoc_v.001(Spanish).pdf" >Español</a></p>
+							<p><small>(these are available offline)</small></p>
 							<hr>
 							<p><b>This webpage will enable you to do the following:</b></p>
 							<p>	1) Create a 2/3 Multisig Address,</p>
@@ -2054,7 +2183,7 @@
 
 		<div id="footer">
 			<div class="container text-right">
-	        		<p class="text-muted">Version .251</p>
+	        		<p class="text-muted">Version .253</p>
 			</div>
 		</div>
 
