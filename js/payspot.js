@@ -78,6 +78,13 @@ var v1  = document.getElementById("psAddress").value;
 	window.open(tt0);
 });
 
+/* user clicks on Reddit dogetipbot loading Link */
+$("#psRedditLoadBtn").click(function(){
+var v1  = document.getElementById("psAddress").value;
+var tt0 = 'https://www.reddit.com/message/compose?to=dogetipbot&subject=withdraw&message=%2Bwithdraw%20' + v1 + '%20ReplaceMeWithAmount%20doge';
+	window.open(tt0);
+});
+
 /* user clicks on Next for generating the multisig */
 /*$("#newtsMultiSigAddress").click(function(){
 	$("#tsmultisigPubKeys").addClass("hidden");
