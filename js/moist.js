@@ -1501,8 +1501,12 @@ var estTxSize = 10;	// Begin with 10 for the header...
 			estTxSize += parseInt(zeeNumInputs * 320);
 			estTxSize += parseInt(zeeNumOutputs * 32);
 		}
+		else if (zeeNumKeyHolders == 4) {
+			estTxSize += parseInt(zeeNumInputs * 392);
+			estTxSize += parseInt(zeeNumOutputs * 32);
+		}
 		else {
-			alert("error in calculate_multisig_signed_size for 1/x. Number keyholders = " + zeeNumKeyHolders);
+			alert("error in calculate_multisig_signed_size for 1/x. Number keyholders = " + zeeKeyHolders);
 			return false;
 		}
 	}
@@ -1515,9 +1519,29 @@ var estTxSize = 10;	// Begin with 10 for the header...
 			estTxSize += parseInt(zeeNumInputs * 402);
 			estTxSize += parseInt(zeeNumOutputs * 32);
 		}
+		else if (zeeNumKeyHolders == 4) {
+			estTxSize += parseInt(zeeNumInputs * 478);
+			estTxSize += parseInt(zeeNumOutputs * 32);
+		}
 		else {
 			alert("error in calculate_multisig_signed_size:\n" 		+ 
-				" Number required sigs = " + zeeNumReqSigs + "\n" 	+ 
+				" Number required sigs = " + zeeNumSigs + "\n" 	+ 
+				" Number keyholders = " + zeeNumKeyHolders);
+			return false;
+		}
+	}
+	else if (zeeReqSigs == 3) {
+		if (zeeNumKeyHolders == 3) {
+			estTxSize += parseInt(zeeNumInputs * 484);
+			estTxSize += parseInt(zeeNumOutputs * 32);
+		}
+		else if (zeeNumKeyHolders == 4) {
+			estTxSize += parseInt(zeeNumInputs * 566);
+			estTxSize += parseInt(zeeNumOutputs * 32);
+		}
+		else {
+			alert("error in calculate_multisig_signed_size:\n" 		+ 
+				" Number required sigs = " + zeeNumSigs + "\n" 	+ 
 				" Number keyholders = " + zeeNumKeyHolders);
 			return false;
 		}

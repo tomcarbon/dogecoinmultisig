@@ -81,7 +81,7 @@ var v1  = document.getElementById("psAddress").value;
 /* user clicks on Reddit dogetipbot loading Link */
 $("#psRedditLoadBtn").click(function(){
 var v1  = document.getElementById("psAddress").value;
-var tt0 = 'https://www.reddit.com/message/compose?to=dogetipbot&subject=withdraw&message=%2Bwithdraw%20' + v1 + '%20ReplaceMeWithAmount%20doge';
+var tt0 = 'https://www.reddit.com/message/compose?to=dogetipbot&subject=withdraw&message=%2Bwithdraw%20' + v1 + '%20ReplaceMeWithAmount%20doge verify';
 	window.open(tt0);
 });
 
