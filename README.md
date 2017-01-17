@@ -1,7 +1,9 @@
 
 Hello, Shibes
 
-New is the instruction manual for TripleShibe! Translations in other languages are underway.
+New is the QuatroShibe 3/4 multisig wallet (and other x/4 multisig options).
+
+There's the instruction manual for TripleShibe. Currently six translations and counting.
 
 This site contains two wallets but can really be thought of being a tool for working with multisigs. You can use this site to:
 
