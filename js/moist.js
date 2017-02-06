@@ -28,7 +28,6 @@ var work_signed_transaction;
 var work_signed_transaction2;
 var work_message;
 
-
 /***************************************************************
 * has information been passed to  as in by a URL?
 ***************************************************************/
