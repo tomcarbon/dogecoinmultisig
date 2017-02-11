@@ -33,6 +33,12 @@ $("#PSfrenchbutton").click(function(){
     reader.send(null);
 });
 
+$("#PSitalianbutton").click(function(){
+    reader.open('get','docs/italian.json', true); 
+    reader.onreadystatechange = displayContents;
+    reader.send(null);
+});
+
 /***********************************************
 * The Language Buttons on the Withdrawl Screens 
 ************************************************/
@@ -56,6 +62,12 @@ $("#Wenglishbutton").click(function(){
 
 $("#Wfrenchbutton").click(function(){
     reader.open('get','docs/french.json', true); 
+    reader.onreadystatechange = displayContents;
+    reader.send(null);
+});
+
+$("#Witalianbutton").click(function(){
+    reader.open('get','docs/italian.json', true); 
     reader.onreadystatechange = displayContents;
     reader.send(null);
 });
@@ -87,6 +99,12 @@ $("#DBSfrenchbutton").click(function(){
     reader.send(null);
 });
 
+$("#DBSitalianbutton").click(function(){
+    reader.open('get','docs/italian.json', true); 
+    reader.onreadystatechange = displayContents;
+    reader.send(null);
+});
+
 /***********************************************
 * The Language Buttons on the TripleShibe Screens 
 ************************************************/
@@ -111,6 +129,12 @@ $("#TSenglishbutton").click(function(){
 
 $("#TSfrenchbutton").click(function(){
     reader.open('get','docs/french.json', true); 
+    reader.onreadystatechange = displayContents;
+    reader.send(null);
+});
+
+$("#TSitalianbutton").click(function(){
+    reader.open('get','docs/italian.json', true); 
     reader.onreadystatechange = displayContents;
     reader.send(null);
 });
@@ -168,7 +192,7 @@ function displayContents() {
 			// do nothing 
 		} else {
 			ts[i] = 'langdisp' + pad(i);
-			console.info("Trying " + ts[i]);
+//			console.info("Trying " + ts[i]);
 			el[i] = document.getElementById(ts[i]);
 			el[i].innerHTML = foo.lang.menuitem[i].text;	
 		}
@@ -247,7 +271,7 @@ function displayContents() {
 			// do nothing 
 		} else {
 			ts[i] = 'langdisp' + pad(i);
-			console.info("Trying " + ts[i]);
+//			console.info("Trying " + ts[i]);
 			el[i] = document.getElementById(ts[i]);
 			el[i].innerHTML = foo.lang.menuitem[i].text;	
 		}
@@ -355,7 +379,7 @@ function displayContents() {
 			// do nothing 
 		} else {
 			ts[i] = 'langdisp' + pad(i);
-			console.info("Trying " + ts[i]);
+//			console.info("Trying " + ts[i]);
 			el[i] = document.getElementById(ts[i]);
 			el[i].innerHTML = foo.lang.menuitem[i].text;	
 		}
