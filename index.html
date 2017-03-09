@@ -1,4 +1,3 @@
-
 <html lang="en">
 	<head>
 
@@ -44,6 +43,7 @@
 		<script type="text/javascript" src="js/tripleshibe.js"></script>
 		<script type="text/javascript" src="js/quatroshibe.js"></script>
 		<script type="text/javascript" src="js/payspot.js"></script>
+		<script type="text/javascript" src="http://coinmill.com/frame.js"></script>
 	</head>
 
 	<body>
@@ -79,6 +79,7 @@
 									<li><a href="#sign" data-toggle="tab">Sign</a></li>
 									<li><a href="#broadcast" data-toggle="tab"> Broadcast</a></li>
 									<li class="divider"></li>
+									<li><a href="#convertScreen1" data-toggle="tab">Currency Conversion</a></li>
 									<li><a href="#cpToolbox" data-toggle="tab">More Tools</a></li>
 								</ul>
 							</li>
@@ -294,6 +295,7 @@
 							<p>778 get Unspent transactions for Ðogecoin address</p>
 							<p>779 get info about a txid</p>
 							<p>780 get Spent transactions for Ðogecoin address</p>
+							<p>20000 Convert USD to Dogecoin (courtesy of coinmill.com) </p>
 							<!--textarea type="text" id="dogeScript" class="form-control" style="height:125px"></textarea-->
 							<input type="button" class="btn btn-primary" value="Moon!" id="moist2">
 						</div>
@@ -317,6 +319,303 @@
 						</div>
 					</div>
 
+					<div class="tab-pane tab-content" id="convertScreen1">
+						<a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo1.jpg" style="height:180px" ></a>
+						<h2>WELCOME to the Conversion to Dogecoin screen!.</h2>
+						<hr>
+
+						<div class="alert-info">
+						<h3><b>Convert Any Currency to XDG here</b><small> (this will take you off this site) </small></h3>
+						<form method="GET" action="http://coinmill.com/currency" onsubmit="if (this.currencyamount.value==''){alert('Please enter an amount');return false;}if (this.currencyfrom.selectedIndex==0){alert('Please choose a currency.');return false;}return true;">
+						<table border="0" cellpadding="2" cellspacing="0" summary=""><tr><td>
+						Amount:</td><td><input type="text" size="8" name="currencyamount">
+						</td></tr><tr><td>
+						From:
+						</td><td>
+						<select name="currencyfrom">
+						<option value="" selected>Select a currency</option>
+						<option value="AFN">Afghan Afghani (AFN)</option>
+						<option value="ALL">Albanian Lek (ALL)</option>
+						<option value="DZD">Algerian Dinar (DZD)</option>
+						<option value="AOA">Angolan Kwanza (AOA)</option>
+						<option value="ANC">Anoncoin (ANC)</option>
+						<option value="APH">Aphroditecoin (APH)</option>
+						<option value="ARS">Argentine Peso (ARS)</option>
+						<option value="ARG">Argentum (ARG)</option>
+						<option value="AMD">Armenian Dram (AMD)</option>
+						<option value="AWG">Aruban Florin (AWG)</option>
+						<option value="AUR">Auroracoin (AUR)</option>
+						<option value="AUD">Australian Dollar (AUD)</option>
+						<option value="AZN">Azerbaijani Manat (AZN)</option>
+						<option value="BQC">BBQCoin (BQC)</option>
+						<option value="BSD">Bahamian Dollar (BSD)</option>
+						<option value="BHD">Bahraini Dinar (BHD)</option>
+						<option value="BDT">Bangladeshi Taka (BDT)</option>
+						<option value="BBD">Barbados Dollar (BBD)</option>
+						<option value="BYR">Belarusian Ruble (BYR)</option>
+						<option value="BZD">Belize Dollar (BZD)</option>
+						<option value="BMD">Bermuda Dollar (BMD)</option>
+						<option value="BET">BetaCoin (BET)</option>
+						<option value="BTN">Bhutanese Ngultrum (BTN)</option>
+						<option value="BIL">Billioncoin (BIL)</option>
+						<option value="BTB">BitBar (BTB)</option>
+						<option value="BTC">Bitcoin (BTC)</option>
+						<option value="BTL">Bitleu (BTL)</option>
+						<option value="XMR">Bitmonero (XMR)</option>
+						<option value="BLC">BlackCoin (BLC)</option>
+						<option value="BOB">Bolivian Boliviano (BOB)</option>
+						<option value="BAM">Bosnia-Herzegovina Convertible Mark (BAM)</option>
+						<option value="BWP">Botswana Pula (BWP)</option>
+						<option value="BRL">Brazilian Real (BRL)</option>
+						<option value="BND">Brunei Dollar (BND)</option>
+						<option value="BGN">Bulgarian Lev (BGN)</option>
+						<option value="BIF">Burundian Franc (BIF)</option>
+						<option value="BTE">Bytecoin (BTE)</option>
+						<option value="BCN">Bytecoin (BCN) (BCN)</option>
+						<option value="KHR">Cambodian Riel (KHR)</option>
+						<option value="CAD">Canadian Dollar (CAD)</option>
+						<option value="CVE">Cape Verde Escudo (CVE)</option>
+						<option value="CSC">CasinoCoin (CSC)</option>
+						<option value="KYD">Cayman Islands Dollar (KYD)</option>
+						<option value="XAF">Central African CFA (XAF)</option>
+						<option value="CLP">Chilean Peso (CLP)</option>
+						<option value="CLF">Chilean Unidad de Fomento (CLF)</option>
+						<option value="CNH">Chinese Offshore Yuan (CNH)</option>
+						<option value="CNY">Chinese Yuan (CNY)</option>
+						<option value="CIN">Cinni (CIN)</option>
+						<option value="COP">Colombian Peso (COP)</option>
+						<option value="KMF">Comorian Franc (KMF)</option>
+						<option value="CLR">Copperlark (CLR)</option>
+						<option value="CRC">Costa Rican Colon (CRC)</option>
+						<option value="ZCP">Counterparty (ZCP)</option>
+						<option value="XCC">CraftCoin (XCC)</option>
+						<option value="HRK">Croatian Kuna (HRK)</option>
+						<option value="CGB">CryptogenicBullion (CGB)</option>
+						<option value="CUC">Cuban Convertible Peso (CUC)</option>
+						<option value="CYP">Cypriot Pound (CYP)</option>
+						<option value="CZK">Czech Koruna (CZK)</option>
+						<option value="DKK">Danish Krone (DKK)</option>
+						<option value="DRK">DarkCoin (DRK)</option>
+						<option value="DTC">Datacoin (DTC)</option>
+						<option value="DEE">Deutsche eMark (DEE)</option>
+						<option value="DVC">Devcoin (DVC)</option>
+						<option value="DMD">DiamondCoins (DMD)</option>
+						<option value="DGC">Digitalcoin (DGC)</option>
+						<option value="DJF">Djiboutian Franc (DJF)</option>
+						<option value="XDG">DogeCoin (XDG)</option>
+						<option value="DOP">Dominican Peso (DOP)</option>
+						<option value="EZC">EZCoin (EZC)</option>
+						<option value="XCD">East Caribbean Dollar (XCD)</option>
+						<option value="EGP">Egyptian Pound (EGP)</option>
+						<option value="ELC">Elacoin (ELC)</option>
+						<option value="EFL">Electronic Gulden (EFL)</option>
+						<option value="ERN">Eritrean Nakfa (ERN)</option>
+						<option value="ETB">Ethiopian Birr (ETB)</option>
+						<option value="EUR">Euro (EUR)</option>
+						<option value="FAC">Faircoin (FAC)</option>
+						<option value="FKP">Falkland Islands Pound (FKP)</option>
+						<option value="FST">Fastcoin (FST)</option>
+						<option value="FTC">Feathercoin (FTC)</option>
+						<option value="FJD">Fiji Dollar (FJD)</option>
+						<option value="FLO">FlorinCoin (FLO)</option>
+						<option value="FLT">FlutterCoin (FLT)</option>
+						<option value="CDF">Franc Congolais (CDF)</option>
+						<option value="FRK">Franko (FRK)</option>
+						<option value="FRC">Freicoin (FRC)</option>
+						<option value="XPF">French Pacific Franc (XPF)</option>
+						<option value="GMD">Gambian Dalasi (GMD)</option>
+						<option value="GME">GameCoin (GME)</option>
+						<option value="GEL">Georgian Lari (GEL)</option>
+						<option value="GHS">Ghanaian Cedi (GHS)</option>
+						<option value="GIP">Gibraltar Pound (GIP)</option>
+						<option value="GLC">GlobalCoin (GLC)</option>
+						<option value="GLD">GoldCoin (GLD)</option>
+						<option value="GDC">GrandCoin (GDC)</option>
+						<option value="GTQ">Guatemalan Quetzal (GTQ)</option>
+						<option value="GNF">Guinean Franc (GNF)</option>
+						<option value="GYD">Guyanese Dollar (GYD)</option>
+						<option value="HTG">Haitian Gourde (HTG)</option>
+						<option value="HBN">HoboNickel (HBN)</option>
+						<option value="HNL">Honduran Lempira (HNL)</option>
+						<option value="HKD">Hong Kong Dollar (HKD)</option>
+						<option value="HUF">Hungarian Forint (HUF)</option>
+						<option value="XIC">I0Coin (XIC)</option>
+						<option value="ISK">Icelandic Krona (ISK)</option>
+						<option value="INR">Indian Rupee (INR)</option>
+						<option value="IDR">Indonesian Rupiah (IDR)</option>
+						<option value="IFC">Infinitecoin (IFC)</option>
+						<option value="IRR">Iranian Rial (IRR)</option>
+						<option value="IQD">Iraqi Dinar (IQD)</option>
+						<option value="ISR">Isracoin (ISR)</option>
+						<option value="ILS">Israeli New Shekel (ILS)</option>
+						<option value="IXC">Ixcoin (IXC)</option>
+						<option value="JMD">Jamaican Dollar (JMD)</option>
+						<option value="JPY">Japanese Yen (JPY)</option>
+						<option value="JEP">Jersey Pound (JEP)</option>
+						<option value="JOD">Jordanian Dinar (JOD)</option>
+						<option value="XJO">Joulecoin (XJO)</option>
+						<option value="JKC">Junkcoin (JKC)</option>
+						<option value="KAR">KarpelesCoin (KAR)</option>
+						<option value="KZT">Kazakhstani Tenge (KZT)</option>
+						<option value="KES">Kenyan Shilling (KES)</option>
+						<option value="KRW">Korean Won (KRW)</option>
+						<option value="KWD">Kuwaiti Dinar (KWD)</option>
+						<option value="KGS">Kyrgyzstani Som (KGS)</option>
+						<option value="LAK">Lao Kip (LAK)</option>
+						<option value="LBP">Lebanese Pound (LBP)</option>
+						<option value="LSL">Lesotho Loti (LSL)</option>
+						<option value="LRD">Liberian Dollar (LRD)</option>
+						<option value="LYD">Libyan Dinar (LYD)</option>
+						<option value="LTC">Litecoin (LTC)</option>
+						<option value="LTL">Lithuanian Litas (LTL)</option>
+						<option value="LKY">Luckycoin (LKY)</option>
+						<option value="MOP">Macau Pataca (MOP)</option>
+						<option value="MKD">Macedonia Denar (MKD)</option>
+						<option value="XMS">MaidSafeCoin (XMS)</option>
+						<option value="MGA">Malagasy Ariary (MGA)</option>
+						<option value="MWK">Malawian Kwacha (MWK)</option>
+						<option value="MYR">Malaysian Ringgit (MYR)</option>
+						<option value="MVR">Maldives Rufiyaa (MVR)</option>
+						<option value="MTC">Marinecoin (MTC)</option>
+						<option value="MSC">Mastercoin (MSC)</option>
+						<option value="MRO">Mauritania Ouguiya (MRO)</option>
+						<option value="MUR">Mauritian Rupee (MUR)</option>
+						<option value="MAX">MaxCoin (MAX)</option>
+						<option value="MEC">Megacoin (MEC)</option>
+						<option value="MXN">Mexican Peso (MXN)</option>
+						<option value="MXV">Mexican Unidad De Inversion (MXV)</option>
+						<option value="MNC">Mincoin (MNC)</option>
+						<option value="XMT">Mintcoin (XMT)</option>
+						<option value="MDL">Moldovan Leu (MDL)</option>
+						<option value="MNT">Mongolian Tugrik (MNT)</option>
+						<option value="MAD">Moroccan Dirham (MAD)</option>
+						<option value="MMK">Myanmar Kyat (MMK)</option>
+						<option value="NEM">NEMstake (NEM)</option>
+						<option value="NMC">Namecoin (NMC)</option>
+						<option value="NAD">Namibian Dollar (NAD)</option>
+						<option value="NAS">Nas (NAS)</option>
+						<option value="NPR">Nepalese Rupee (NPR)</option>
+						<option value="NET">NetCoin (NET)</option>
+						<option value="ANG">Netherlands Antillean Guilder (ANG)</option>
+						<option value="NTR">Neutrino (NTR)</option>
+						<option value="MZN">New Mozambican Metical (MZN)</option>
+						<option value="TWD">New Taiwan Dollar (TWD)</option>
+						<option value="NZD">New Zealand Dollar (NZD)</option>
+						<option value="NIO">Nicaraguan Cordoba Oro (NIO)</option>
+						<option value="NGN">Nigerian Naira (NGN)</option>
+						<option value="NRB">Noirbits (NRB)</option>
+						<option value="NDL">NoodlyAppendageCoin (NDL)</option>
+						<option value="KPW">North Korean Won (KPW)</option>
+						<option value="NOK">Norwegian Krone (NOK)</option>
+						<option value="NVC">Novacoin (NVC)</option>
+						<option value="NXT">Nxt (NXT)</option>
+						<option value="OMR">Omani Rial (OMR)</option>
+						<option value="ORB">Orbitcoin (ORB)</option>
+						<option value="XAL">Ounces of Aluminum (XAL)</option>
+						<option value="XCP">Ounces of Copper (XCP)</option>
+						<option value="XAU">Ounces of Gold (XAU)</option>
+						<option value="XPD">Ounces of Palladium (XPD)</option>
+						<option value="XPT">Ounces of Platinum (XPT)</option>
+						<option value="XAG">Ounces of Silver (XAG)</option>
+						<option value="PKR">Pakistan Rupee (PKR)</option>
+						<option value="PAB">Panamanian Balboa (PAB)</option>
+						<option value="PGK">Papua New Guinea Kina (PGK)</option>
+						<option value="PYG">Paraguay Guarani (PYG)</option>
+						<option value="PPC">Peercoin (PPC)</option>
+						<option value="PEN">Peruvian Nuevo Sol (PEN)</option>
+						<option value="PTC">Pesetacoin (PTC)</option>
+						<option value="PHP">Philippine Peso (PHP)</option>
+						<option value="PHS">Philosopher Stones (PHS)</option>
+						<option value="PXC">Phoenixcoin (PXC)</option>
+						<option value="PLN">Polish Zloty (PLN)</option>
+						<option value="POT">PotCoin (POT)</option>
+						<option value="GBP">Pound Sterling (GBP)</option>
+						<option value="XPM">Primecoin (XPM)</option>
+						<option value="PTS">ProtoShares (PTS)</option>
+						<option value="QAR">Qatari Riyal (QAR)</option>
+						<option value="QRA">Qora (QRA)</option>
+						<option value="QRK">QuarkCoin (QRK)</option>
+						<option value="RDD">ReddCoin (RDD)</option>
+						<option value="XRP">Ripple (XRP)</option>
+						<option value="RON">Romanian Leu (RON)</option>
+						<option value="RUB">Russian Ruble (RUB)</option>
+						<option value="RWF">Rwandan Franc (RWF)</option>
+						<option value="SHP">Saint Helena Pound (SHP)</option>
+						<option value="WST">Samoa Tala (WST)</option>
+						<option value="STD">Sao Tome Dobra (STD)</option>
+						<option value="SAR">Saudi Arabian Riyal (SAR)</option>
+						<option value="RSD">Serbian Dinar (RSD)</option>
+						<option value="SXC">Sexcoin (SXC)</option>
+						<option value="SCR">Seychelles Rupee (SCR)</option>
+						<option value="SLL">Sierra Leonean Leone (SLL)</option>
+						<option value="XSV">SiliconValleyCoin (XSV)</option>
+						<option value="SGD">Singapore Dollar (SGD)</option>
+						<option value="SLR">SolarCoin (SLR)</option>
+						<option value="SBD">Solomon Islands Dollar (SBD)</option>
+						<option value="SOS">Somali Shilling (SOS)</option>
+						<option value="ZAR">South African Rand (ZAR)</option>
+						<option value="SPA">SpainCoin (SPA)</option>
+						<option value="SDR">Special Drawing Right (SDR)</option>
+						<option value="LKR">Sri Lankan Rupee (LKR)</option>
+						<option value="SBC">StableCoin (SBC)</option>
+						<option value="SDG">Sudanese Pound (SDG)</option>
+						<option value="SRD">Suriname Dollar (SRD)</option>
+						<option value="SZL">Swazi Lilangeni (SZL)</option>
+						<option value="SEK">Swedish Krona (SEK)</option>
+						<option value="CHF">Swiss Franc (CHF)</option>
+						<option value="SYP">Syrian Pound (SYP)</option>
+						<option value="TAG">TagCoin (TAG)</option>
+						<option value="TJS">Tajikistan Somoni (TJS)</option>
+						<option value="TZS">Tanzanian Shilling (TZS)</option>
+						<option value="TRC">Terracoin (TRC)</option>
+						<option value="THB">Thai Baht (THB)</option>
+						<option value="THO">Thai Offshore Baht (THO)</option>
+						<option value="TIX">Tickets (TIX)</option>
+						<option value="TGC">Tigercoin (TGC)</option>
+						<option value="TOP">Tongan Pa'Anga (TOP)</option>
+						<option value="TTD">Trinidad and Tobago Dollar (TTD)</option>
+						<option value="TND">Tunisian Dinar (TND)</option>
+						<option value="TRY">Turkish Lira (TRY)</option>
+						<option value="TMT">Turkmenistan Manat (TMT)</option>
+						<option value="UGX">Uganda Shilling (UGX)</option>
+						<option value="UAH">Ukrainian Hryvnia (UAH)</option>
+						<option value="AED">United Arab Emirates Dirham (AED)</option>
+						<option value="USD">United States Dollar (USD)</option>
+						<option value="UNO">Unobtanium (UNO)</option>
+						<option value="UYU">Uruguayan peso (UYU)</option>
+						<option value="UZS">Uzbekistani Som (UZS)</option>
+						<option value="VUV">Vanuatu Vatu (VUV)</option>
+						<option value="VEF">Venezuelan Bolivar Fuerte (VEF)</option>
+						<option value="VRC">VeriCoin (VRC)</option>
+						<option value="VTC">Vertcoin (VTC)</option>
+						<option value="VND">Viet Nam Dong (VND)</option>
+						<option value="XOF">West African CFA (XOF)</option>
+						<option value="WHC">WhiteCoin (WHC)</option>
+						<option value="WDC">WorldCoin (WDC)</option>
+						<option value="XXC">XC (XXC)</option>
+						<option value="YAC">Yacoin (YAC)</option>
+						<option value="YBC">YbCoin (YBC)</option>
+						<option value="YER">Yemeni Rial (YER)</option>
+						<option value="ZMW">Zambian Kwacha (ZMW)</option>
+						<option value="ZTC">Zeitcoin (ZTC)</option>
+						<option value="ZET">Zetacoin (ZET)</option>
+						</select>
+						</td></tr><tr><td>
+						To:
+						</td><td>
+						<select name="currencyto">
+						<option value="" selected>To:</option>
+						<option value="XDG">DogeCoin (XDG)</option>
+						</select>
+						</td></tr><tr><td>
+						</td><td>
+						<input type="submit" value="Convert">
+						</td></tr></table>
+						Currency conversion powered by <a href="http://coinmill.com/">coinmill.com</a>
+						</form>
+					</div>
+				</div>
+
 
 
 
@@ -328,7 +627,7 @@
 		<hr>
 		<h3> Dogecoin Bankings Suite</h3>
 		<p><strong>The <a href="index.html#bankSuite">Dogecoin Bankings Suite</a> (DBS) is a multi-signature multi-wallet: Six separate accounts that are controlled by a single password.</strong>
-		<span>And DBS sits <strong>right </strong>on the blockchain.</span>
+		<span>And DBS sits <strong>right </strong>on the blockchain.<small><small><small>(and it's free!)</small></small></small></span>
 		<span>Some users might appreciate being so close to the blockchain!<a href="https://redd.it/5697o0/"> Here</a> is an entry point to learn more.</span></p>
 		<p>This is the <strong>FASTEST AND EASIEST</strong> way to get a Dogecoin Account. And you can make a copy of this website and make your DBS offline.</p>
 
@@ -372,7 +671,7 @@
 		<p><strong>This program will support up to 75 unspent transactions per pass.</strong></p>
 		<p>This site is a self-service bankings tool; it does not have a formalized support system.</p>
 		<p><strong>Use F12-Console for detailed information on what the program is doing, etc.</strong></p>
-		<p>Version .263 (this statement last touched 20170208). This website is in<strong> Beta</strong>. This is open source freeware.</p>
+		<p>Version .265 (this statement last touched 20170309). This website is in<strong> Beta</strong>. This is open source freeware.</p>
 		<p><strong>This site is a work in progress</strong><strong> that will continue growing over time.</strong></p>
 		<p>Here's the source code:<a title="dogecoinmultisig.org" href="https://github.com/tomcarbon/dogecoinmultisig/">https://github.com/tomcarbon/dogecoinmultisig</a>. dogecoinmultisig.org is turnkey. Just copy it from github,and run index.html</p>
 		<hr> <p></p>
@@ -381,7 +680,7 @@
 		<p>This site was started with coinb.in open source source code. Please help support them at: 1CWHWkTWaq1K5hevimJia3cyinQsrgXUvg(BTC)</p>
 		<p><a title="very" href="https://chain.so/DOGE/">chain.so</a> is the primary dogecoin network interface. Please help support them at: 1HTL18EnUAgCjb8n2x3NN7bmVUmmDcnzBZ (BTC)</p>
 		<p>岡崎正広created the logo! If you like it let him know with doge! 9vfQTSv7GtBA5YaU58VwhZFKBgGne7rcpX (DOGE)</p>
-		<p>The community at <a title="to" href="https://reddit.com/r/dogecoin/">r/dogecoin</a>. Special thanks to u/1waterhole, u/erkan_yilmaz, u/greenbigfrog, u/pta2002, u/buurp, u/cody50055 and u/neuro-tic (very testing). Very Thanks helping with Translations and stuff: u/Bomsusik, u/pandoge, u/maerco, u/desoroo, u/LeoNeeson, u/tomcarbon, u/peoplma. </p>
+		<p>The community at <a title="to" href="https://reddit.com/r/dogecoin/">r/dogecoin</a>. Special thanks to u/1waterhole, u/erkan_yilmaz, u/greenbigfrog, u/pta2002, u/buurp, u/cody50055 and u/neuro-tic (very testing). Very Thanks helping with Translations and stuff: u/Bomsusik, u/pandoge, u/maerco, u/desoroo, u/LeoNeeson, u/tomcarbon, u/peoplma, u/ChateauLafite1827 </p>
 		<p></p> <hr>
 		<h3><strong>What is Dogecoin?</strong></h3>
 		<p><strong><a title="dogecoin.com" href="http://dogecoin.com">Dogecoin</a> is money with a picture of a dog on it.</strong> The dogecoin network is quite similar to the bitcoin network, but with a few changes made that serve to differentiate it from the bitcoin network.</p>
@@ -606,7 +905,24 @@
                                                         <br>
                                                         <input type="button" class="btn btn-danger" value="Load related Reddit Postings if any" id="psRedditBtn">
                                                         <input type="button" class="btn btn-info" value="Deposit funds here using your Reddit Dogetipbot Account" id="psRedditLoadBtn">
+                                                        <input type="button" class="btn btn-success" value="Create Mini Invoice" id="psMiniInvoiceBtn">
                                                         <hr>
+							<div class="alert-success" id="psNewScreen02">
+								<strong>CREATE A MINI INVOICE</strong>
+								<p><small><small>(all fields are optional)</small></small></p>
+								<hr>
+								<span>Info (max 50 chars): <input id="psMI01" type="text" class="form-control address" value=""></span>
+
+								<span>Amount (USD): <input id="psMI02" type="text" class="form-control address" value=""></span>
+
+								<span>Contact: <input id="psMI03" type="text" class="form-control address" value=""></span>
+
+								<span>IMGUR photo code (e.g.: 3LYHD40): <input id="psMI04" type="text" class="form-control address" value=""></span>
+
+								<input type="button" class="btn btn-xs btn-info" value="NEXT" id="psMiniInvoiceNextBtn">
+								<hr>
+							</div>
+
                                                 </div>
                                         </div>
 
@@ -1901,7 +2217,9 @@
 						<textarea type="text" id="dogeScript6" class="form-control" rows="1" cols="20"></textarea>
 
 						<!--p><small><small>(the mining fee will be added on top of all this, unless full amount, then it's subtracted!)</small></small></p-->
-						<p><small><!--(the mining fee will be added on top of this amount, unless full amount, then it's subtracted!)--><div id="langdisp42g"></div></small></p>
+						<p><small><!--(the mining fee will be added on top of this amount, unless full amount, then it's subtracted!)--><div id="langdisp42g"></div></small>
+						<a href="#convertScreen1" data-toggle="tab"><small>(conv)</small></a>
+						</p>
 
 
                                                 <div class="alert alert-info active">
@@ -2601,7 +2919,7 @@
 
 		<div id="footer">
 			<div class="container text-right">
-	        		<p class="text-muted">Version .263</p>
+	        		<p class="text-muted">Version .265</p>
 			</div>
 		</div>
 
@@ -2708,9 +3026,9 @@
 							-->
 
 							<select id="mediatorList" class="form-control">
-								<option value="044ddc503c9523b8ad8f4f16d19219502b1990ff78a8fd318dcfe574453f5b3f0c5818e4bb8d48b93f1f1e45110f0f36e1191600fbefc1dcaab422ed7a62069d53;u/peoplma;1">
+								<option value="04a2b137fe7c1f9943b28c0e3c569eb54f9b444f2c43738225ccc41cfb595204c87808505bb9ad43203253cdbfb4f3811e3398f8cf349d6713d9557455bed4342d;u/peoplma;1">
 								u/peoplma at r/dogecoin</option>
-								<option value="044ddc503c9523b8ad8f4f16d19219502b1990ff78a8fd318dcfe574453f5b3f0c5818e4bb8d48b93f1f1e45110f0f36e1191600fbefc1dcaab422ed7a62069d53;u/tomcarbon;1">
+								<option value="043a6c7cc60e4174807d424151b3955bc4a1fed6b932627831b9fb5818d3d2423b7b1a55d419fdb1f5b62da4e991bb9c8ab4d071b5a873229ac0f678d09d09c46c;u/tomcarbon;1">
 								u/tomcarbon at r/dogecoin</option>
 							</select>
 						</div>
