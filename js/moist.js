@@ -28,6 +28,7 @@ var work_signed_transaction;
 var work_signed_transaction2;
 var work_message;
 
+
 /***************************************************************
 * has information been passed to  as in by a URL?
 ***************************************************************/
@@ -916,6 +917,77 @@ function very_get_info(iindex){
                 });
 
            break;
+
+        /*****************************************
+        * INDEX20000: http://coinmill.com/frame.js
+        *****************************************/
+        case "20000":
+        var dollaramount = prompt("20000 - Provide the dollar value you want to convert into number of dogecoins:",100.00);
+
+		console.info("20000 start");
+
+		console.info(currency_show_conversion(dollaramount,"USD","XDG"));
+
+		console.info("20000 stop");
+	break;
+        /*****************************************
+        * INDEX20001: Convert USD into doge.
+        *****************************************/
+        case "20001":
+        var dollaramount = prompt("20001 - Provide the dollar value you want to convert into number of dogecoins:",100.00);
+	var dogesum = 0.0;
+		console.info("20001: BEGIN:");
+		console.info("20001: first getting BTC amount from multiple exchanges:");
+                $.ajax ({
+                        type: "GET",
+			url: "https://chain.so/api/v2/get_price/BTC/USD",
+                        dataType: "json",
+                        error: function(data) { //                 alert(JSON.stringify(data, null, 4));
+                                var tt1 = JSON.stringify(data, null, 4);
+                                console.error("20001 fail: %s",tt1);
+                        },
+                        success: function(data) { //                alert(JSON.stringify(data, null, 4));                   
+                                var tt1 = JSON.stringify(data, null, 4);
+                                console.info("20001 success: %s",tt1);
+				  for (var i=0;i<data.data.prices.length;i++)
+					{
+						console.info("price from "+ data.data.prices[i].price_base + "(" +  i + ") = " + data.data.prices[i].price);
+						dogesum = parseFloat(dogesum) + parseFloat(data.data.prices[i].price);
+					}
+				var dogesum_average = parseFloat(parseFloat(dogesum)/data.data.prices.length);
+				console.info("Here is the averaged value from the " + data.data.prices.length + " exchanges: "  + dogesum_average);
+				var dogefinal = parseFloat(dollaramount/dogesum_average);
+				console.info("Final amount for $" + dollaramount + " is " + dogefinal + " dogecoins.");
+                        },
+                        complete: function(data, status) {
+				console.info("20001: next getting BTC/DOGE conversion:");
+				$.ajax ({
+					type: "GET",
+					url: "https://chain.so/api/v2/get_price/BTC/DOGE",
+					dataType: "json",
+					error: function(data) { //                 alert(JSON.stringify(data, null, 4));
+						var tt1 = JSON.stringify(data, null, 4);
+						console.error("20001 fail: %s",tt1);
+					},
+					success: function(data) { //                alert(JSON.stringify(data, null, 4));                   
+						var tt1 = JSON.stringify(data, null, 4);
+						console.info("20001 success: %s",tt1);
+						  for (var i=0;i<data.data.prices.length;i++)
+							{
+								console.info("price from "+ data.data.prices[i].price_base + "(" +  i + ") = " + data.data.prices[i].price);
+								dogesum = parseFloat(dogesum) + parseFloat(data.data.prices[i].price);
+							}
+						var dogesum_average = parseFloat(parseFloat(dogesum)/data.data.prices.length);
+						console.info("Here is the averaged value from the " + data.data.prices.length + " exchanges: "  + dogesum_average);
+						var dogefinal = parseFloat(dollaramount/dogesum_average);
+						console.info("Final amount for $" + dollaramount + " is " + dogefinal + " dogecoins.");
+					},
+					complete: function(data, status) {
+					}
+				});
+                        }
+                });
+	break;
 
 
         /*****************************************
