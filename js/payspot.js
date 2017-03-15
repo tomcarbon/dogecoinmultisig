@@ -14,6 +14,7 @@ var work_redeem_script;
 
 //$("#tsNewScreen01"   	).toggle("fast","swing");	// hide this at initialization time
 $("#psNewScreen01"  	).toggle("fast","swing");	// hide this at initialization time
+$("#psNewScreen02"  	).toggle("fast","swing");	// hide this at initialization time This is the for Mini Invoice  for the user to populate.
 
 /* user presses the Spend button, this opens up the Spend Dialog Box */ 
 /*$("#psTogBtn1").click(function(){       // SPEND
@@ -71,11 +72,42 @@ function _get(value) {
 	window.open(tt0);
 });*/
 
-/* user clicks on Reddit Link */
+/* user clicks on Reddit (search) Link */
 $("#psRedditBtn").click(function(){
 var v1  = document.getElementById("psAddress").value;
 	var tt0 = 'https://www.reddit.com/search?q=%22' + document.location.origin+''+document.location.pathname+  '?payspot='+v1+'#payspot' + '%22';
 	window.open(tt0);
+});
+
+/* user clicks on Reddit dogetipbot loading Link */
+$("#psRedditLoadBtn").click(function(){
+var v1  = document.getElementById("psAddress").value;
+var tt0 = 'https://www.reddit.com/message/compose?to=dogetipbot&subject=withdraw&message=%2Bwithdraw%20' + v1 + '%20ReplaceMeWithAmount%20doge verify';
+	window.open(tt0);
+});
+
+/* user clicks on "Create Mini Invoice" Button */
+$("#psMiniInvoiceBtn").click(function(){
+var v1  = document.getElementById("psAddress").value;
+	console.info("You've clicked on the Mini Invoice Button!");
+        $("#psNewScreen02").toggle();
+});
+
+/* user clicks on "Next" Button on the Create Mini Invoice Screen */
+$("#psMiniInvoiceNextBtn").click(function(){
+var v1  = document.getElementById("psMI01").value;	// info
+var v2  = document.getElementById("psMI02").value;	// amount (USD)
+var v3  = document.getElementById("psMI03").value;	// contact
+var v4  = document.getElementById("psMI04").value;	// photo (IMGUR code)
+console.info("******************************************************************");
+console.info("* MINI INVOICE CREATION");
+console.info("******************************************************************");
+console.info("Provided Info              = \n" + v1);
+console.info("Provided Address to Pay To = \n" + work_address);
+console.info("Provided Amount            = \n" + v2);
+console.info("Provided Contact Info      = \n" + v3);
+console.info("Provided IMGUR code        = \n" + v4);
+console.info("******************************************************************");
 });
 
 /* user clicks on Next for generating the multisig */

@@ -222,6 +222,19 @@ function do_the_redeemit() {
 	work_destination_address = $("#dogeScript5").val();
 	work_amount_to_withdraw = $("#dogeScript6").val();
 
+		/********************************************************
+		* The work destination address must be a dogecoin address
+		********************************************************/
+		if (	work_destination_address.charAt(0) == 'D' ||
+  			work_destination_address.charAt(0) == '9' ||
+			work_destination_address.charAt(0) == 'A' ) {
+			/* these seem to be valid dogecoin addresses... do nothing here */
+		} else {
+			var tt1 = "Error: The Destination Address is not a valid Dogecoin Address.";
+			console.info(tt1);		
+			alert(tt1);
+			return false;
+		}
 		/*************************************************
 		* Get the number of signatures required for this.
 		*************************************************/
@@ -437,6 +450,15 @@ $('#verifyBtn3x').on('click', function() {
 	tempstring = $("#verifyScript").val();
         var tt1 = document.location.origin+''+document.location.pathname+'?sign='+
                         tempstring + '#sign';
+        window.open(tt1);
+});
+/********************************************************************
+* This is on the SIGN  Screen and it's the VERIFY BUTTON
+*********************************************************************/
+$('#verifyBtn4x').on('click', function() {
+	tempstring = $("#signTransaction").val();
+        var tt1 = document.location.origin+''+document.location.pathname+'?verify='+
+                        tempstring + '#verify';
         window.open(tt1);
 });
 /********************************************************************
@@ -807,7 +829,16 @@ function very_get_info(iindex){
                                 console.error(JSON.stringify(data, null, 4));
                         },
                         success: function(data) {
-                                console.info(JSON.stringify(data, null, 4));                  
+                                var tt1 = JSON.stringify(data, null, 4);                   
+				console.info("10778 success: %s",tt1);
+				console.info("10778 data.network = " + data.data.network);
+				console.info("10778 data.network = " + data.data.address);
+				var temp_txs = data.data.txs;		// work_txs
+				
+				for (var i=0;i<data.data.txs.length;i++)		
+				{
+					console.info("chain.so:TX(" + i + "): " + temp_txs[i].txid + ", vout: " + temp_txs[i].output_no + ", value: " + temp_txs[i].value);
+				}
                         },
                         complete: function(data, status) {
                         //        window.alert("complete1");
@@ -886,6 +917,77 @@ function very_get_info(iindex){
                 });
 
            break;
+
+        /*****************************************
+        * INDEX20000: http://coinmill.com/frame.js
+        *****************************************/
+        case "20000":
+        var dollaramount = prompt("20000 - Provide the dollar value you want to convert into number of dogecoins:",100.00);
+
+		console.info("20000 start");
+
+		console.info(currency_show_conversion(dollaramount,"USD","XDG"));
+
+		console.info("20000 stop");
+	break;
+        /*****************************************
+        * INDEX20001: Convert USD into doge.
+        *****************************************/
+        case "20001":
+        var dollaramount = prompt("20001 - Provide the dollar value you want to convert into number of dogecoins:",100.00);
+	var dogesum = 0.0;
+		console.info("20001: BEGIN:");
+		console.info("20001: first getting BTC amount from multiple exchanges:");
+                $.ajax ({
+                        type: "GET",
+			url: "https://chain.so/api/v2/get_price/BTC/USD",
+                        dataType: "json",
+                        error: function(data) { //                 alert(JSON.stringify(data, null, 4));
+                                var tt1 = JSON.stringify(data, null, 4);
+                                console.error("20001 fail: %s",tt1);
+                        },
+                        success: function(data) { //                alert(JSON.stringify(data, null, 4));                   
+                                var tt1 = JSON.stringify(data, null, 4);
+                                console.info("20001 success: %s",tt1);
+				  for (var i=0;i<data.data.prices.length;i++)
+					{
+						console.info("price from "+ data.data.prices[i].price_base + "(" +  i + ") = " + data.data.prices[i].price);
+						dogesum = parseFloat(dogesum) + parseFloat(data.data.prices[i].price);
+					}
+				var dogesum_average = parseFloat(parseFloat(dogesum)/data.data.prices.length);
+				console.info("Here is the averaged value from the " + data.data.prices.length + " exchanges: "  + dogesum_average);
+				var dogefinal = parseFloat(dollaramount/dogesum_average);
+				console.info("Final amount for $" + dollaramount + " is " + dogefinal + " dogecoins.");
+                        },
+                        complete: function(data, status) {
+				console.info("20001: next getting BTC/DOGE conversion:");
+				$.ajax ({
+					type: "GET",
+					url: "https://chain.so/api/v2/get_price/BTC/DOGE",
+					dataType: "json",
+					error: function(data) { //                 alert(JSON.stringify(data, null, 4));
+						var tt1 = JSON.stringify(data, null, 4);
+						console.error("20001 fail: %s",tt1);
+					},
+					success: function(data) { //                alert(JSON.stringify(data, null, 4));                   
+						var tt1 = JSON.stringify(data, null, 4);
+						console.info("20001 success: %s",tt1);
+						  for (var i=0;i<data.data.prices.length;i++)
+							{
+								console.info("price from "+ data.data.prices[i].price_base + "(" +  i + ") = " + data.data.prices[i].price);
+								dogesum = parseFloat(dogesum) + parseFloat(data.data.prices[i].price);
+							}
+						var dogesum_average = parseFloat(parseFloat(dogesum)/data.data.prices.length);
+						console.info("Here is the averaged value from the " + data.data.prices.length + " exchanges: "  + dogesum_average);
+						var dogefinal = parseFloat(dollaramount/dogesum_average);
+						console.info("Final amount for $" + dollaramount + " is " + dogefinal + " dogecoins.");
+					},
+					complete: function(data, status) {
+					}
+				});
+                        }
+                });
+	break;
 
 
         /*****************************************
@@ -1470,8 +1572,12 @@ var estTxSize = 10;	// Begin with 10 for the header...
 			estTxSize += parseInt(zeeNumInputs * 320);
 			estTxSize += parseInt(zeeNumOutputs * 32);
 		}
+		else if (zeeNumKeyHolders == 4) {
+			estTxSize += parseInt(zeeNumInputs * 392);
+			estTxSize += parseInt(zeeNumOutputs * 32);
+		}
 		else {
-			alert("error in calculate_multisig_signed_size for 1/x. Number keyholders = " + zeeNumKeyHolders);
+			alert("error in calculate_multisig_signed_size for 1/x. Number keyholders = " + zeeKeyHolders);
 			return false;
 		}
 	}
@@ -1484,9 +1590,29 @@ var estTxSize = 10;	// Begin with 10 for the header...
 			estTxSize += parseInt(zeeNumInputs * 402);
 			estTxSize += parseInt(zeeNumOutputs * 32);
 		}
+		else if (zeeNumKeyHolders == 4) {
+			estTxSize += parseInt(zeeNumInputs * 478);
+			estTxSize += parseInt(zeeNumOutputs * 32);
+		}
 		else {
 			alert("error in calculate_multisig_signed_size:\n" 		+ 
-				" Number required sigs = " + zeeNumReqSigs + "\n" 	+ 
+				" Number required sigs = " + zeeNumSigs + "\n" 	+ 
+				" Number keyholders = " + zeeNumKeyHolders);
+			return false;
+		}
+	}
+	else if (zeeReqSigs == 3) {
+		if (zeeNumKeyHolders == 3) {
+			estTxSize += parseInt(zeeNumInputs * 484);
+			estTxSize += parseInt(zeeNumOutputs * 32);
+		}
+		else if (zeeNumKeyHolders == 4) {
+			estTxSize += parseInt(zeeNumInputs * 566);
+			estTxSize += parseInt(zeeNumOutputs * 32);
+		}
+		else {
+			alert("error in calculate_multisig_signed_size:\n" 		+ 
+				" Number required sigs = " + zeeNumSigs + "\n" 	+ 
 				" Number keyholders = " + zeeNumKeyHolders);
 			return false;
 		}
