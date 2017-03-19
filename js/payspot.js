@@ -91,6 +91,7 @@ $("#psMiniInvoiceBtn").click(function(){
 var v1  = document.getElementById("psAddress").value;
 	console.info("You've clicked on the Mini Invoice Button!");
         $("#psNewScreen02").toggle();
+	alert("This part is UNDER CONSTRUCTION! Sorry. Come back later!");
 });
 
 /* user clicks on "Next" Button on the Create Mini Invoice Screen */
