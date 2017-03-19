@@ -321,19 +321,19 @@
 
 					<div class="tab-pane tab-content" id="convertScreen1">
 						<a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo1.jpg" style="height:180px" ></a>
-						<h2>WELCOME to the Conversion to Dogecoin screen!.</h2>
+						<h2>WELCOME to the Conversion to Dogecoin screen!</h2>
 						<hr>
 
 						<div class="alert-info">
 						<h3><b>Convert Any Currency to XDG here</b><small> (this will take you off this site) </small></h3>
-						<form method="GET" action="http://coinmill.com/currency" onsubmit="if (this.currencyamount.value==''){alert('Please enter an amount');return false;}if (this.currencyfrom.selectedIndex==0){alert('Please choose a currency.');return false;}return true;">
+						<form method="GET" action="http://coinmill.com/currency" onsubmit="if (this.currencyamount.value==''){alert('Please enter an amount');return false;} return true;">
 						<table border="0" cellpadding="2" cellspacing="0" summary=""><tr><td>
 						Amount:</td><td><input type="text" size="8" name="currencyamount">
 						</td></tr><tr><td>
 						From:
 						</td><td>
 						<select name="currencyfrom">
-						<option value="" selected>Select a currency</option>
+						<option value="USD">United States Dollar (USD)</option>
 						<option value="AFN">Afghan Afghani (AFN)</option>
 						<option value="ALL">Albanian Lek (ALL)</option>
 						<option value="DZD">Algerian Dinar (DZD)</option>
@@ -604,8 +604,21 @@
 						To:
 						</td><td>
 						<select name="currencyto">
-						<option value="" selected>To:</option>
 						<option value="XDG">DogeCoin (XDG)</option>
+						<option value="UNO">Unobtanium (UNO)</option>
+						<option value="VEF">Venezuelan Bolivar Fuerte (VEF)</option>
+						<option value="VND">Viet Nam Dong (VND)</option>
+						<option value="USD">United States Dollar (USD)</option>
+						<option value="RUB">Russian Ruble (RUB)</option>
+						<option value="AUD">Australian Dollar (AUD)</option>
+						<option value="MXN">Mexican Peso (MXN)</option>
+						<option value="NZD">New Zealand Dollar (NZD)</option>
+						<option value="EUR">Euro (EUR)</option>
+						<option value="JPY">Japanese Yen (JPY)</option>
+						<option value="CNH">Chinese Offshore Yuan (CNH)</option>
+						<option value="CNY">Chinese Yuan (CNY)</option>
+						<option value="INR">Indian Rupee (INR)</option>
+						<option value="ARS">Argentine Peso (ARS)</option>
 						</select>
 						</td></tr><tr><td>
 						</td><td>
@@ -671,7 +684,7 @@
 		<p><strong>This program will support up to 75 unspent transactions per pass.</strong></p>
 		<p>This site is a self-service bankings tool; it does not have a formalized support system.</p>
 		<p><strong>Use F12-Console for detailed information on what the program is doing, etc.</strong></p>
-		<p>Version .265 (this statement last touched 20170309). This website is in<strong> Beta</strong>. This is open source freeware.</p>
+		<p>Version .266 (this statement last touched 20170318). This website is in<strong> Beta</strong>. This is open source freeware.</p>
 		<p><strong>This site is a work in progress</strong><strong> that will continue growing over time.</strong></p>
 		<p>Here's the source code:<a title="dogecoinmultisig.org" href="https://github.com/tomcarbon/dogecoinmultisig/">https://github.com/tomcarbon/dogecoinmultisig</a>. dogecoinmultisig.org is turnkey. Just copy it from github,and run index.html</p>
 		<hr> <p></p>
@@ -680,7 +693,7 @@
 		<p>This site was started with coinb.in open source source code. Please help support them at: 1CWHWkTWaq1K5hevimJia3cyinQsrgXUvg(BTC)</p>
 		<p><a title="very" href="https://chain.so/DOGE/">chain.so</a> is the primary dogecoin network interface. Please help support them at: 1HTL18EnUAgCjb8n2x3NN7bmVUmmDcnzBZ (BTC)</p>
 		<p>岡崎正広created the logo! If you like it let him know with doge! 9vfQTSv7GtBA5YaU58VwhZFKBgGne7rcpX (DOGE)</p>
-		<p>The community at <a title="to" href="https://reddit.com/r/dogecoin/">r/dogecoin</a>. Special thanks to u/1waterhole, u/erkan_yilmaz, u/greenbigfrog, u/pta2002, u/buurp, u/cody50055 and u/neuro-tic (very testing). Very Thanks helping with Translations and stuff: u/Bomsusik, u/pandoge, u/maerco, u/desoroo, u/LeoNeeson, u/tomcarbon, u/peoplma, u/ChateauLafite1827 </p>
+		<p>The community at <a title="to" href="https://reddit.com/r/dogecoin/">r/dogecoin</a>. Special thanks to u/1waterhole, u/erkan_yilmaz, u/greenbigfrog, u/pta2002, u/buurp, u/cody50055 and u/neuro-tic (very testing). Very Thanks helping with Translations and stuff: u/Bomsusik, u/pandoge, u/maerco, u/desoroo, u/LeoNeeson, u/tomcarbon, u/peoplma, u/ChateauLafite1827, u/MrDogeMeister </p>
 		<p></p> <hr>
 		<h3><strong>What is Dogecoin?</strong></h3>
 		<p><strong><a title="dogecoin.com" href="http://dogecoin.com">Dogecoin</a> is money with a picture of a dog on it.</strong> The dogecoin network is quite similar to the bitcoin network, but with a few changes made that serve to differentiate it from the bitcoin network.</p>
@@ -828,11 +841,12 @@
 
                                         <div class="tab-pane tab-content" id="payspot">
 						<div>
-						    <input type="button" value="English"    id="PSenglishbutton" />
-						    <input type="button" value="Nederlands" id="PSdutchbutton"   />
-						    <input type="button" value="Espanol"    id="PSspanishbutton" />
+						    <input type="button" value="English"     id="PSenglishbutton" />
+						    <input type="button" value="Nederlands"  id="PSdutchbutton"   />
+						    <input type="button" value="Espanol"     id="PSspanishbutton" />
 						    <input type="button" value="Français"    id="PSfrenchbutton" />
 						    <input type="button" value="Italiano"    id="PSitalianbutton" />
+						    <input type="button" value="Русский"     id="PSrussianbutton" />
 						</div>
 						<div id="langdisp00d"></div>
 
@@ -854,9 +868,11 @@
 							<p>The <strong>Load Reddit Postings</strong> Button will find you all related reddit posts regarding that Pay Spot Dogecoin Address
 							<small> (sort by new)</small></p>
 							<hr>
-							<p>The Reddit Dogetipbot Button will bring you to the dogetipbot withdraw screen at reddit.com, and allow easy Peer-to-Peer Payment:</p>
+							<p>The <strong>Reddit Dogetipbot</strong> Button will bring you to the dogetipbot withdraw screen at reddit.com, and allow easy Peer-to-Peer Payment:</p>
 							<p><strong><small>Show me your Pay Spot, then I scan your QR code, then use this button to pay doge from dogetipbot.</small></strong></p>
 							<p><small>(you must be logged into reddit to use this feature!)</small></p>
+							<hr>
+							<p>The <strong>Create Mini-Invoice</strong> Button is UNDER CONSTRUCTION! coming soon! (today's 20170314)</p>
 							<hr>
 							<p>This page does not store sensitive data (only the address itself is used).</p>
 							<p><small>(you know, if you want to, you just plug any old Dogecoin address into the URL and it becomes *your* PaySpot)</small></p>
@@ -909,6 +925,7 @@
                                                         <hr>
 							<div class="alert-success" id="psNewScreen02">
 								<strong>CREATE A MINI INVOICE</strong>
+								<strong>UNDER CONSTRUCTION! COMING SOON!!</strong>
 								<p><small><small>(all fields are optional)</small></small></p>
 								<hr>
 								<span>Info (max 50 chars): <input id="psMI01" type="text" class="form-control address" value=""></span>
@@ -1242,6 +1259,7 @@
 						    <input type="button" value="Espanol"    id="TSspanishbutton" />
 						    <input type="button" value="Français"    id="TSfrenchbutton" />
 						    <input type="button" value="Italiano"    id="TSitalianbutton" />
+						    <input type="button" value="Русский"     id="TSrussianbutton" />
 						</div-->
 						<div id="langdisp00c"></div>
 
@@ -1656,6 +1674,7 @@
 							    <input type="button" value="Espanol"    id="DBSspanishbutton" />
 							    <input type="button" value="Français"    id="DBSfrenchbutton" />
 							    <input type="button" value="Italiano"    id="DBSitalianbutton" />
+						            <input type="button" value="Русский"     id="DBSrussianbutton" />
 							</div>
 							<div id="langdisp00b"></div>
 
@@ -2178,6 +2197,7 @@
 						    <input type="button" value="Espanol"    id="Wspanishbutton" />
 						    <input type="button" value="Français"    id="Wfrenchbutton" />
 						    <input type="button" value="Italiano"    id="Witalianbutton" />
+						    <input type="button" value="Русский"     id="Wrussianbutton" />
 						</div>
 						<div id="langdisp00a"></div>
 
@@ -2919,7 +2939,7 @@
 
 		<div id="footer">
 			<div class="container text-right">
-	        		<p class="text-muted">Version .265</p>
+	        		<p class="text-muted">Version .266</p>
 			</div>
 		</div>
 
