@@ -91,7 +91,7 @@ $("#psMiniInvoiceBtn").click(function(){
 var v1  = document.getElementById("psAddress").value;
 	console.info("You've clicked on the Mini Invoice Button!");
         $("#psNewScreen02").toggle();
-	alert("This part is UNDER CONSTRUCTION! Sorry. Come back later!");
+	//alert("This part is UNDER CONSTRUCTION! Sorry. Come back later!");
 });
 
 /* user clicks on "Next" Button on the Create Mini Invoice Screen */
@@ -109,6 +109,8 @@ console.info("Provided Amount            = \n" + v2);
 console.info("Provided Contact Info      = \n" + v3);
 console.info("Provided IMGUR code        = \n" + v4);
 console.info("******************************************************************");
+var tt0 = document.location.origin+''+document.location.pathname+'?miniinvoice='+v1 + '.' + v2 + '.' + v3 + '.' + v4 +'#miniinvoice';
+window.open(tt0);
 });
 
 /* user clicks on Next for generating the multisig */

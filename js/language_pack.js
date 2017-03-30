@@ -51,6 +51,12 @@ $("#PSgermanbutton").click(function(){
     reader.send(null);
 });
 
+$("#PShungarianbutton").click(function(){
+    reader.open('get','docs/hungarian.json', true); 
+    reader.onreadystatechange = displayContents;
+    reader.send(null);
+});
+
 /***********************************************
 * The Language Buttons on the Withdrawl Screens 
 ************************************************/
@@ -92,6 +98,12 @@ $("#Wrussianbutton").click(function(){
 
 $("#Wgermanbutton").click(function(){
     reader.open('get','docs/german.json', true); 
+    reader.onreadystatechange = displayContents;
+    reader.send(null);
+});
+
+$("#Whungarianbutton").click(function(){
+    reader.open('get','docs/hungarian.json', true); 
     reader.onreadystatechange = displayContents;
     reader.send(null);
 });
@@ -141,6 +153,12 @@ $("#DBSgermanbutton").click(function(){
     reader.send(null);
 });
 
+$("#DBShungarianbutton").click(function(){
+    reader.open('get','docs/hungarian.json', true); 
+    reader.onreadystatechange = displayContents;
+    reader.send(null);
+});
+
 /***********************************************
 * The Language Buttons on the TripleShibe Screens 
 ************************************************/
@@ -183,6 +201,12 @@ $("#TSrussianbutton").click(function(){
 
 $("#TSgermanbutton").click(function(){
     reader.open('get','docs/german.json', true); 
+    reader.onreadystatechange = displayContents;
+    reader.send(null);
+});
+
+$("#TShungarianbutton").click(function(){
+    reader.open('get','docs/hungarian.json', true); 
     reader.onreadystatechange = displayContents;
     reader.send(null);
 });

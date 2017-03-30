@@ -1,5 +1,9 @@
 $(document).ready(function() {
 /******************************************************************
+        var v1  = document.getElementById("qsAddress").value;
+        var v2 = v1.trim();
+	var tt0 = document.location.origin+''+document.location.pathname+'?payspot='+v2+'#payspot';
+	window.open(tt0);
 * 20170111 tcc
 * 4
 ******************************************************************/
