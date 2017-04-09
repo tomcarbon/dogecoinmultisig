@@ -37,7 +37,13 @@ The entire site is turnkey and can be run offline as well... you can copy it to 
 
 
 
-
+more:
+Check out dogecoinmultisig.org.. This is something you can take from github and copy onto a memory stick. You can put the memory stick onto a computer that's not connected to the internet, and generate regular and multisig addresses..
+Why is that? In terms of this website, it's because the Private Key is generated first, using randomized number information. From the Private Key, the Public Key is generated, and from the Public Key, the Address is generated.
+These addresses don't need to be connected to some central authority, They don't need to be entered into a database... it's the spend transaction that does that. The blockchain consists of transactions that are weaved together to form the story of your address... that's how your address exists in the blockchain, in the transactions that mention it.
+To pull transactions from the blockchain, you're going to need access to the internet.
+Then you can (in theory) take those transactions with you, store them on an offline computer. You can sign them offline, creating the broadcast transaction -- a block of data that will be incorporated into the blockchain. That 'broadcast' happens online.
+PS: multisigs are also addresses generated from the public keys.
 
 
 
