@@ -18,7 +18,9 @@ $("#bankSuiteSlushPayBox"	).toggle("fast","swing");
 $("#bankSuiteCheckingPayBox"	).toggle("fast","swing");
 $("#bankSuiteSavingsPayBox"	).toggle("fast","swing");
 $("#bankSuiteDoGoodFundPayBox"	).toggle("fast","swing");
-$("#bankSuiteNewScreen04"	).toggle("fast","swing");
+$("#bankSuiteNewScreen04"	).toggle("fast","swing");	// new dbs
+$("#bankSuiteNewScreen05"	).toggle("fast","swing");	// + advanced button
+$("#bankSuiteNewScreen06"	).toggle("fast","swing");	// + advanced button
 $("#bankSuitePageURL").val(document.location.origin+''+document.location.pathname+'#bankSuite');	// to give to a friend
 
 
@@ -290,6 +292,14 @@ $("#bankSuiteQuickInstructions").click(function(){
 	$("#bankSuiteNewScreen04").toggle();
 });
 
+/* user clicks the +  'Advanced' button on the bankSuite Interface*/
+$("#bankSuiteAdvanced").click(function(){
+	$("#bankSuiteNewScreen05").toggle();
+});
+
+
+
+
 /* user clicks the 'create new Dogecoin Bankings Suite' button on the bankSuite Interface*/
 $("#bankSuiteNewKeys").click(function(){
 	coinjs.compressed = false;
@@ -343,6 +353,7 @@ $("#bankSuiteNewKeys").click(function(){
 			"And then use the URL link for account access. The Public Suite Key is contained therein.";
 	console.info(tt1);
 	bank_suite_loader(1);
+	$("#bankSuiteNewScreen06").show();
 
 
 });
@@ -714,6 +725,7 @@ var bs_multiDoGoodFund;
 			document.getElementById("bankSuiteCumBalance").innerHTML = "Here are your accounts:"; //display to HTML // whooptee hooptee doo. UFN
 		}, 9000);
 	}
+$("#bankSuiteNewScreen06").show();
 }
 
 
@@ -798,6 +810,7 @@ $('#bankSuiteReset').on('click', function() {
         console.info("Value is " + tt1);
         window.open(tt1,"_parent");	// tempola this only seems to work once
 });
+
 
 
 });   /* EOF */

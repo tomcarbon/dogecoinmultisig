@@ -470,7 +470,7 @@ function displayContents() {
 	document.getElementById("redeemVerifyBtn3x").value	= foo.lang.menuitem[54].text;	// Broadcast
 	document.getElementById("redeemVerifyBtn4x").value	= foo.lang.menuitem[55].text;	
 	document.getElementById("psRedditBtn").value		= foo.lang.menuitem[70].text;	
-	document.getElementById("psRedditLoadBtn").value	= foo.lang.menuitem[71].text;	
+	//document.getElementById("psRedditLoadBtn").value	= foo.lang.menuitem[71].text;	// this is the dogetipbot button, removed 20170510
 	document.getElementById("redeemVerifyBtn2x").value	= foo.lang.menuitem[73].text;	// SIGN
 	document.getElementById("redeemVerifyBtn5x").value	= foo.lang.menuitem[73].text;	// SIGN
 	document.getElementById("redeemVerifyBtn6x").value	= foo.lang.menuitem[73].text;	// SIGN
