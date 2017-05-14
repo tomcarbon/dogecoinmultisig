@@ -43,13 +43,13 @@
 		<script type="text/javascript" src="js/tripleshibe.js"></script>
 		<script type="text/javascript" src="js/quatroshibe.js"></script>
 		<script type="text/javascript" src="js/payspot.js"></script>
-		<script type="text/javascript" src="js/miniinvoice.js"></script>
+		<script type="text/javascript" src="js/microinvoice.js"></script>
 		<script type="text/javascript" src="http://coinmill.com/frame.js"></script>
 	</head>
 
 	<body>
 		<!--a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo.gif" style="height:180px" ></a-->
-		<div id="wrap">
+		<!--div id="wrap"-->
 			<!-- Fixed navbar -->
 			<div id="header" class="navbar navbar-default " role="navigation">
 				<div class="container">
@@ -64,21 +64,27 @@
 					</div>
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav">
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span> New<b class="caret"></b></a>
+							<li><a href="#bankSuite" data-toggle="tab"> Dogecoin Bankings Suite</a></li>
+							<!--li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"> New<b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li><a href="#newAddress" data-toggle="tab">New Dogecoin Address</a></li>
 									<li class="divider"></li>
 									<li><a href="#newMultiSig" data-toggle="tab">Dogecoin MultiSig Address</a></li>
 								</ul>
-							</li>
+							</li-->
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span> Tools<b class="caret"></b></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Tools <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li><a href="#redeemMultiSig" data-toggle="tab">Withdraw</a></li>
 									<li><a href="#verify" data-toggle="tab">Verify</a></li>
 									<li><a href="#sign" data-toggle="tab">Sign</a></li>
 									<li><a href="#broadcast" data-toggle="tab"> Broadcast</a></li>
+									<li class="divider"></li>
+									<li><a href="#tripleshibe" data-toggle="tab">New TripleShibe (x/3)</a></li>
+									<li><a href="#quatroshibe" data-toggle="tab">New QuatroShibe (x/4)</a></li>
+									<li><a href="#newAddress" data-toggle="tab">New Dogecoin Address</a></li>
+									<li><a href="#newMultiSig" data-toggle="tab">New MultiSig Address</a></li>
 									<li class="divider"></li>
 									<li><a href="#convertScreen1" data-toggle="tab">Currency Conversion</a></li>
 									<li><a href="#cpToolbox" data-toggle="tab">More Tools</a></li>
@@ -89,14 +95,14 @@
 							<li><a href="#sign" data-toggle="tab"><span class="glyphicon glyphicon-pencil"></span> Sign</a></li>
 							<li><a href="#broadcast" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span> Broadcast</a></li>
 							<li><a href="#cpToolbox" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span> Tools</a></li-->
-							<li><a href="#bankSuite" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span> Dogecoin Bankings Suite</a></li>
-							<li><a href="#tripleshibe" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span> TripleShibe</a></li>
-							<li><a href="#quatroshibe" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span> QuatroShibe</a></li>
+							<!--li><a href="#bankSuite" data-toggle="tab"> Dogecoin Bankings Suite</a></li-->
+							<!--li><a href="#tripleshibe" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span> TripleShibe</a></li>
+							<li><a href="#quatroshibe" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span> QuatroShibe</a></li-->
 							<!--li><a href="#ramin" data-toggle="tab"><span class="glyphicon glyphicon-globe"></span>ramin</a></li-->
 							<!--li><a href="#wallet" data-toggle="tab"><span class="glyphicon glyphicon-briefcase"></span> Wallet</a></li-->
 							<!--li><a href="#about" data-toggle="tab"><span class="glyphicon glyphicon-info-sign"></span> About</a></li-->
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-plus"></span> Help<b class="caret"></b></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Help<b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<li class="divider"></li>
 									<li><a href="#menuAbout" data-toggle="tab">About</a></li>
@@ -668,7 +674,6 @@
 		<p>Create various <strong>4-person</strong> contracts.</p>
 		<p>Add unlimited side contracts to existing TripleShibe arrangements.</p>
 		<p>Free and generatable offline just like everything else on this site.</p>
-		<p>
 		<hr>
 		<h3> Pay Spot</h3>
 		<p>This one is small, powerful, and growing! Use with any dogecoin address. This works together with dogetipbot to provide a mobile-to-mobile payment solution. It also can link up with reddit's search capability, allowing for organization of multiple reddit posts (good for charities!)</p>
@@ -687,7 +692,7 @@
 		<p><strong>This program will support up to 75 unspent transactions per pass.</strong></p>
 		<p>This site is a self-service bankings tool; it does not have a formalized support system.</p>
 		<p><strong>Use F12-Console for detailed information on what the program is doing, etc.</strong></p>
-		<p>Version .269 (this statement last touched 20170408). This website is in<strong> Beta</strong>. This is open source freeware.</p>
+		<p>Version .271 (this statement last touched 20170513). This website is in<strong> Beta</strong>. This is open source freeware.</p>
 		<p><strong>This site is a work in progress</strong><strong> that will continue growing over time.</strong></p>
 		<p>Here's the source code:<a title="dogecoinmultisig.org" href="https://github.com/tomcarbon/dogecoinmultisig/">https://github.com/tomcarbon/dogecoinmultisig</a>. dogecoinmultisig.org is turnkey. Just copy it from github,and run index.html</p>
 		<hr> <p></p>
@@ -738,6 +743,7 @@
 		<p>This website is an interface to the Dogecoin Network, and while it is tuned for handling multi-signature transactions, non-multisig Dogecoin addresses (the regular ones) can also be used here. The website is designed to be usable offline.</p>
 		<p>Compatible with dogecoin-qt</p>
 		<p>Privacy: Keys are generated on client side and we never ever see them. Nor do we want to see them.</p>
+		<p>Check out dogecoinmultisig.org.  This is something you can take from github and copy onto a memory stick. You can put the memory stick onto a computer that's not connected to the internet, and generate regular and multisig addresses.  Why is that? In terms of this website, it's because the Private Key is generated first, using randomized number information. From the Private Key, the Public Key is generated, and from the Public Key, the Address is generated. These addresses don't need to be connected to some central authority, They don't need to be entered into a database... it's the spend transaction that does that. The blockchain consists of transactions that are weaved together to form the story of your address... that's how your address exists in the blockchain, in the transactions that mention it. To pull transactions from the blockchain, you're going to need access to the internet. Then you can (in theory) take those transactions with you, store them on an offline computer. You can sign them offline, creating the broadcast transaction -- a block of data that will be incorporated into the blockchain. That 'broadcast' happens online. PS: multisigs are also addresses generated from the public keys.</p>
 		<h3><strong>Thank You</strong></h3>
 </div>
 					<div class="tab-pane tab-content" id="menuHowTo">
@@ -847,6 +853,7 @@
 
 
                                         <div class="tab-pane tab-content" id="payspot">
+                                                <a href="#payspot" ><img src="images/dcmslogo3.jpg" class="hidden" style="height:180px" ></a>
 						<div>
 						    <input type="button" value="English"     id="PSenglishbutton" />
 						    <input type="button" value="Nederlands"  id="PSdutchbutton"   />
@@ -860,7 +867,6 @@
 						<div id="langdisp00d"></div>
 
                                                 <a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo3.jpg" style="height:180px" ></a>
-                                                <a href="#payspot" ><img src="images/dcmslogo3.jpg" class="hidden" style="height:180px" ></a>
 
                                                 <!--h2>Pay Spot  <small>  Dogecoin is accepted here.</small></h2-->
                                                 <h2><div id="langdisp68"></div></h2>
@@ -877,11 +883,11 @@
 							<p>The <strong>Load Reddit Postings</strong> Button will find you all related reddit posts regarding that Pay Spot Dogecoin Address
 							<small> (sort by new)</small></p>
 							<hr>
-							<p>The <strong>Reddit Dogetipbot</strong> Button will bring you to the dogetipbot withdraw screen at reddit.com, and allow easy Peer-to-Peer Payment:</p>
+							<!--p>The <strong>Reddit Dogetipbot</strong> Button will bring you to the dogetipbot withdraw screen at reddit.com, and allow easy Peer-to-Peer Payment:</p>
 							<p><strong><small>Show me your Pay Spot, then I scan your QR code, then use this button to pay doge from dogetipbot.</small></strong></p>
 							<p><small>(you must be logged into reddit to use this feature!)</small></p>
 							<hr>
-							<p>The <strong>Create Mini-Invoice</strong> Button is UNDER CONSTRUCTION! coming soon! (today's 20170314)</p>
+							<p>The <strong>Create Mini-Invoice</strong> Button is UNDER CONSTRUCTION! coming soon! (today's 20170314)</p-->
 							<hr>
 							<p>This page does not store sensitive data (only the address itself is used).</p>
 							<p><small>(you know, if you want to, you just plug any old Dogecoin address into the URL and it becomes *your* PaySpot)</small></p>
@@ -929,33 +935,100 @@
                                                         </div>
                                                         <br>
                                                         <input type="button" class="btn btn-danger" value="Load related Reddit Postings if any" id="psRedditBtn">
-                                                        <input type="button" class="btn btn-info" value="Deposit funds here using your Reddit Dogetipbot Account" id="psRedditLoadBtn">
-                                                        <input type="button" class="btn btn-success" value="Create Mini Invoice" id="psMiniInvoiceBtn">
+                                                        <!--input type="button" class="btn btn-info" value="Deposit funds here using your Reddit Dogetipbot Account" id="psRedditLoadBtn"-->
+                                                        <!--input type="button" class="btn btn-success" value="Create Micro Invoice" id="psMicroInvoiceBtn"-->
                                                         <hr>
 							<div class="alert-success" id="psNewScreen02">
-								<strong>CREATE A MINI INVOICE</strong>
-								<strong>UNDER CONSTRUCTION! COMING SOON!!</strong>
-								<p><small><small>(all fields are optional)</small></small></p>
+								<strong>CREATE A  MICRO INVOICE</strong>
+								<strong>(New! It's finally here!)</strong>
 								<hr>
-								<span>Info (max 50 chars): <input id="psMI01" type="text" class="form-control address" value=""></span>
+								<!--span>Info (max 50 chars): <input id="psMI01" type="text" class="form-control address" value=""></span-->
 
-								<span>Amount (USD): <input id="psMI02" type="text" class="form-control address" value=""></span>
+								<span>Amount : <input id="psMI02" type="text" class="form-control address" value=""></span>
 
-								<span>Contact: <input id="psMI03" type="text" class="form-control address" value=""></span>
+								<!--span>Contact: <input id="psMI03" type="text" class="form-control address" value=""></span-->
 
-								<span>IMGUR photo code (e.g.: 3LYHD40): <input id="psMI04" type="text" class="form-control address" value=""></span>
+								<!--span>IMGUR photo code (e.g.: 3LYHD40): <input id="psMI04" type="text" class="form-control address" value=""></span-->
 
-								<input type="button" class="btn btn-xs btn-info" value="NEXT" id="psMiniInvoiceNextBtn">
+								<input type="button" class="btn btn-xs btn-info" value="NEXT" id="psMicroInvoiceNextBtn">
 								<hr>
 							</div>
 
                                                 </div>
                                         </div>
 
-					<div class="tab-pane tab-content" id="miniinvoice">
-                                                <a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo3.jpg" style="height:180px" ></a>
-                                                <h2>Mini Invoice! <small>buy with dogecoin</small></h2>
+
+                                        <div class="tab-pane tab-content" id="microinvoice">
+                                                <a href="#microinvoice" ><img src="images/dcmslogo2.jpg" class="hidden" style="height:180px" ></a>
+
+                                                <!--a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo2.jpg" style="height:180px" ></a-->
+
+                                                <h2>Micro Invoice!<small> Pay Dogecoin Here</small></h2>
+
+                                                <input id="MIQuickInstructions" type="button" class="btn btn-xs btn-success" value="Click Here for Instructions!" >
+                                                <div class="alert-success" id="MINewScreen01">
+                                                        <h3>INSTRUCTIONS</h3>
+                                                        <hr>
+                                                        <p>This is the Micro Invoice page.</p>
+                                                        <hr>
+                                                        <strong>THE BUTTONS</strong>
+                                                        <small> (sort by new)</small></p>
+                                                        <hr>
+                                                        <hr>
+                                                </div>
+
+                                                <div class="alert-info" id="MImultiSigData">
+                                                        <p><b>Address:</b></p>
+                                                        <div class="row">
+                                                                <div class="col-lg-6">
+                                                                        <div class="input-group">
+                                                                                <input id="MIAddress" type="text" class="js-MIcopytextarea2 form-control address" value="" readonly>
+                                                                                <span class="input-group-btn">
+                                                                                        <button class="btn btn-default js-MItextareacopybtn2" type="button">
+                                                                                        <span class="glyphicon glyphicon-copy"></span>
+                                                                                        </button>
+                                                                                </span>
+                                                                                <span class="input-group-btn">
+                                                                                        <button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode"><span class="glyphicon glyphicon-qrcode"></span>
+                                                                                        </button>
+                                                                                </span>
+                                                                        </div>
+                                                                </div>
+                                                        </div>
+                                                        <b><p id="MIBalance"></p></b>
+                                                        <b><p id="MIUCBalance"></b></p>
+                                                        <br>
+							<p>Shareable URL for this page!</p>
+                                                        <div class="input-group">
+                                                                <input id="MIRedeemScript" type="text" class="form-control hidden" value="" readonly>
+
+
+                                                                <input id="MIPageURL" type="text" class="js-MIcopytextarea1 form-control address" value="" readonly>
+                                                                <span class="input-group-btn">
+                                                                        <button class="btn btn-default js-MItextareacopybtn1" type="button">
+                                                                        <span class="glyphicon glyphicon-copy"></span>
+                                                                        </button>
+                                                                </span>
+                                                                <span class="input-group-btn">
+                                                                        <button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
+                                                                        <span class="glyphicon glyphicon-qrcode"></span>
+                                                                        </button>
+                                                                </span>
+                                                        </div>
+                                                        <br>
+                                                        <input type="button" class="btn btn-danger" value="Load related Reddit Postings if any" id="MIRedditBtn">
+                                                        <!-- removed v.270input type="button" class="btn btn-info" value="Deposit funds here using your Reddit Dogetipbot Account" id="MIRedditLoadBtn"-->
+                                                        <!--input type="button" class="btn btn-success" value="Create Mini Invoice" id="MIMiniInvoiceBtn"-->
+                                                        <hr>
+                                                </div>
                                         </div>
+
+					<!--div class="tab-pane tab-content" id="miniinvoice">
+                                                <a href="#miniinvoice" ><img src="images/dcmslogo3.jpg" class="hidden" style="height:180px" ></a>
+                                                <a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo2.jpg" style="height:180px" ></a>
+                                                <h2>Mini Invoice! <small>buy with dogecoin</small></h2>
+
+                                        </div-->
 
 					<div class="tab-pane tab-content" id="quatroshibe">
                                                 <a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo3.jpg" style="height:180px" ></a>
@@ -1312,7 +1385,7 @@
 							<hr>
 						</div>
 
-                                                <div class="alert-warning" id="tsmultisigPubKeys">
+                                                <div class="alert-info" id="tsmultisigPubKeys">
 							<hr>
 							<p>Place three Public Keys into the boxes below and click Next</p>
 							<input type="text" class="form-control pubkey" id="tsPubKey1" value="">
@@ -1602,8 +1675,6 @@
 
 					</div>
 
-
-
 					<div class="tab-pane tab-content" id="ramin">
 						<a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo2.jpg" style="height:180px" ></a>
 						<h2>Ramin's Special Instructions</h2>
@@ -1683,8 +1754,11 @@
 						</div>
 					</div>
 
-
-					<div class="tab-pane tab-content" id="bankSuite">
+<!-- SUCH VERY DOGECOIN DBS -->
+<!-- SUCH VERY DOGECOIN DBS -->
+<!-- SUCH VERY DOGECOIN DBS -->
+<!-- SUCH VERY DOGECOIN DBS -->
+				<div class="tab-pane tab-content" id="bankSuite">
 							<div>
 							    <input type="button" value="English"    id="DBSenglishbutton" />
 							    <input type="button" value="Nederlands" id="DBSdutchbutton"   />
@@ -1698,45 +1772,59 @@
 							<div id="langdisp00b"></div>
 
 						<a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo1.jpg" style="height:180px" ></a>
-						<h1><!--You Hold The Keys--><div id="langdisp01"></div></h1>
 
-						<h2><!--Dogecoin Bankings Suite--><div id="langdisp02"></div></h2>
-						<p><small><!--You keep one piece of information safe. In return you own the six dogecoin addresses mathematically associated with it.-->
-							<div id="langdisp03"></div>
-						</p>
-						<input id="bankSuiteQuickInstructions" type="button" class="btn btn-xs btn-success" value="Click Here for Instructions!" >
-                                                <div class="alert-success" id="bankSuiteNewScreen04">
-							<b>
-							<p><!--Step 1: Click the BLUE Button (Make New Suite Keys) to make a new account.--><div id="langdisp05"></div></p>
-							<p><!--Step 2: Save the Private Suite Key (in the BLUE Box) to a safe, secure location.--><div id="langdisp06"></div></p>
-							<p><!--Step 3: Bookmark or Save the 'shareable URL'.--><div id="langdisp07"></div></p>
-							</b>
-							<a href="https://www.youtube.com/watch?v=oxYot_RdrpE&index=4&list=PLKNyF61Wqa0YBwXKodoDA7gnG3CHoVONd"><!--Here's a quick demonstration Video!--><div id="langdisp08"></div></a>
-							<h3><!--Your DBS (Dogecoin Bankings Suite) Account is now ready for use.--><div id="langdisp09"></div></h3>
-							<input type="button" class="btn btn-success" value="Ramin's Special Instructions" id="rsi">
-							<p><!--You may share the Public Suite Key, or keep it to yourself.--><div id="langdisp10"></div></p>
-							<p><!--These static dogecoin multisignatures can be computed from the Private Suite Key.--><div id="langdisp11"></div></p>
-							<p><!--Do NOT lose your Private Suite Key. Record it and save it.--><div id="langdisp12"></div></p>
-							<p><!--(if you bandy your Private Key about it is susceptible to theft)--><div id="langdisp13"></div></p>
-							<p><!--These accounts are disposable. You may make as many of them as you like.--><div id="langdisp14"></div></p>
-							<p><!--You can break a Suite Key in half, and then share it with another person, etc. Geekspeak, they are just 2 Pub/PrivKeys put together!--><div id="langdisp15"></div></p>
-							<p><!--You can run this page offline.--><div id="langdisp16"></div></p>
-							<p><!--This program will create identical multisig values as compared to core.--><div id="langdisp17"></div></p>
-							<input type="button" class="btn btn-info" value="more information" id="rsddi">
-						</div>
+						<hr size="2">
 
-						<!-- removed until it works20160914input type="button" class="btn btn-warning btn-xs" value="Reset this Page" 	id="bankSuiteReset"-->
-						<hr size="5">
+						<h1><!--Dogecoin Bankings Suite--><strong><div id="langdisp02"></div></strong></h1>
+						<h4><strong><!--You Hold The Keys--><div id="langdisp01"></div></strong></h4>
+						<h6><!--small><You keep one piece of information safe. In return you own the six dogecoin addresses mathematically associated with it.-->
+							<div id="langdisp03"></div></h6>
+						<hr size="8">
+						<span>
+							<input id="bankSuiteQuickInstructions" type="button" class="btn btn-lg btn-success" value="Help" >
+							<div class="alert-success" id="bankSuiteNewScreen04">
+								<b>
+								<hr size="8">
+								<p><!--Step 1: Click the BLUE Button (Make New Suite Keys) to make a new account.--><div id="langdisp05"></div></p>
+								<p><!--Step 2: Save the Private Suite Key (in the BLUE Box) to a safe, secure location.--><div id="langdisp06"></div></p>
+								<p><!--Step 3: Bookmark or Save the 'shareable URL'.--><div id="langdisp07"></div></p>
+								</b>
+								<h3><!--Your DBS (Dogecoin Bankings Suite) Account is now ready for use.--><div id="langdisp09"></div></h3>
+								<hr size="8">
+								<a href="https://www.youtube.com/watch?v=oxYot_RdrpE&index=4&list=PLKNyF61Wqa0YBwXKodoDA7gnG3CHoVONd"><!--Here's a quick demonstration Video!--><div id="langdisp08"></div></a>
+								<hr size="8">
+							</div>
 
-						<input type="button" class="btn btn-info btn-xs" value="Make New Suite Keys" id="bankSuiteNewKeys">
-						<!-- or enter the <b>Public Suite Key</b> below (or 2 public keys) and click --><div id="langdisp19"></div>
-						<input type="button" class="btn btn-danger btn-xs" value="here" id="bankSuiteLoad">
-						<!--button type="button" class="btn btn-danger btn-xs" id="bankSuiteLoad">here</button-->
+							<input type="button" class="btn btn-info btn-lg" value="New" id="bankSuiteNewKeys">
 
-						<!--textarea type="text" id="bankSuitePubKey1" class="form-control" placeholder="Insert Suite Key or Public Key here" cols="66" rows="1"></textarea>
-						<textarea type="text" id="bankSuitePubKey2" class="form-control" placeholder="(optional:) Insert another Public Key here" rows="1" cols="66"></textarea-->
-						<textarea type="text" id="bankSuitePubKey1" class="form-control" placeholder="pubkey 1" cols="66" rows="1"></textarea>
-						<textarea type="text" id="bankSuitePubKey2" class="form-control" placeholder="pubkey 2" rows="1" cols="66"></textarea>
+							<input type="button" class="btn btn-warning btn-lg" value="+" id="bankSuiteAdvanced">
+							<div class="alert-warning" id="bankSuiteNewScreen05">
+								<hr size="8">
+								<span>
+									<!-- or enter the <b>Public Suite Key</b> below (or 2 public keys) and click --> <div id="langdisp19"></div>
+									<input type="button" class="btn btn-danger btn-xs" value="here" id="bankSuiteLoad">
+									<!--button type="button" class="btn btn-danger btn-xs" id="bankSuiteLoad">here</button-->
+								</span>
+								<textarea type="text" id="bankSuitePubKey1" class="form-control" placeholder="pubkey 1" cols="66" rows="1"></textarea>
+								<textarea type="text" id="bankSuitePubKey2" class="form-control" placeholder="pubkey 2" rows="1" cols="66"></textarea>
+								<hr size="8">
+								<p><!--You may share the Public Suite Key, or keep it to yourself.--><div id="langdisp10"></div></p>
+								<p><!--These static dogecoin multisignatures can be computed from the Private Suite Key.--><div id="langdisp11"></div></p>
+								<p><!--Do NOT lose your Private Suite Key. Record it and save it.--><div id="langdisp12"></div></p>
+								<p><!--(if you bandy your Private Key about it is susceptible to theft)--><div id="langdisp13"></div></p>
+								<p><!--These accounts are disposable. You may make as many of them as you like.--><div id="langdisp14"></div></p>
+								<p><!--You can break a Suite Key in half, and then share it with another person, etc. Geekspeak, they are just 2 Pub/PrivKeys put together!-->
+								<div id="langdisp15"></div></p>
+								<p><!--You can run this page offline.--><div id="langdisp16"></div></p>
+								<p><!--This program will create identical multisig values as compared to core.--><div id="langdisp17"></div></p>
+								<hr size="8">
+								<input type="button" class="btn btn-success btn-xs" value="Ramin's Special Instructions" id="rsi">
+								<input type="button" class="btn btn-warning btn-xs" value="more information" id="rsddi">
+								<hr size="8">
+								<hr size="8">
+							</div>
+						</span>
+
 
                                                 <div class="alert alert-success hidden" id="bankSuiteNewScreen01">
 							<label>Here is your new Public Suite Key:</label>
@@ -1745,22 +1833,40 @@
                                                 <div class="alert alert-info hidden" id="bankSuiteNewScreen03">
 
 							<!--label>Here is your new Private Suite Key (SAVE THIS IMMEDIATELY!):</label-->
-							<div id="langdisp35"></div>
+							<h4><strong><div id="langdisp35"></div></strong></h4>
 
-                                                        <input id="bankSuiteNewPrivateSuiteKey" type="text" class="js-copytextarea8 form-control address" value="" readonly>
-							<span class="input-group-btn">
-								<button class="btn btn-default js-textareacopybtn8" type="button">
-								<span class="glyphicon glyphicon-copy"></span>
-								</button>
-							</span>
+							<div class="input-group">
+								<input id="bankSuiteNewPrivateSuiteKey" type="text" class="js-copytextarea8 form-control address" value="" readonly>
+								<span class="input-group-btn">
+									<button class="btn btn-default js-textareacopybtn8" type="button">
+									<span class="glyphicon glyphicon-copy"></span>
+									</button>
+								</span>
+								<span class="input-group-btn">
+									<button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
+									<span class="glyphicon glyphicon-qrcode"></span>
+									</button>
+								</span>
+							</div>
+
 							<input type="button" class="btn btn-warning" value="Split into Two Private Keys" id="bankSuiteSplitPrivate">
-                                                        <input id="bankSuiteNewPrivateSuiteKeyS1" type="text" class="form-control address hidden" value="" readonly>
-                                                        <input id="bankSuiteNewPrivateSuiteKeyS2" type="text" class="form-control address hidden" value="" readonly>
+								<input id="bankSuiteNewPrivateSuiteKeyS1" type="text" class="form-control address hidden" value="" readonly>
+								<!--span class="input-group-btn">
+									<button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
+									<span class="glyphicon glyphicon-qrcode"></span>
+									</button>
+								</span-->
+								<input id="bankSuiteNewPrivateSuiteKeyS2" type="text" class="form-control address hidden" value="" readonly>
+								<!--span class="input-group-btn">
+									<button class="qrcodeBtn btn btn-default" type="button" data-toggle="modal" data-target="#modalQrcode">
+									<span class="glyphicon glyphicon-qrcode"></span>
+									</button>
+								</span-->
                                                 </div>
                                                 <div class="alert-success" id="bankSuiteNewScreen02">
 
 						<!--p><b>Here is your shareable URL for this page</b><small><small> (it contains your Public Suite Key)</small></small>:</p-->
-						<p><b><div id="langdisp23"></div></b></p>
+						<h4><strong><div id="langdisp23"></div></strong></h4>
 
 							<div class="input-group">
 								<input id="bankSuitePageURL" type="text" class="js-copytextarea7 form-control address" value="" readonly>
@@ -1789,6 +1895,8 @@
 						<hr size="5">
 
 						<br>
+
+					<div class="alert-info" id="bankSuiteNewScreen06">
 						<h4><b><!--Personal 1 (1/1 multisig):--><div id="langdisp24"></div></b></h4>
 							<div class="input-group">
 								<span class="input-group-addon"><!--Address:--><div id="langdisp27a"></div></span>
@@ -2013,6 +2121,7 @@
 							</div>
 							<br>
 						<br>
+					</div>
 						<hr size="5">
 						<!--h4><b>2:3 Multisig (add one public key, two signatures required):</b></h4>
 								<p>Multisig Address:</p>
@@ -2047,7 +2156,7 @@
 							</div>
 							<br>
 						<br-->
-					</div>
+				</div>
 
 
 					<div class="tab-pane tab-content" id="newMultiSig">
@@ -2144,7 +2253,7 @@
                             <div class="col-md-11">
 				<p>Use <i><a href="https://github.com/bitcoin/bips/blob/master/bip-0065.mediawiki" target="_blank">OP_CHECKLOCKTIMEVERIFY</a></i> (OP_HODL) to create a time locked address where the funds are unspendable until a set date and time has passed.</p>
                                 <p>Public keys can be <a href="#newAddress">generated in your browser</a> or from your Ðogecoin client</a>.</p>
-                                <p>Enter the public key that will be able to unlock the funds after the a certain date.
+                                <p>Enter the public key that will be able to unlock the funds after the a certain date.</p>
                             </div>
 
                             <div class="col-md-1">
@@ -2340,6 +2449,7 @@
                                                         <p><!--Are any fields missing from your form? Are the fields as expected?--><div id="langdisp64"></div></p>
 							<p><small><!--(ie: Didn't put the amount where the To Addr: should be, etc)--><div id="langdisp65"></div></small></p>
 							<p><!--Is there enough money in the account to clear the transaction?--><div id="langdisp66"></div></p>
+							<p>Did you try a bunch of transactions at once? (one at a time)</p>
 							<p><b><!--Please try again.--><div id="langdisp67"></div></b></p>  
                                                 </div>
 
@@ -2960,7 +3070,7 @@
 
 		<div id="footer">
 			<div class="container text-right">
-	        		<p class="text-muted">Version .269</p>
+	        		<p class="text-muted">Version .271</p>
 			</div>
 		</div>
 
