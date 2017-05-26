@@ -27,6 +27,7 @@ var work_redeem_transaction;
 var work_signed_transaction;
 var work_signed_transaction2;
 var work_message;
+var pkey;
 
 
 /***************************************************************
@@ -92,6 +93,26 @@ var tt0 = _getVerify[0];
     }, 2000);
 
 }
+
+/* private key cookie stuff*/
+/* private key cookie stuff*/
+/* private key cookie stuff*/
+/* private key cookie stuff*/
+pkey = getCookie("saveprivkey");       // grab it and use it
+if (pkey != "") {
+//	console.info("pkey = " + pkey);
+	$("#redeemPrivateKey").val(pkey);
+}
+else { 
+	console.info("pkey was no - no cookie!");
+}
+/* private key clear the cookie */
+$("#redeemClearPrivKey").click(function(){       // SPEND
+	document.cookie = "saveprivkey=";
+	pkey = "";
+	$("#redeemPrivateKey").val(pkey);
+});
+
 
 /*
 function get_next_string(stg,start_idx,control_character) {
@@ -257,6 +278,17 @@ function do_the_redeemit() {
 	console.info("The supplied redeem_script is '%s'.",work_redeem_script);
 	console.info("The amount to pay out is '%s'.",work_amount_to_withdraw);
        
+			// do the cookies for the optional private key saving
+                        if($("#saveKey").is(":checked")){
+				pkey = $("#redeemPrivateKey").val();
+                                console.info("Making a cookie for this Private Key. pkey=" + pkey);
+				document.cookie = "saveprivkey=" + pkey;
+//alert("foo1");
+                        } else {
+                                console.info("Not saving this private key. retaining whatever private key was previously in the cookie");
+//alert("foo2");
+                        }
+
 	//work_destination_address = prompt("Which Dogecoin address are you paying out to today?");
 	console.info("Dogecoin Destination address (to pay out to): " + work_destination_address);
 
@@ -1639,6 +1671,24 @@ function _get(value) {
         }
         return r;
 }
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            //return c.substring(name.length, c.length);
+            return c.substring(name.length, c.length) + "\n";
+        }
+    }
+    return "";
+}
+
 
 
 });   /* EOF */
