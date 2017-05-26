@@ -45,6 +45,8 @@
 		<script type="text/javascript" src="js/payspot.js"></script>
 		<script type="text/javascript" src="js/microinvoice.js"></script>
 		<script type="text/javascript" src="http://coinmill.com/frame.js"></script>
+		<script type="text/javascript" src="js/anbot.js"></script>
+		<script type="text/javascript" src="js/anbotR.js"></script>
 	</head>
 
 	<body>
@@ -76,6 +78,9 @@
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Tools <b class="caret"></b></a>
 								<ul class="dropdown-menu">
+									<!--li><a href="#addressbookbot" data-toggle="tab">no-name dogecoin tipbot</a></li-->
+									<li><a href="#addressbookbotR" data-toggle="tab">Register AddressBookBot</a></li>
+									<li class="divider"></li>
 									<li><a href="#redeemMultiSig" data-toggle="tab">Withdraw</a></li>
 									<li><a href="#verify" data-toggle="tab">Verify</a></li>
 									<li><a href="#sign" data-toggle="tab">Sign</a></li>
@@ -676,10 +681,6 @@
 		<p>Add unlimited side contracts to existing TripleShibe arrangements.</p>
 		<p>Free and generatable offline just like everything else on this site.</p>
 		<hr>
-		<h3> Pay Spot</h3>
-		<p>This one is small, powerful, and growing! Use with any dogecoin address. This works together with dogetipbot to provide a mobile-to-mobile payment solution. It also can link up with reddit's search capability, allowing for organization of multiple reddit posts (good for charities!)</p>
-		<hr>
-
 		<h3> So you want to tinker and poke around with the Dogecoin Blockchain?</h3> 
 		<p>This website is basically a large blob of different tools and functionalities. And it's growing. It's like a Swiss Army knife with the DBS and TripleShibe and QuatroShibe as the big blades. It's like the vi of dogecoin multisigs. A big steampunk-style digital wallet with tools.</p>
 
@@ -689,7 +690,7 @@
 		<p>The TripleShibe Doges are color coded:</p>
 		<a href="images/about_color_code.jpg" ><img src="images/about_color_code.jpg" style="height:360" ></a>
 		
-		<p>If using the dogecoin-qt (core) for transactions processing is considered Advanced, and usage of fully wrapped transactions processing (dogetipbot on reddit or dogechain.info) is considered Easy, then consider this website to be<strong> INTERMEDIATE LEVEL</strong>
+		<p>If using the dogecoin-qt (core) for transactions processing is considered Advanced, and usage of fully wrapped transactions processing (dogetipbot derp on reddit or dogechain.info) is considered Easy, then consider this website to be<strong> INTERMEDIATE LEVEL</strong>
 		<strong>. This site is centered between ease-of-use and maximizing security for the user<em>. You hold onto your keys, we will never see them. </em>
 		</strong> Check out the 'How To' section for videos showing you how to use this site. You will need basic cut n'pasting skills, and a little patience.</p>
 
@@ -697,7 +698,7 @@
 		<p><strong>This program will support up to 75 unspent transactions per pass.</strong></p>
 		<p>This site is a self-service bankings tool; it does not have a formalized support system.</p>
 		<p><strong>Use F12-Console for detailed information on what the program is doing, etc.</strong></p>
-		<p>Version .272 (this statement last touched 20170513). This website is in<strong> Beta</strong>. This is open source freeware.</p>
+		<p>Version .275 (this statement last touched 20170523). This website is in<strong> Beta</strong>. This is open source freeware.</p>
 		<p><strong>This site is a work in progress</strong><strong> that will continue growing over time.</strong></p>
 		<p>Here's the source code:<a title="dogecoinmultisig.org" href="https://github.com/tomcarbon/dogecoinmultisig/">https://github.com/tomcarbon/dogecoinmultisig</a>. dogecoinmultisig.org is turnkey. Just copy it from github,and run index.html</p>
 		<hr> <p></p>
@@ -787,7 +788,7 @@
 <p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;"><strong>5) Withdraw from 1/2 Multisig Address: <a href="https://www.youtube.com/watch?v=v3fjCHBLr7Q&amp;list=PLKNyF61Wqa0YBwXKodoDA7gnG3CHoVONd&amp;index=3">Playlist 004: Withdraw from 1/2 Dogecoin Multsig Address</a></strong></p>
 
 <p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;"><strong>6) Access list of Unspent Transactions: <a href="http://imgur.com/a/x56L6">InfoGraphic 001: Get Unspent Transactions</a></strong></p>
-<p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;"><strong>7) Pay from Dogetipbot to an account here:</strong>  <strong><a href="https://imgur.com/a/YhdrJ#DAaRuva">wow</a></strong></p>
+<!--p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;"><strong>7) Pay from Dogetipbot to an account here:</strong>  <strong><a href="https://imgur.com/a/YhdrJ#DAaRuva">wow</a></strong></p-->
 
 <p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;"> </p>
 <p style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px; line-height: 18px; margin: 0px 0px 9px 0px;"> </p>
@@ -1793,6 +1794,8 @@
 						<hr size="8">
 						<span>
 							<input id="bankSuiteQuickInstructions" type="button" class="btn btn-lg btn-success" value="Help" >
+							<input type="button" class="btn btn-info btn-lg" value="New" id="bankSuiteNewKeys">
+							<input type="button" class="btn btn-warning btn-lg" value="+" id="bankSuiteAdvanced">
 							<div class="alert-success" id="bankSuiteNewScreen04">
 								<b>
 								<hr size="8">
@@ -1806,9 +1809,6 @@
 								<hr size="8">
 							</div>
 
-							<input type="button" class="btn btn-info btn-lg" value="New" id="bankSuiteNewKeys">
-
-							<input type="button" class="btn btn-warning btn-lg" value="+" id="bankSuiteAdvanced">
 							<div class="alert-warning" id="bankSuiteNewScreen05">
 								<hr size="8">
 								<span>
@@ -2388,16 +2388,17 @@
 						<!--p><b>Your Private Suite Key or One Private Signature </b> <small>(or check the box so you can sign offline)</small><b>:</b></p-->
 						<p><b><div id="langdisp48"></div></b></p>
 
-                                                        <input id="redeemPrivateKey" type="password" class="form-control privkey" value="" >
-                                                                  <span class="input-group-btn">
-                                                                           <button class="showKey btn btn-default" type="button">Show</button>
-                                                                  </span>
+							<span>
+								<input id="redeemPrivateKey" type="password" class="form-control privkey" value="" >
+								<button class="showKey btn btn-default" type="button">Show</button>
+								<input type="button" class="btn btn-info btn-xs" value="clear private key" 	id="redeemClearPrivKey">
+							</span>
+							<input type="checkbox" id="saveKey" name="qscc" checked />
+							<label for="saveKey">Remember this Private Key?</label>
 							<div>
 								<input type="checkbox" id="skipSigning" name="acc" unchecked />
-
 								<!--label for="skipSigning">Do not sign the transaction (for offline use)</label-->
 								<label for="skipSigning"><div id="langdisp50"></div></label>
-
 							</div>
                                                 </div>
 
@@ -2874,6 +2875,71 @@
 						<br>
 					</div>
 
+					<div class="tab-pane tab-content" id="addressbookbot">
+						<a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo3.jpg" style="height:180px" ></a>
+						<h2>The no-name dogecoin tipbot client program</h2>						
+
+						<h3><div id="anbUser1"></div></h3>
+						<h4><div id="anbAddress1"></div></h4>
+
+						<input type="button" class="btn btn-info" value="I JUST TIPPED SOMEONE!" id="anbBtn01"><!-- refresh and approve-->
+						<input type="button" class="btn btn-primary"    value="INFO" id="anbBtn02">              <!-- retrieve account, balance, etc-->
+						<input type="button" class="btn btn-warning" value="+" id="anbBtn04">			<!-- advanced features -->
+						<div class="alert-info" id="anbTippingScreen">
+							<hr size="8">
+							<h2>Tipping Approval Screen</h2>
+							<hr size="8">
+						</div>
+
+						<div class="alert-primary" id="anbInformationScreen">
+							<hr size="8">
+							<h2>Information</h2>
+							<p>to REGISTER, press the orange '+' button.</p>
+							<hr size="8">
+							<h3>PROJECT INFORMATION</h3>
+							<h2>Welcome to the semi-decentralized tipbot <strong>client</strong> program</h2>
+							<h3>A proposed dogecoin tipbot client (Prototype) for r/dogecoin on reddit</h3>
+							<hr size="8">
+							<h5>This project is in co-development with addressbookbot on reddit.com.</h5>
+							<h4>addressbookbot is the central server maintaining the username/address pairs</h4>
+							<h4>no central authority holding your keys!(don't lose them)</h4>
+							<h5>This program is written in javascript and all computations are performed on your browser.</h5>
+							<hr size="8">
+						</div>
+
+						<div class="alert-warning" id="anbAdvancedFeatures">
+							<hr size="8">
+							<h2>Registration for AddressBookBot</h2>
+							<input type="button" class="btn btn-success" value="Register" id="anbBtn03">
+							<input type="button" class="btn btn-warning" value="Erase my cookies" id="anbBtn06">
+							<div class="alert-success" id="anbRegisterScreen">
+								<hr size="8">
+								<h2>Register to addressbookbot!</h2>
+								<hr size="8">
+								<p>Your reddit username:</p>
+								<textarea type="text" id="anbUserName" class="form-control" style="height:30px"></textarea>
+								<p>Your dogecoin address </p>
+								<textarea type="text" id="anbMyAddress" class="form-control" style="height:30px"></textarea>
+								<input type="button" class="btn btn-success" value="Next" id="anbBtn05">			
+								<hr size="8">
+								
+							</div>
+							<hr size="8">
+						</div>
+
+					</div>
+                                        <div class="tab-pane tab-content" id="addressbookbotR">
+                                                <a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo3.jpg" style="height:180px" ></a>
+						<hr size="8">
+						<h2>Registration for AddressBookBot</h2>
+						<hr size="8">
+						<p>Your dogecoin address:</p>
+						<textarea type="text" id="anbMyAddressR" class="form-control" style="height:30px"></textarea>
+						<input type="button" class="btn btn-success" value="Next" id="anbBtn05R">
+						<hr size="8">
+                                        </div>
+
+
 					<div class="tab-pane tab-content" id="broadcast">
 						<a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo3.jpg" style="height:180px" ></a>
 						<h2>Broadcast Transaction <small>into the Ðogecoin network</small></h2>
@@ -3081,7 +3147,7 @@
 
 		<div id="footer">
 			<div class="container text-right">
-	        		<p class="text-muted">Version .272</p>
+	        		<p class="text-muted">Version .275</p>
 			</div>
 		</div>
 
