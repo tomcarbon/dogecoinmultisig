@@ -698,7 +698,7 @@
 		<p><strong>This program will support up to 75 unspent transactions per pass.</strong></p>
 		<p>This site is a self-service bankings tool; it does not have a formalized support system.</p>
 		<p><strong>Use F12-Console for detailed information on what the program is doing, etc.</strong></p>
-		<p>Version .275 (this statement last touched 20170523). This website is in<strong> Beta</strong>. This is open source freeware.</p>
+		<p>Version .276 (this statement last touched 20170609). This website is in<strong> Beta</strong>. This is open source freeware.</p>
 		<p><strong>This site is a work in progress</strong><strong> that will continue growing over time.</strong></p>
 		<p>Here's the source code:<a title="dogecoinmultisig.org" href="https://github.com/tomcarbon/dogecoinmultisig/">https://github.com/tomcarbon/dogecoinmultisig</a>. dogecoinmultisig.org is turnkey. Just copy it from github,and run index.html</p>
 		<hr> <p></p>
@@ -946,22 +946,30 @@
                                                                 </span>
                                                         </div>
                                                         <br>
+                                                        <input type="button" class="btn btn-info" value="Deposit funds here using your Reddit SoDogeTip Account" id="psSoDogeTipBtn">
                                                         <input type="button" class="btn btn-danger" value="Load related Reddit Postings if any" id="psRedditBtn">
                                                         <!--input type="button" class="btn btn-info" value="Deposit funds here using your Reddit Dogetipbot Account" id="psRedditLoadBtn"-->
                                                         <!--input type="button" class="btn btn-success" value="Create Micro Invoice" id="psMicroInvoiceBtn"-->
                                                         <hr>
-							<div class="alert-success" id="psNewScreen02">
-								<strong>CREATE A  MICRO INVOICE</strong>
-								<strong>(New! It's finally here!)</strong>
+							<div class="alert-info" id="psNewScreen03">
+								<!-- this is the SoDogeTip Box that opens up -->
 								<hr>
-								<!--span>Info (max 50 chars): <input id="psMI01" type="text" class="form-control address" value=""></span-->
+								<!--h6>Enter the amount you would like to deposit into this account from SoDogeTip:</h6>
+								<span>Amount : <input id="psSTBAmount" type="text" class="form-control address" value=""></span-->
 
-								<span>Amount : <input id="psMI02" type="text" class="form-control address" value=""></span>
-
+								<span>Enter the amount you would like to deposit into this account from SoDogeTip:<input id="psSoDogeTipAmt" type="text" 
+									class="form-control address" value="">
+								</span>
 								<!--span>Contact: <input id="psMI03" type="text" class="form-control address" value=""></span-->
-
 								<!--span>IMGUR photo code (e.g.: 3LYHD40): <input id="psMI04" type="text" class="form-control address" value=""></span-->
-
+								<input type="button" class="btn btn-xs btn-info" value="NEXT" id="psRedditLoadBtn">
+								<hr>
+							</div>
+							<div class="alert-success" id="psNewScreen02">
+								<hr>
+								<span>Amount : <input id="psMI02" type="text" class="form-control address" value=""></span>
+								<!--span>Contact: <input id="psMI03" type="text" class="form-control address" value=""></span-->
+								<!--span>IMGUR photo code (e.g.: 3LYHD40): <input id="psMI04" type="text" class="form-control address" value=""></span-->
 								<input type="button" class="btn btn-xs btn-info" value="NEXT" id="psMicroInvoiceNextBtn">
 								<hr>
 							</div>
@@ -3147,7 +3155,7 @@
 
 		<div id="footer">
 			<div class="container text-right">
-	        		<p class="text-muted">Version .275</p>
+	        		<p class="text-muted">Version .276</p>
 			</div>
 		</div>
 
