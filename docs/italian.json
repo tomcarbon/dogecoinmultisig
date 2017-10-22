@@ -31,7 +31,7 @@
 {"value":28,"text":"Spendi"},
 {"value":29,"text":"Punto di Pagamento"},
 {"value":30,"text":"Verifica"},
-{"value":31,"text":"Fondp di riserva (1/2 multisig)"},
+{"value":31,"text":"Fondo di riserva (1/2 multisig)"},
 {"value":32,"text":"Verifica Account (1/2 multisig)"},
 {"value":33,"text":"Salvataggio Account (2/2 multisig)"},
 {"value":34,"text":"Fondo di carità (2/2 multisig)"},
