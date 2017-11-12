@@ -10,6 +10,7 @@ var work;
 var work_balance = [];
 var work_unconfirmed_balance = [];
 var work_balance_total = parseFloat("0.00000000");
+var work_vendor_select = parseInt("0");
 
 /* first time */
 $("#bankSuitePersonal1PayBox"	).toggle("fast","swing");
@@ -23,6 +24,23 @@ $("#bankSuiteNewScreen05"	).toggle("fast","swing");	// + advanced button
 $("#bankSuiteNewScreen06"	).toggle("fast","swing");	// + advanced button
 $("#bankSuitePageURL").val(document.location.origin+''+document.location.pathname+'#bankSuite');	// to give to a friend
 
+
+document.getElementById("DBSvendorDisplay").innerHTML = "chain.so (default) selected.";            // first time: display the vendor info to screen
+
+//function changeVendor(selTag) {
+$("#DBSchangeVendor").click(function(){
+    var x = $("#DBSchangeVendor").val();
+
+    document.getElementById("DBSvendorDisplay").innerHTML =  x + " selected. ";
+        if (x == "blockcypher.com")
+        {
+                work_vendor_select = 1;
+                console.info("blockcypher.com has been selected.");
+        } else {
+                work_vendor_select = 0;
+                console.info("chain.so (default) has been selected.");
+        }
+});
 
 /* user clicks on Verify 1*/
 $("#bsVerifyBtn1").click(function(){
@@ -408,8 +426,14 @@ $("#bankSuitePay1").click(function(){	// PERSONAL 1
 	var amount 	= v4.trim();
 	var msg = "personal1";
 	/* just separate the fields by . */
-	var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
-			msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+	if (work_vendor_select == 1)    {       // use blockcypher.com
+                var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
+                        msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+        } else {                                // use chain.so (default)
+                var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
+                        msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+        }
+
 	//console.info("Value is " + tt1);
 	window.open(tt1);
 });
@@ -425,8 +449,13 @@ $("#bankSuitePay2").click(function(){	// PERSONAL 2
 	var amount 	= v4.trim();
 	var msg = "personal2";
 	/* just separate the fields by . */
-	var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
-			msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+	if (work_vendor_select == 1)    {       // use blockcypher.com
+                var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
+                        msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+        } else {                                // use chain.so (default)
+                var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
+                        msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+        }
 	console.info("Value is " + tt1);
 	window.open(tt1);
 });
@@ -442,8 +471,13 @@ $("#bankSuitePay3").click(function(){
 	var amount 	= v4.trim();
 	var msg = "nomsg";
 	/* just separate the fields by . */
-	var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
-			msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+	if (work_vendor_select == 1)    {       // use blockcypher.com
+                var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
+                        msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+        } else {                                // use chain.so (default)
+                var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
+                        msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+        }
 	console.info("Value is " + tt1);
 	window.open(tt1);
 });
@@ -459,8 +493,13 @@ $("#bankSuitePay4").click(function(){
 	var amount 	= v4.trim();
 	var msg = "nomsg";
 	/* just separate the fields by . */
-	var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
-			msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+	if (work_vendor_select == 1)    {       // use blockcypher.com
+                var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
+                        msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+        } else {                                // use chain.so (default)
+                var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
+                        msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+        }
 	console.info("Value is " + tt1);
 	window.open(tt1);
 });
@@ -476,8 +515,13 @@ $("#bankSuitePay5").click(function(){
 	var amount 	= v4.trim();
 	var msg = "nomsg";
 	/* just separate the fields by . */
-	var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
-			msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+	if (work_vendor_select == 1)    {       // use blockcypher.com
+                var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
+                        msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+        } else {                                // use chain.so (default)
+                var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
+                        msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+        }
 	console.info("Value is " + tt1);
 	window.open(tt1);
 });
@@ -493,8 +537,13 @@ $("#bankSuitePay6").click(function(){
 	var amount 	= v4.trim();
 	var msg = "nomsg";
 	/* just separate the fields by . */
-	var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
-			msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+	if (work_vendor_select == 1)    {       // use blockcypher.com
+                var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
+                        msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+        } else {                                // use chain.so (default)
+                var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
+                        msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+        }
 	console.info("Value is " + tt1);
 	window.open(tt1);
 });

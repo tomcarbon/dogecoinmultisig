@@ -15,6 +15,7 @@ var work_pubkey3;
 var work_balance = [];
 var work_unconfirmed_balance = [];
 var work_redeem_script;
+var work_vendor_select = parseInt("0");
 
 $("#tsNewScreen01"   	).toggle("fast","swing");	// hide this at initialization time
 $("#tsPayBox"   	).toggle("fast","swing");	// hide this at initialization time
@@ -25,6 +26,23 @@ $("#tsMiniPayBox4"   	).toggle("fast","swing");	// hide this at initialization t
 $("#tsMiniPayBox5"   	).toggle("fast","swing");	// hide this at initialization time
 $("#tsMiniPayBox6"   	).toggle("fast","swing");	// hide this at initialization time
 
+
+document.getElementById("TSvendorDisplay").innerHTML = "chain.so (default) selected.";            // first time: display the vendor info to screen
+
+//function changeVendor(selTag) {
+$("#TSchangeVendor").click(function(){
+    var x = $("#TSchangeVendor").val();
+
+    document.getElementById("TSvendorDisplay").innerHTML =  x + " selected. ";
+        if (x == "blockcypher.com")
+        {
+                work_vendor_select = 1;
+                console.info("blockcypher.com has been selected.");
+        } else {
+                work_vendor_select = 0;
+                console.info("chain.so (default) has been selected.");
+        }
+});
 
 
 /* this copies the AB DBS URL to the clipboard */ 
@@ -474,8 +492,13 @@ $("#tsPayBtn").click(function(){   // NEXT (to go to withdrawl screen
         var amount      = v4.trim();
         var msg = "tripleshibe";
         /* just separate the fields by . */
-        var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
+	if (work_vendor_select == 1)	{	// use blockcypher.com
+		var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
                         msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+	} else {				// use chain.so (default)
+		var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
+                        msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+	}
         //console.info("Value is " + tt1);
         window.open(tt1);
 tsToAddr
@@ -495,8 +518,13 @@ $("#tsMiniPayBtn1").click(function(){   // NEXT (to go to withdrawl screen
         var amount      = v4.trim();
         var msg = "tripleshibe";
         /* just separate the fields by . */
-        var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
+	if (work_vendor_select == 1)	{	// use blockcypher.com
+		var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
                         msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+	} else {				// use chain.so (default)
+		var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
+                        msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+	}
         //console.info("Value is " + tt1);
         window.open(tt1);
 });
@@ -515,8 +543,13 @@ $("#tsMiniPayBtn2").click(function(){   // NEXT (to go to withdrawl screen
         var amount      = v4.trim();
         var msg = "tripleshibe";
         /* just separate the fields by . */
-        var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
+	if (work_vendor_select == 1)	{	// use blockcypher.com
+		var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
                         msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+	} else {				// use chain.so (default)
+		var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
+                        msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+	}
         //console.info("Value is " + tt1);
         window.open(tt1);
 });
@@ -535,8 +568,13 @@ $("#tsMiniPayBtn3").click(function(){   // NEXT (to go to withdrawl screen
         var amount      = v4.trim();
         var msg = "tripleshibe";
         /* just separate the fields by . */
-        var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
+	if (work_vendor_select == 1)	{	// use blockcypher.com
+		var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
                         msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+	} else {				// use chain.so (default)
+		var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
+                        msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+	}
         //console.info("Value is " + tt1);
         window.open(tt1);
 });
@@ -555,8 +593,13 @@ $("#tsMiniPayBtn4").click(function(){   // NEXT (to go to withdrawl screen
         var amount      = v4.trim();
         var msg = "tripleshibe";
         /* just separate the fields by . */
-        var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
+	if (work_vendor_select == 1)	{	// use blockcypher.com
+		var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
                         msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+	} else {				// use chain.so (default)
+		var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
+                        msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+	}
         //console.info("Value is " + tt1);
         window.open(tt1);
 });
@@ -575,8 +618,13 @@ $("#tsMiniPayBtn5").click(function(){   // NEXT (to go to withdrawl screen
         var amount      = v4.trim();
         var msg = "tripleshibe";
         /* just separate the fields by . */
-        var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
+	if (work_vendor_select == 1)	{	// use blockcypher.com
+		var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
                         msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+	} else {				// use chain.so (default)
+		var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
+                        msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+	}
         //console.info("Value is " + tt1);
         window.open(tt1);
 });
@@ -595,8 +643,13 @@ $("#tsMiniPayBtn6").click(function(){   // NEXT (to go to withdrawl screen
         var amount      = v4.trim();
         var msg = "tripleshibe";
         /* just separate the fields by . */
-        var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
+	if (work_vendor_select == 1)	{	// use blockcypher.com
+		var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
                         msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+	} else {				// use chain.so (default)
+		var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSig='+
+                        msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
+	}
         //console.info("Value is " + tt1);
         window.open(tt1);
 });

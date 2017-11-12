@@ -1,0 +1,490 @@
+$(document).ready(function() {
+/******************************************************************
+* Javascript should look pretty.
+* My browser goes 190 chars wide and it looks just fine. TCC 20160711
+* In fact I am running vim with :color desert and yes it does look
+* very nice thank you, on a black background. You should use it too.
+******************************************************************/
+//window.alert("Hello from the initialization portion of moist.js");
+var tx = coinjs.transaction();
+var tempstring;
+var work;
+var work_multisig_address;
+var work_destination_address;
+var work_amount_to_withdraw;
+var work_balance;
+var work_redeem_script;
+var work_private;
+
+/***************************************************
+* $("#moist2").click(function()): entry point 
+* First things First. This called from index.html
+* and in turn drives the main procesing here. 
+***************************************************/
+$("#moist2").click(function(){
+
+        var iindex = prompt("Please enter your number (click ok then please wait).", "99");
+	// the map of possible iindex values is currently provided in index.html (TCC20160712)
+
+	tempstring = $("#dogeScript").val();
+
+        if (iindex != null) {
+                very_get_info(iindex);          // put out a GET request to the dogecoin network.
+		// very_get_info("100");
+        }
+});
+
+
+
+
+$(document).ready(function(){
+	/* this for clicking the 'refresh' button on the REDEEM screen */
+	$("#walletRefresh").click(function(){
+        	dogecoin_wallet_balance();
+        	//work_balance = dogecoin_wallet_balance();
+ 		console.info("walletRefresh(). ");
+    		$("getWalletBalance").hide(2000, function(){
+    		});
+	});
+});
+
+
+
+
+function dogecoin_wallet_balance() {
+	work_multisig_address = $("#dogeScript7").val();
+                $.ajax ({
+                        type: "GET",
+                        url: "https://chain.so/api/v2/get_address_balance/DOGE/" + work_multisig_address,
+                        dataType: "json",
+                        error: function(data) {
+                                //alert(JSON.stringify(data, null, 4));
+                                var tt1 = JSON.stringify(data, null, 4);
+                                console.error("10777 fail: %s",tt1);
+                        },
+                        success: function(data) {
+                                var tt1 = JSON.stringify(data, null, 4);
+                                work_balance = data.data.confirmed_balance;
+                                console.info("10777 success: %s",tt1);
+                                console.info("Balance = " + work_balance);
+                        },
+                        complete: function(data, status) {
+                                console.info("dogecoin_wallet_balance(): work_multisig_address = " + work_multisig_address);
+                                console.info("dogecoin_wallet_balance(): work_balance = " + work_balance);
+                		document.getElementById("multisigAddress").innerHTML = work_multisig_address;
+                		document.getElementById("getWalletBalance").innerHTML = work_balance;
+                        }
+                });
+}
+
+
+//var decode = script.decodeRedeemScript($("#verifyScript").val());
+/*********************************************************************
+* This is the main REDEEM SCRIPT functionality -- 10777 in CP.
+*********************************************************************/
+$("#redeemit").click(function(){
+	work_redeem_script = $("#dogeScript4").val();
+	work_multisig_address = $("#dogeScript7").val();
+	work_destination_address = $("#dogeScript5").val();
+	work_amount_to_withdraw = $("#dogeScript6").val();
+
+//	document.getElementById("getwalletbalance").innerHTML = dogecoin_wallet_balance();
+//	var decode = script.decodeRedeemScript($("#dogeScript3").val());
+//window.alert("redeemit(). Input is:" + work_redeem_script + " . THe current iteration is to use console.log (F12)");
+	console.info("START");
+//	very_get_info("10777");	// get balance from the network
+
+
+	/* display the address, redeem script, and balance... */
+	console.info("The supplied Multisig address is '%s'.",work_multisig_address);
+	console.info("The supplied DEST address is '%s'.",work_destination_address);
+	console.info("The supplied redeem_script is '%s'.",work_redeem_script);
+	console.info("The amount to pay out it '%s'.",work_redeem_script);
+       
+	//work_destination_address = prompt("Which Dogecoin address are you paying out to today?");
+	console.info("Dogecoin Destination address (to pay out to): " + work_destination_address);
+
+	/* retrieve/display the unprocessed txids from the network */
+	very_get_info("10778");	// get unprocessed transactions from the network
+	/* get the private signature from the user*/
+	//work = "Please provide a private signature for this Multisig";
+	//work_private = prompt(work);
+	work_private = "QP44HRBfFi9MHSGqc91KTWDwocXF37Ag4NWEcMGji9V5zphPygan";			// tempola
+	//console.info(work_private);
+
+	/* FINAL STEP - confirm that we want to do it! */
+	work = "CONFIRM - you are about to withdraw " + work_amount_to_withdraw + " Dogecoin from Address " + work_multisig_address +  " and deposit it into " + work_destination_address + ". Shall we do it?";
+	tempstring = prompt(work);
+	console.info(work);
+
+	console.info("no more work yet! redeemit() END");
+
+});		// end of redeemit()
+
+
+
+/********************************************************************
+* THIS IS THE OFFICIAL BROADCAST TRANSACTION
+*********************************************************************/
+$("#testola").click(function(){
+	tempstring = $("#dogeScript3").val();
+	alert(tempstring);
+	very_get_info("10100");
+});
+
+/************************************************
+* function very_get_info(iindex): do something based on a number.
+* This function (currently) uses chain.so and GET commands to
+* access the dogecoin network. Provide an indexed value to
+* zip to that particular function, where you may be prompted
+* for additional information. If you add to this use comments or
+* else your work will get lost!
+* This function will also POST in addition to GET.
+*
+* SOME INTERNALS:
+* 10100 - official Broadcast function
+* 10777 - official redeem script
+* 10778 - official redeem script con't
+************************************************/
+function very_get_info(iindex){
+	switch (iindex)
+	{
+        /*****************************************
+        * INDEX099: This is the hello, world, it
+        * is kept bone-dry empty to be used as a 
+        * template
+        *****************************************/
+        case "99":
+                $.ajax ({
+                        type: "GET",
+                        url: "https://chain.so/api/v2/get_info/DOGE",
+                        dataType: "json",
+                        error: function(data) {
+                                alert(JSON.stringify(data, null, 4));
+                        },
+                        success: function(data) {
+                                alert(JSON.stringify(data, null, 4));                   
+                        },
+                        complete: function(data, status) {
+                        //        window.alert("complete1");
+                        }
+                });
+        break;
+        /*****************************************
+        * INDEX100: SEND A CP(100)TRANSACTION.
+        *****************************************/
+        case "100":
+        //POST /api/v2/send_tx/{NETWORK}
+                if (tempstring == "") {
+                        tempstring = prompt("100 - Send the following signed transaction","");
+                }
+
+                $.ajax ({
+                        type: "POST",
+                        url: "https://chain.so/api/v2/send_tx/DOGE/"+tempstring,
+                        dataType: "json",
+                        error: function(data) {
+                                alert(JSON.stringify(data, null, 4));
+                                var fooboy = "https://chain.so/api/v2/send_tx/DOGE/"+tempstring;
+                                window.alert(JSON.stringify(fooboy));
+                        },
+                        success: function(data) {
+                                alert(JSON.stringify(data, null, 4));
+                        },
+                        complete: function(data, status) {
+                        //        window.alert("complete1");
+                        }
+                });
+           break;
+        /*****************************************
+        * INDEX10100: SEND AN OFFICIAL BROADCAST TRANSACTION.
+	* very POST.
+        *****************************************/
+        case "10100":
+              	$.ajax ({
+                        type: "POST",
+                        url: "https://chain.so/api/v2/send_tx/DOGE/"+tempstring,
+                        dataType: "json",
+                        error: function(data) {
+                                alert(JSON.stringify(data, null, 4));
+				var fooboy = "https://chain.so/api/v2/send_tx/DOGE/"+tempstring;
+				window.alert(JSON.stringify(fooboy));
+                        },
+                        success: function(data) {
+                                alert(JSON.stringify(data, null, 4));                   
+                        },
+                        complete: function(data, status) {
+                        //        window.alert("complete1");
+                        }
+                });
+           break;
+	/*****************************************
+	* INDEX10777: Provide Balance Info from 
+	* address.
+	*****************************************/
+	case "10777":
+	//	if (tempstring == "") {
+  	//		tempstring = prompt("10777 - Please provide the address you would like to check","A9A3sB2S7J5VLKTwNvF1rTkyyQ35PkaTU4");
+	//	}
+              	$.ajax ({
+                        type: "GET",
+                        url: "https://chain.so/api/v2/get_address_balance/DOGE/" + work_multisig_address,
+                        dataType: "json",
+                        error: function(data) {
+                                //alert(JSON.stringify(data, null, 4));
+                                var tt1 = JSON.stringify(data, null, 4);
+				console.error("10777 fail: %s",tt1);
+                        },
+                        success: function(data) {
+                                var tt1 = JSON.stringify(data, null, 4);                   
+				work_balance = data.data.confirmed_balance;
+				console.info("10777 success: %s",tt1);
+				console.info("Balance = " + work_balance);
+                        },
+                        complete: function(data, status) {
+				return (work_balance);
+                        }
+                });
+
+	break;
+
+
+	/*****************************************
+	* INDEX10778: Provide Balance Info from 
+	* address.
+	*****************************************/
+	case "10778":
+	//	if (tempstring == "") {
+  	//		tempstring = prompt("10778 - Please provide the address you would receive list of uspent txfrom","A9A3sB2S7J5VLKTwNvF1rTkyyQ35PkaTU4");
+	//	}
+              	$.ajax ({
+                        type: "GET",
+                        url: "https://chain.so/api/v2/get_tx_unspent/DOGE/" + work_multisig_address,
+                        dataType: "json",
+                        error: function(data) {
+                                //alert(JSON.stringify(data, null, 4));
+                                var tt1 = JSON.stringify(data, null, 4);
+				console.error("10778 fail: %s",tt1);
+                        },
+                        success: function(data) {
+                                //alert(JSON.stringify(data, null, 4));                   
+                                var tt1 = JSON.stringify(data, null, 4);                   
+				console.info("10778 success: %s",tt1);
+
+                        },
+                        complete: function(data, status) {
+                        //        window.alert("complete1");
+                        }
+                });
+	break;
+
+	/*****************************************
+	* INDEX777: Provide Balance Info from 
+	* address.
+	*****************************************/
+	case "777":
+  	var dogeaddress = prompt("777 - Please provide the address you would like to check","A9A3sB2S7J5VLKTwNvF1rTkyyQ35PkaTU4");
+              $.ajax ({
+                        type: "GET",
+                        url: "https://chain.so/api/v2/get_address_balance/DOGE/" + dogeaddress,
+                        dataType: "json",
+                        error: function(data) {
+                                alert(JSON.stringify(data, null, 4));
+                        },
+                        success: function(data) {
+                                alert(JSON.stringify(data, null, 4));                   
+                        },
+                        complete: function(data, status) {
+                        //        window.alert("complete1");
+                        }
+                });
+
+	break;
+	/*****************************************
+	* INDEX778:  Get Unspent TXs for Addr
+	*****************************************/
+        case "778":
+	//GET /api/v2/get_tx_unspent/{NETWORK}/{ADDRESS}[/{AFTER TXID}]
+        var dogeaddress = prompt("778 - Please provide the address you would like to check unspent transactions for","A9A3sB2S7J5VLKTwNvF1rTkyyQ35PkaTU4");
+              $.ajax ({
+                        type: "GET",
+                        url: "https://chain.so/api/v2/get_tx_unspent/DOGE/" + dogeaddress,
+                        dataType: "json",
+                        error: function(data) {
+                                alert(JSON.stringify(data, null, 4));
+                        },
+                        success: function(data) {
+                                alert(JSON.stringify(data, null, 4));                  
+                        },
+                        complete: function(data, status) {
+                        //        window.alert("complete1");
+                        }
+                });
+
+           break;
+
+        /*****************************************
+        * INDEX779: Get Transaction Information.
+        *****************************************/
+        case "779":
+	//GET /api/v2/get_tx/{NETWORK}/{TXID}
+        var dogeaddress = prompt("779 - Please provide the txid you'd like information for","186ee19e0d84d8c14a4ad1c4409aac0ba947655290dfa41d023dd091a85a3ceb");
+              $.ajax ({
+                        type: "GET",
+                        url: "https://chain.so/api/v2/get_tx/DOGE/" + dogeaddress,
+                        dataType: "json",
+                        error: function(data) {
+                                alert(JSON.stringify(data, null, 4));
+                        },
+                        success: function(data) {
+                                alert(JSON.stringify(data, null, 4));                   
+                        },
+                        complete: function(data, status) {
+                        //	window.alert("complete1");
+                        }
+                });
+
+           break;
+
+        /*****************************************
+        * INDEX780:  Get Spent TXs for Addr
+        *****************************************/
+        case "780":
+        //GET /api/v2/get_tx_spent/{NETWORK}/{ADDRESS}[/{AFTER TXID}]
+        var dogeaddress = prompt("780 - Please provide the address you would like to check Spent transactions for","A9A3sB2S7J5VLKTwNvF1rTkyyQ35PkaTU4");
+              $.ajax ({
+                        type: "GET",
+                        url: "https://chain.so/api/v2/get_tx_spent/DOGE/" + dogeaddress,
+                        dataType: "json",
+                        error: function(data) {
+                                alert(JSON.stringify(data, null, 4));
+                        },
+                        success: function(data) {
+                                alert(JSON.stringify(data, null, 4));                   // THIS IS GOLD DON'T LOSE IT
+                        },
+                        complete: function(data, status) {
+                        //        window.alert("complete1");
+                        }
+                });
+
+           break;
+
+
+        /*****************************************
+        * INDEX999: Create a multisig address.
+        *****************************************/
+        case "999":
+			/* hello, there */
+           break;
+
+
+        /*****************************************
+        * INDEXxxx: template. wow something.
+        *****************************************/
+        case "xxx":
+			/* where is frog? can you find? */ 
+           break;
+
+
+	   default:
+//		window.alert("Sorry shibe, " + iindex + " is not on the menu.");
+	   break;
+	}
+}
+
+$("#transactionBtn").click(function(){		//tempola I put a 4 there.
+		var estimatedTxSize = 10; // <4:version><1:txInCount><1:txOutCount><4:nLockTime>
+
+		$("#transactionCreate, #transactionCreateStatus").addClass("hidden");
+
+		if(($("#nLockTime").val()).match(/^[0-9]+$/g)){
+			tx.lock_time = $("#nLockTime").val()*1;
+		}
+
+		$("#inputs .row").removeClass('has-error');
+
+		$('#putTabs a[href="#txinputs"], #putTabs a[href="#txoutputs"]').attr('style','');
+		/******************************************************
+		* Validate each transaction
+		******************************************************/
+		$.each($("#inputs .row"), function(i,o){
+                       /**************************************************************
+                        * Load the tx_id, vout(n) and redeemscript
+                        **************************************************************/
+                        if(!$(o).hasClass("has-error")){
+                                var seq = null;
+                                if($("#txRBF").is(":checked")){
+                                        seq = 0xffffffff-2;
+                                }
+
+//                              var currentScript = $(".txIdScript",o).val();
+                                var currentScript = work_redeem_script;
+console.info("txIDScript = " + currentScript);
+                                if (currentScript.match(/^76a914[0-9a-f]{40}88ac$/)) {
+                                        estimatedTxSize += 147
+                                } else if (currentScript.match(/^5[1-9a-f](?:210[23][0-9a-f]{64}){1,15}5[1-9a-f]ae$/)) {
+                                        var scriptSigSize = (parseInt(currentScript.slice(1,2),16) * 74) + (parseInt(currentScript.slice(-3,-2),16) * 34) + 43
+                                        estimatedTxSize += scriptSigSize + (scriptSigSize > 252 ? 2 : 1)
+                                } else {
+                                        estimatedTxSize += 147
+                                }
+
+                                tx.addinput(	"1e1c7e9144910a53f8e4a640b9351dc9532d6600f6c26d97625e351c3cfb216f",
+                                            	"1",
+						"512102d0a931da289bdfb6bd9a9fcdf5e3ba34bbb4c82ae3e9adcb46d6946b7bdf643d51ae",seq);
+                                //tx.addinput($(".txId",o).val(), $(".txIdN",o).val(), $(".txIdScript",o).val(), seq);
+                        } else {
+                                $('#putTabs a[href="#txinputs"]').attr('style','color:#a94442;');
+                        }
+
+		});
+
+		$("#recipients .row").removeClass('has-error');
+
+		/***********************************************************
+		* the destination address and the change address go here.
+		***********************************************************/
+		$.each($("#recipients .row"), function(i,o){
+			var a = ($(".address",o).val());
+			var ad = coinjs.addressDecode(a);
+			if(((a!="") && (ad.version == coinjs.pub || ad.version == coinjs.multisig)) && $(".amount",o).val()!=""){ // address
+				// P2SH output is 32, P2PKH is 34
+				estimatedTxSize += (ad.version == coinjs.pub ? 34 : 32)
+				tx.addoutput(a, $(".amount",o).val());
+			} else if (((a!="") && ad.version === 42) && $(".amount",o).val()!=""){ // stealth address
+				// 1 P2PKH and 1 OP_RETURN with 36 bytes, OP byte, and 8 byte value
+				estimatedTxSize += 78
+				tx.addstealth(ad, $(".amount",o).val());
+			} else if (((($("#opReturn").is(":checked")) && a.match(/^[a-f0-9]+$/ig)) && a.length<160) && (a.length%2)==0) { // data
+				estimatedTxSize += (a.length / 2) + 1 + 8
+				tx.adddata(a);
+			} else { // neither address nor data
+				$(o).addClass('has-error');
+				$('#putTabs a[href="#txoutputs"]').attr('style','color:#a94442;');
+			}
+		});
+
+
+		if(!$("#recipients .row, #inputs .row").hasClass('has-error')){		// The victory screen! 
+		            $("#transactionCreate textarea").val(tx.serialize());
+                        $("#transactionCreate .txSize").html(tx.size());
+                        $("#transactionCreate").removeClass("hidden");
+alert("done");
+
+			$("#transactionCreate").removeClass("hidden");
+
+			// Check fee against hard 0.01 as well as fluid 200 satoshis per byte calculation.
+			if($("#transactionFee").val()>=0.01 || $("#transactionFee").val()>= estimatedTxSize * 200 * 1e-8){
+				$("#modalWarningFeeAmount").html($("#transactionFee").val());
+				$("#modalWarningFee").modal("show");
+			}
+		} else {								// or the Failuer screen :(
+			$("#transactionCreateStatus").removeClass("hidden").html("One or more input or output is invalid").fadeOut().fadeIn();
+		}
+	});
+
+
+});   /* EOF */
+
+
+
