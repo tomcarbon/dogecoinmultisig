@@ -86,8 +86,8 @@
 									<li><a href="#sign" data-toggle="tab">Sign</a></li>
 									<li><a href="#broadcast" data-toggle="tab"> Broadcast</a></li>
 									<li class="divider"></li>
-									<li><a href="#tripleshibe" data-toggle="tab">New TripleShibe (x/3)</a></li>
-									<li><a href="#quatroshibe" data-toggle="tab">New QuatroShibe (x/4)</a></li>
+									<li><a href="#tripleshibe" data-toggle="tab">TripleShibe (x/3)</a></li>
+									<li><a href="#quatroshibe" data-toggle="tab">QuatroShibe (x/4)</a></li>
 									<li><a href="#newAddress" data-toggle="tab">New Dogecoin Address</a></li>
 									<li><a href="#newMultiSig" data-toggle="tab">New MultiSig Address</a></li>
 									<li class="divider"></li>
@@ -698,7 +698,7 @@
 		<p><strong>This program will support up to 75 unspent transactions per pass.</strong></p>
 		<p>This site is a self-service bankings tool; it does not have a formalized support system.</p>
 		<p><strong>Use F12-Console for detailed information on what the program is doing, etc.</strong></p>
-		<p>Version .276 (this statement last touched 20170609). This website is in<strong> Beta</strong>. This is open source freeware.</p>
+		<p>Version .277 (this statement last touched 20170824). This website is in<strong> Beta</strong>. This is open source freeware.</p>
 		<p><strong>This site is a work in progress</strong><strong> that will continue growing over time.</strong></p>
 		<p>Here's the source code:<a title="dogecoinmultisig.org" href="https://github.com/tomcarbon/dogecoinmultisig/">https://github.com/tomcarbon/dogecoinmultisig</a>. dogecoinmultisig.org is turnkey. Just copy it from github,and run index.html</p>
 		<hr> <p></p>
@@ -1374,6 +1374,14 @@
                                                 <a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo2.jpg" style="height:180px" ></a>
                                                 <h2>TripleShibe  <small>Dogecoin 2/3 Multisig</small></h2>
 
+						<div class="alert alert-info"> 
+							<p id="TSvendorDisplay"></p>
+							<select id="TSchangeVendor">
+							  <option>chain.so</option>
+							  <option>blockcypher.com</option>
+							</select>
+						</div>
+
 						<input id="tsQuickInstructions" type="button" class="btn btn-xs btn-success" value="Click Here for Instructions!" >
                                                 <div class="alert-success" id="tsNewScreen01">
 							<h2>INSTRUCTIONS</h2>
@@ -1798,6 +1806,15 @@
 						<h1><!--Dogecoin Bankings Suite--><strong><div id="langdisp02"></div></strong></h1>
 						<h4><strong><!--You Hold The Keys--><div id="langdisp01"></div></strong></h4>
 						<h6><!--small><You keep one piece of information safe. In return you own the six dogecoin addresses mathematically associated with it.-->
+
+						<div class="alert alert-info"> 
+							<p id="DBSvendorDisplay"></p>
+							<select id="DBSchangeVendor">
+							  <option>chain.so</option>
+							  <option>blockcypher.com</option>
+							</select>
+						</div>
+
 							<div id="langdisp03"></div></h6>
 						<hr size="8">
 						<span>
@@ -2358,12 +2375,22 @@
 						<hr>
 						<input type="button" class="btn btn-warning btn-xs" value="Reset Everything and Start Over" 	id="redeemVerifyReset">
 
+
+<div class="alert alert-info"> 
+	<p id="vendorDisplay"></p>
+	<select id="changeVendor">
+	  <option>chain.so</option>
+	  <option>blockcypher.com</option>
+	</select>
+</div>
+
 						<p><b><!--Address to pay from:--><div id="langdisp45"></div></b></p>
 
 						<textarea type="text" id="dogeScript7" class="form-control" rows="1" cols="50"></textarea>
 						<b><p id="getWalletBalance"></p></b>
 						<b><p id="getWalletUCBalance"></p></b>
 
+ 
                                                 <div id="walletRefreshBox" class="active">
 							<input type="button" class="btn btn-success btn-sm" value="Refresh" id="walletRefresh">
 							<div class="input-group">
@@ -3155,7 +3182,7 @@
 
 		<div id="footer">
 			<div class="container text-right">
-	        		<p class="text-muted">Version .276</p>
+	        		<p class="text-muted">Version .277</p>
 			</div>
 		</div>
 
