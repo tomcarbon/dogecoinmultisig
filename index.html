@@ -47,6 +47,7 @@
 		<script type="text/javascript" src="http://coinmill.com/frame.js"></script>
 		<script type="text/javascript" src="js/anbot.js"></script>
 		<script type="text/javascript" src="js/anbotR.js"></script>
+		<script type="text/javascript" src="js/newPaySpot.js"></script>
 	</head>
 
 	<body>
@@ -79,8 +80,6 @@
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Tools <b class="caret"></b></a>
 								<ul class="dropdown-menu">
 									<!--li><a href="#addressbookbot" data-toggle="tab">no-name dogecoin tipbot</a></li-->
-									<li><a href="#addressbookbotR" data-toggle="tab">Register AddressBookBot</a></li>
-									<li class="divider"></li>
 									<li><a href="#redeemMultiSig" data-toggle="tab">Withdraw</a></li>
 									<li><a href="#verify" data-toggle="tab">Verify</a></li>
 									<li><a href="#sign" data-toggle="tab">Sign</a></li>
@@ -92,6 +91,9 @@
 									<li><a href="#newMultiSig" data-toggle="tab">New MultiSig Address</a></li>
 									<li class="divider"></li>
 									<li><a href="#convertScreen1" data-toggle="tab">Currency Conversion</a></li>
+									<li><a href="#addressbookbotR" data-toggle="tab">Register AddressBookBot</a></li>
+									<li><a href="#newPaySpot" data-toggle="tab">Make a Payspot (v1.0)</a></li>
+									<li class="divider"></li>
 									<li><a href="#cpToolbox" data-toggle="tab">More Tools</a></li>
 								</ul>
 							</li>
@@ -329,6 +331,17 @@
 								</div>
 							<br>
 						</div>
+					</div>
+
+					<div class="tab-pane tab-content" id="newPaySpot">
+                                                <a href="http://dogecoinmultisig.org" ><img src="images/dcmslogo3.jpg" style="height:180px" ></a>
+						<hr size="8">
+						<h2>Make a PaySpot</h2>
+						<hr size="8">
+						<p>Your dogecoin address:</p>
+						<textarea type="text" id="npsMyAddressR" class="form-control" style="height:30px"></textarea>
+						<input type="button" class="btn btn-success" value="Next" id="npsBtn05R">
+						<hr size="8">
 					</div>
 
 					<div class="tab-pane tab-content" id="convertScreen1">
@@ -698,7 +711,7 @@
 		<p><strong>This program will support up to 75 unspent transactions per pass.</strong></p>
 		<p>This site is a self-service bankings tool; it does not have a formalized support system.</p>
 		<p><strong>Use F12-Console for detailed information on what the program is doing, etc.</strong></p>
-		<p>Version .277 (this statement last touched 20171111). This website is in<strong> Beta</strong>. This is open source freeware.</p>
+		<p>Version .278 (this statement last touched 20171125). This website is in<strong> Beta</strong>. This is open source freeware.</p>
 		<p><strong>This site is a work in progress</strong><strong> that will continue growing over time.</strong></p>
 		<p>Here's the source code:<a title="dogecoinmultisig.org" href="https://github.com/tomcarbon/dogecoinmultisig/">https://github.com/tomcarbon/dogecoinmultisig</a>. dogecoinmultisig.org is turnkey. Just copy it from github,and run index.html</p>
 		<hr> <p></p>
@@ -3182,7 +3195,7 @@
 
 		<div id="footer">
 			<div class="container text-right">
-	        		<p class="text-muted">Version .277</p>
+	        		<p class="text-muted">Version .278</p>
 			</div>
 		</div>
 
