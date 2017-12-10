@@ -42,14 +42,14 @@ $("#changeVendor").click(function(){
 
 	if (x == "blockcypher.com")
 	{
-	        document.getElementById("vendorDisplay").innerHTML =  x + " selected (60 transactions max) ";
+	        document.getElementById("vendorDisplay").innerHTML =  x + " selected (60 transactions at a time max at a time) ";
 		work_vendor_select = 1;	
-		console.info("blockcypher.com has been selected. (60 transactions max)");
+		console.info("blockcypher.com has been selected. (60 transactions max at a time)");
 		work_max_trans = parseInt("60");
 	} else {
-	        document.getElementById("vendorDisplay").innerHTML =  x + " selected (99 transactions max) ";
+	        document.getElementById("vendorDisplay").innerHTML =  x + " selected (99 transactions max at a time) ";
 		work_vendor_select = 0;	
-		console.info("chain.so (default) has been selected (99 transactions max).");
+		console.info("chain.so (default) has been selected (99 transactions max at a time).");
 		work_max_trans = parseInt("99");
 	}
 });
@@ -320,11 +320,20 @@ function do_the_redeemit() {
 		}
 		/********************************************************
 		* The work destination address must be a dogecoin address
+		* and must be the expected length.
 		********************************************************/
-		if (	work_destination_address.charAt(0) == 'D' ||
-  			work_destination_address.charAt(0) == '9' ||
-			work_destination_address.charAt(0) == 'A' ) {
-			/* these seem to be valid dogecoin addresses... do nothing here */
+		if (work_destination_address.length != 34) {
+			var tt1 = "WARNING: The Destination Address has a length of " + work_destination_address.length + " (34 is expected). Do you still wish to proceed?";
+			console.info(tt1);		
+			if (confirm(tt1) == true) {
+				// do nothing, the user still wants to continue.
+			} else {
+				return false;	// the user stopped the process because address is incorrect length
+			}
+		} else if (	work_destination_address.charAt(0) == 'D' ||
+				work_destination_address.charAt(0) == '9' ||
+				work_destination_address.charAt(0) == 'A' ) {
+				// do nothing, this is the legit case
 		} else {
 			var tt1 = "Error: The Destination Address is not a valid Dogecoin Address.";
 			console.info(tt1);		
