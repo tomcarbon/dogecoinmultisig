@@ -2,7 +2,7 @@
 
 Check out the reddit community at https://www.reddit.com/r/dogecoin/
 
-**DOGECOINMULTISIG -  A bunch of wallets and mini-programs and tools **
+DOGECOINMULTISIG -  A bunch of wallets and mini-programs and tools
 
 ***********************************************************************************************************
 
@@ -12,7 +12,7 @@ Here's a Quick Pictorial Guide (ELI5) for the above functionality: https://imgur
 
 The first wallet was the Dogecoin Banking Suite. Over time, more wallets and other functionalities accumulated onto the site. 
 
-TripleShibe is a functionality requiring 3 public keys, in order to preside over various types of multisigs (1/1, 1/2, 2/2, 1/3, 2/3, 3/3), these are displayed on a single page and are controlled by 3 WIF (Private) Keys.
+TripleShibe is a functionality requiring 3 public keys, in order to preside over various types of multisigs (1/1, 1/2, 2/2, 1/3, 2/3, 3/3), these are controlled by 3 WIF (Private) Keys.
 
 Quatroshibe is a functionality requiring 4 public keys, providing access to various x/4 multisigs.
 
