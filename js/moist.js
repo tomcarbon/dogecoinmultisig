@@ -1,4 +1,6 @@
 $(document).ready(function() {
+document.body.scrollTop = 0;				// this makes the page go back to the top.
+document.documentElement.scrollTop = 0;			// this makes the page go back to the top.
 /******************************************************************
 * Some folks don't like the word moist. Sorry. 
 ******************************************************************/

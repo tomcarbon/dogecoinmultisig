@@ -27,6 +27,12 @@ $("#PSenglishbutton").click(function(){
     reader.send(null);
 });
 
+$("#PSjapanesebutton").click(function(){
+    reader.open('get','docs/japanese.json', true); 
+    reader.onreadystatechange = displayContents;
+    reader.send(null);
+});
+
 $("#PSfrenchbutton").click(function(){
     reader.open('get','docs/french.json', true); 
     reader.onreadystatechange = displayContents;
@@ -78,6 +84,12 @@ $("#Wenglishbutton").click(function(){
     reader.send(null);
 });
 
+$("#Wjapanesebutton").click(function(){
+    reader.open('get','docs/japanese.json', true); 
+    reader.onreadystatechange = displayContents;
+    reader.send(null);
+});
+
 $("#Wfrenchbutton").click(function(){
     reader.open('get','docs/french.json', true); 
     reader.onreadystatechange = displayContents;
@@ -119,6 +131,12 @@ $("#DBSdutchbutton").click(function(){
 
 $("#DBSspanishbutton").click(function(){
     reader.open('get','docs/spanish.json', true); 
+    reader.onreadystatechange = displayContents;
+    reader.send(null);
+});
+
+$("#DBSjapanesebutton").click(function(){
+    reader.open('get','docs/japanese.json', true); 
     reader.onreadystatechange = displayContents;
     reader.send(null);
 });
@@ -170,6 +188,12 @@ $("#TSdutchbutton").click(function(){
 
 $("#TSspanishbutton").click(function(){
     reader.open('get','docs/spanish.json', true); 
+    reader.onreadystatechange = displayContents;
+    reader.send(null);
+});
+
+$("#TSjapanesebutton").click(function(){
+    reader.open('get','docs/japanese.json', true); 
     reader.onreadystatechange = displayContents;
     reader.send(null);
 });
