@@ -1618,8 +1618,10 @@ function populate_unspent_txid() {
 									work_number_pubkeys,(i+1),2);	// assume change address is needed
 						work_miners_fee = parseFloat(parseInt(signed_size/1000) + 1);
 						console.info("computed miners fee = " + work_miners_fee);
-						if (parseFloat(parseFloat(cum_balance) + parseFloat(work_miners_fee)) >= 
-							parseFloat(work_amount_to_withdraw)) {		// we've got enough...
+//						if (parseFloat(parseFloat(cum_balance) + parseFloat(work_miners_fee)) >= 
+//							parseFloat(work_amount_to_withdraw)) {		// we've got enough...OLD
+						if (parseFloat(cum_balance)  >= 
+						    (parseFloat(work_amount_to_withdraw) + parseFloat(work_miners_fee))) {		// we've got enough...
 							var num_transactions = i+1;
 							console.info("The first " + num_transactions + " transactions cover the miners fee " + 
 									"and the requested amount to pay out.");
