@@ -4,6 +4,8 @@ Check out the reddit community at https://www.reddit.com/r/dogecoin/
 
 DOGECOINMULTISIG -  A bunch of wallets and mini-programs and tools
 
+DECENTRALIZED
+
 ***********************************************************************************************************
 
 *Multiple wallet designs pare down to a single withdraw functionality.* The withdraw is broken down into several of the dogecoin network's principal components, allowing the user to verify at each step of the dogecoin-sending process (creating transaction, signing(s), broadcast). This information is also logged in the console (F12 on most browsers).
