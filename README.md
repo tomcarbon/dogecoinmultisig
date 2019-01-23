@@ -1,4 +1,4 @@
-20180116tcc
+20190123tcc
 
 Check out the reddit community at https://www.reddit.com/r/dogecoin/
 
