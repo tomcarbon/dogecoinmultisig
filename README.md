@@ -1,4 +1,4 @@
-This project is a fork of the github project coinb.in (forked in June 2016). Primarily javascript, this project does not utilize PHP or central server.
+This project is a fork of the github project coinb.in (forked in June 2016). Primarily javascript, this project does not utilize PHP or central server. Copy the whole project into a directory on your server and it's ready to go.
 
 *Multiple multisignature wallet designs, decentralized, free, multi-user capable.* The withdraw is broken down into several of the dogecoin network's principal components, allowing the user to verify at each step of the dogecoin-sending process (creating transaction, signing(s), broadcast). If you want to learn how cryptocurrency transactions work, then trying to 'verify' everything you can along the way should prove instructive. This information is also logged in the console (F12 on most browsers).
 
