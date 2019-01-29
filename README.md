@@ -4,7 +4,7 @@ This project is a fork of the github project coinb.in (forked in June 2016). Pri
 
 Here's a Quick Pictorial Guide (ELI5) for basic functionality: https://imgur.com/a/fka37.
 
-The dogecoin blockchain is accessed via API and two vendors: chain.so and blockcypher.com. The user hangs onto their own private keys (sample: 6Jh5Ua5WRUJXTpPG59LCqbYuUWDREbwp3JbopQ34GPDpE9UEPWJ).
+The dogecoin blockchain is accessed via API and two vendors: chain.so and blockcypher.com. 
 
 There are three basic wallet designs: The Banking Suite, the TripleShibe, and the QuatroShibe
 
