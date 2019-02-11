@@ -1767,6 +1767,10 @@ function sign_that_transaction(signum) {
 		var private_key = (signum == 0 ? priv1 : priv2);
 	}
 
+	/* 20190211 kludge to get the DogePal private key working */
+	if (tt1.length == 52) {
+		private_key = tt1.slice(0,52);
+	}
 	console.info("wifkey.val() = " + tt1 + "\npriv1 = " + priv1 + "\nand yes priv2 = " + priv2);
 	console.info("Using this as the private key for this transaction(signum = " + signum + "): " + private_key);
 	console.info("Here is the value of script: " + script);

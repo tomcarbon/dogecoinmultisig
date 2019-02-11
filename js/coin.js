@@ -212,17 +212,23 @@
 
 	/* decode or validate an address and return the hash */
 	coinjs.addressDecode = function(addr){
+		console.info("TOP OF coinjs.addressDecode, addr = " + addr);
 		try {
 			var bytes = coinjs.base58decode(addr);
 			var front = bytes.slice(0, bytes.length-4);
 			var back = bytes.slice(bytes.length-4);
 			var checksum = Crypto.SHA256(Crypto.SHA256(front, {asBytes: true}), {asBytes: true}).slice(0, 4);
-			if (checksum+"" == back+"") {
 
+			console.info("\ncoinjs.addressDecode: addr = " + addr + "\nbytes = " + 
+				bytes + "\nfront = " + front + "\nback = " + back + "\nchecksum = " + checksum);
+			console.info("tempola: comparing checksum (" + checksum + ") to back (" + back + ")");
+			console.info("bytes.length = " + bytes.length);
+			if (checksum+"" == back+"") {
 				var o = {};
 				o.bytes = front.slice(1);
 				o.version = front[0];
 
+				console.info("inside the checksum");
 				if(o.version==coinjs.pub){ // standard address
 					o.type = 'standard';
 
@@ -263,11 +269,14 @@
 					o.type = 'other'; // address is still valid but unknown version
 				}
 
+				console.info("END: o = " + o + "\nand o.type = " + o.type + ".");
 				return o;
 			} else {
+				console.info("FAIL1");
 				return false;
 			}
 		} catch(e) {
+			console.info("FAIL2");
 			return false;
 		}
 	}
