@@ -4,7 +4,7 @@ This project is a fork of the github project coinb.in (forked in June 2016). Pri
 
 Here's a Quick Pictorial Guide (ELI5) for basic functionality: https://imgur.com/a/fka37.
 
-The dogecoin blockchain is accessed via API and two vendors: chain.so and blockcypher.com. 
+The dogecoin blockchain is accessed via API and two vendors: chain.so and blockcypher.com. Blockcypher is now the default (as of August 2019) as chain.so API was taken down due to DoS attacks.
 
 There are three basic wallet designs: The Banking Suite, the TripleShibe, and the QuatroShibe
 
