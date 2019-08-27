@@ -9,7 +9,7 @@ var tx = coinjs.transaction();
 var tempstring;
 var work;
 var work_max_trans = parseInt("99");
-var work_vendor_select = parseInt("0");		// 0 = default = chain.so, 1 = blockcypher.com
+var work_vendor_select = parseInt("1");		// 0 = default = chain.so, 1 = blockcypher.com (20190816: make blockcypher.com the defaul)
 var cum_total = parseFloat("0.0");
 var work_number_signatures_required;
 var work_number_pubkeys;
@@ -36,7 +36,7 @@ var work_message;
 var pkey;
 
 
-document.getElementById("vendorDisplay").innerHTML = "chain.so (default) selected (99 transactions max).";		// first time: display the vendor info to screen
+document.getElementById("vendorDisplay").innerHTML = "blockcypher (default) selected (60 transactions max).";		// first time: display the vendor info to screen
 
 //function changeVendor(selTag) {
 $("#changeVendor").click(function(){
@@ -386,7 +386,6 @@ function do_the_redeemit() {
 				console.info("signature found (" + $("#redeemPrivateKey") + "). Will sign the transaction."); 
 				rc = sign_that_transaction(0);
 			}
-//			alert("This is a temporary callback placeholder. Please continue.");
 			if (rc == true) {
 				if (work_number_signatures_required == 1) {
 					var ttext = "You can Verify this transaction. When you're ready, press BROADCAST to send the withdraw.";
@@ -397,7 +396,7 @@ function do_the_redeemit() {
 					if (work_private_key2.length == 51) {  /* there's a second private key, and we need one, so let's use it. */
 						var tt1 = "Now signing the 2nd key. Please continue.";
 						console.info(tt1);
-						alert(tt1);		// callback placeholder TCC20160915
+						alert(tt1);			
 						rc = sign_that_transaction(2);
 						if (rc == true) {
 							var ttext = "This transaction has been signed twice." + 
@@ -423,7 +422,7 @@ function do_the_redeemit() {
 					if (work_private_key2.length == 51) {  /* there's a second private key, and we need one, so let's use it. */
 						var tt1 = "Now signing the 2nd key. Please continue.";
 						console.info(tt1);
-						alert(tt1);		// callback placeholder TCC20160915
+						alert(tt1);		
 						rc = sign_that_transaction(2);
 						if (rc == true) {
 							var ttext = "This transaction has been signed twice." + 
@@ -465,7 +464,6 @@ $('#redeemVerifyBtn1x').on('click', function() {
 	//console.info("top of redeemVerifyBtn1x()");
 	$("#redeemVerifyBtn1x").addClass("hidden");	
 	tempstring = $("#signedSuccessBox textarea").val();
-//	$("#signedSuccessBox").addClass("hidden");
 	$("#pleaseWaitBox").removeClass("hidden");
 	setTimeout(function(){
 		very_get_info("10102");	 //such broadcast from the redeem screen.
@@ -717,26 +715,20 @@ function very_get_info(iindex){
         *****************************************/
         case "10101":
 		/* make a JSON object, tempstring is the hash */
-		var our_send_object = {"network":"DOGE","txid":tempstring};
-		console.info("10101 send transaction. provided hex is: " + our_send_object.txid);
-		console.info("                        provided network is: " + our_send_object.network);
               	$.ajax ({
-                        type: "POST",
-                        url: "https://chain.so/api/v2/send_tx/DOGE/",
-			data: {tx_hex: our_send_object.txid},
-                        dataType: "json",
+		    type: "POST",
+		    url: "https://api.blockcypher.com/v1/doge/main/txs/push",
+		    data: JSON.stringify({"tx":tempstring}),
                         error: function(data) {
 				$("#broadcastPleaseWaitBox").addClass("hidden");
 				$("#broadcastFailBox").removeClass("hidden");
                                 console.error(JSON.stringify(data, null, 4));
-				var fooboy = "https://chain.so/api/v2/send_tx/DOGE/"+our_send_object.txid;
-				console.error(JSON.stringify(fooboy));
                                 window.alert("ERROR: The Broadcast has FAILED. Go to F12 (Console) for more information, and/or review your parameters.");
 				
                         },
                         success: function(data) {
                                 console.info(JSON.stringify(data, null, 4));                   
-				work_successful_transaction = data.data.txid;
+				work_successful_transaction = data.tx.hash;
 				console.info("The successful Transaction ID is: " + work_successful_transaction);
 				$("#broadcastPleaseWaitBox").addClass("hidden");
 				$("#broadcastSuccessBox textarea").val(work_successful_transaction);
@@ -755,27 +747,35 @@ function very_get_info(iindex){
         *****************************************/
         case "10102":
 		/* make a JSON object, tempstring is the hash */
-		var our_send_object = {"network":"DOGE","txid":tempstring};
+//		var our_send_object = {"network":"DOGE","txid":tempstring};		// chain.so
+		var our_send_object = {"tx":tempstring};		// blockcypher
+		var pushtx = {
+		  tx: tempstring
+		};
+		/*
+$.post('https://api.blockcypher.com/v1/doge/main/txs/push/', JSON.stringify(pushtx))
 
-		console.info("10102 send transaction. provided hex is: " + our_send_object.txid);
-		console.info("                        provided network is: " + our_send_object.network);
-              	$.ajax ({
-                        type: "POST",
-                        url: "https://chain.so/api/v2/send_tx/DOGE/",
-			data: {tx_hex: our_send_object.txid},
-                        dataType: "json",
-                        error: function(data) {
-				$("#pleaseWaitBox").addClass("hidden");
-				$("#withdrawlFailBox").removeClass("hidden");
-                                console.error(JSON.stringify(data, null, 4));
-				var fooboy = "https://chain.so/api/v2/send_tx/DOGE/"+our_send_object.txid;
-				console.error(JSON.stringify(fooboy));
-                                window.alert("ERROR: The Broadcast has FAILED. Go to F12 (Console) for more information, and/or review your parameters.");
-                        },
+  .then(function(d) {console.log(d), status});
+	{
+		alert("it went wow. Status = " + status);
+	}
+	*/
+		console.info("10102 ajax send transaction. provided hex is: " + our_send_object.tx);
+		$.ajax ({
+		    type: "POST",
+		    url: "https://api.blockcypher.com/v1/doge/main/txs/push",
+		    data: JSON.stringify({"tx":tempstring}),
+		    error: function(data) {
+			$("#pleaseWaitBox").addClass("hidden");
+			$("#withdrawlFailBox").removeClass("hidden");
+			console.error(JSON.stringify(data, null, 4));
+			window.alert("ERROR: The Broadcast has FAILED. Go to F12 (Console) for more information, and/or review your parameters.");
+		    },
                         success: function(data) {
                                 console.info(JSON.stringify(data, null, 4));                   
 				$("#pleaseWaitBox").addClass("hidden");
-				work_successful_transaction = data.data.txid;
+				//				work_successful_transaction = data.data.txid;	// chain.so
+				work_successful_transaction = data.tx.hash;
 				$("#withdrawlSuccessBox textarea").val(work_successful_transaction);
 				$("#withdrawlSuccessBox").removeClass("hidden");
 				$("#signedSuccessBox").addClass("hidden");
@@ -1212,7 +1212,7 @@ function very_get_info(iindex){
            break;
 
         /*****************************************
-        * INDEX20000: http://coinmill.com/frame.js
+        * INDEX20000: https://coinmill.com/frame.js
         *****************************************/
         case "20000":
         var dollaramount = prompt("20000 - Provide the dollar value you want to convert into number of dogecoins:",100.00);
@@ -1713,7 +1713,6 @@ function populate_unspent_txid() {
 				alert(tempee);
 				return false;
 		}
-//console.info("after the bigass switch statement.");
 		
 
 
@@ -1734,9 +1733,7 @@ return true;    // success
 * This function signs the transaction.
 ************************************/
 function sign_that_transaction(signum) {
-        //var wifkey = $("#redeemPrivateKey");
         var wifkey = $("#redeemPrivateKey");
-//        var script = $("#transactionCreate2 textarea");
 	if (signum == 0) {
         	var script = $("#transactionCreate2 textarea");
 	} else if (signum == 2) {
@@ -1767,7 +1764,7 @@ function sign_that_transaction(signum) {
 		var private_key = (signum == 0 ? priv1 : priv2);
 	}
 
-	/* 20190211 kludge to get the DogePal private key working */
+	/* 20190211 to get the DogePal private key working */
 	if (tt1.length == 52) {
 		private_key = tt1.slice(0,52);
 	}

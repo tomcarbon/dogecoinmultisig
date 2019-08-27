@@ -15,7 +15,6 @@ var work_pubkey3;
 var work_balance = [];
 var work_unconfirmed_balance = [];
 var work_redeem_script;
-var work_vendor_select = parseInt("0");
 
 $("#tsNewScreen01"   	).toggle("fast","swing");	// hide this at initialization time
 $("#tsPayBox"   	).toggle("fast","swing");	// hide this at initialization time
@@ -27,7 +26,8 @@ $("#tsMiniPayBox5"   	).toggle("fast","swing");	// hide this at initialization t
 $("#tsMiniPayBox6"   	).toggle("fast","swing");	// hide this at initialization time
 
 
-document.getElementById("TSvendorDisplay").innerHTML = "chain.so (default) selected.";            // first time: display the vendor info to screen
+var work_vendor_select = parseInt("1");			// 20190816 - make blockcypher the default
+document.getElementById("TSvendorDisplay").innerHTML = "blockcypher (default) selected.";            // first time: display the vendor info to screen
 
 //function changeVendor(selTag) {
 $("#TSchangeVendor").click(function(){
@@ -691,15 +691,17 @@ copyTextareaBtn2.addEventListener('click', function(event) {
 });
 
 
-/* get from chain.so, then wait before displaying */
+/* get from blockcypher, then wait before displaying */
 function tripleshibe_wallet_balance(multisig, urlName, UCurlName, idx) {
 var tt1 = [];
 var tt2 = [];
 var tempvar = [];
+console.info("Using blockcypher now 20190816");
 console.info("tripleshibe_wallet_balance. Input Address: " + multisig['address']);
 	$.ajax ({
 		type: "GET",
-		url: "https://chain.so/api/v2/get_address_balance/DOGE/" + multisig['address'],
+	//	url: "https://chain.so/api/v2/get_address_balance/DOGE/" + multisig['address'],
+		url:  "https://api.blockcypher.com/v1/doge/main/addrs/" + multisig['address'] + "/balance",
 		dataType: "json",
 		error: function(data) {
 			tt1[idx] = JSON.stringify(data, null, 4);
@@ -707,8 +709,10 @@ console.info("tripleshibe_wallet_balance. Input Address: " + multisig['address']
 		},
 		success: function(data) {
 			tt1[idx] = JSON.stringify(data, null, 4);
-			work_balance[idx] = data.data.confirmed_balance;
-			work_unconfirmed_balance[idx] = data.data.unconfirmed_balance;
+			work_balance[idx] = data.balance/100000000;					// blockcypher
+			work_unconfirmed_balance[idx] = data.unconfirmed_balance/100000000;		// blockcypher
+			//work_balance[idx] = data.data.confirmed_balance;			// chain.so
+			//work_unconfirmed_balance[idx] = data.data.unconfirmed_balance;	// chain.so
 			console.info("tripleshibe_wallet_balance: " + tt1[idx]);
 		},
 		complete: function(data, status) {

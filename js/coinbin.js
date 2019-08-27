@@ -1022,21 +1022,21 @@ alert("milky");
 	function rawSubmitDefault(btn){ 
 		$(thisbtn).val('Please wait, loading...').attr('disabled',true);
 		$.ajax ({
-			type: "POST",
-			url: "https://chain.so/api/v2/send_tx/doge/",
-			data: {"tx_hex":$("#rawTransaction").val()},
-			dataType: "json",
+			    type: "POST",
+			    url: "https://api.blockcypher.com/v1/doge/main/txs/push",
+			    data: JSON.stringify({"tx":$("#rawTransaction").val()}),
+				dataType: "json",
 			error: function(data) {
 				var obj = $.parseJSON(data.responseText);
 				var r = ' ';
-				r += (obj.data.tx_hex) ? obj.data.tx_hex : '';
+				r += (obj.tx) ? obj.tx : '';
 				r = (r!='') ? r : ' Failed to broadcast'; // build response 
 				$("#rawTransactionStatus").addClass('alert-danger').removeClass('alert-success').removeClass("hidden").html(r).prepend('<span class="glyphicon glyphicon-exclamation-sign"></span>');
 			},
                         success: function(data) {
 				var obj = $.parseJSON(data.responseText);
-				if(obj.status && obj.txid){
-					$("#rawTransactionStatus").addClass('alert-success').removeClass('alert-danger').removeClass("hidden").html(' Txid: '+obj.txid);
+				if(obj.status && obj.tx.hash){
+					$("#rawTransactionStatus").addClass('alert-success').removeClass('alert-danger').removeClass("hidden").html(' Txid: '+obj.tx.hash);
 				} else {
 					$("#rawTransactionStatus").addClass('alert-danger').removeClass('alert-success').removeClass("hidden").html(' Unexpected error, please try again').prepend('<span class="glyphicon glyphicon-exclamation-sign"></span>');
 				}				

@@ -10,7 +10,7 @@ var work;
 var work_balance = [];
 var work_unconfirmed_balance = [];
 var work_balance_total = parseFloat("0.00000000");
-var work_vendor_select = parseInt("0");
+var work_vendor_select = parseInt("1");	// 20190816: make blockcypher.io the default
 
 /* first time */
 $("#bankSuitePersonal1PayBox"	).toggle("fast","swing");
@@ -25,7 +25,7 @@ $("#bankSuiteNewScreen06"	).toggle("fast","swing");	// + advanced button
 $("#bankSuitePageURL").val(document.location.origin+''+document.location.pathname+'#bankSuite');	// to give to a friend
 
 
-document.getElementById("DBSvendorDisplay").innerHTML = "chain.so (default) selected.";            // first time: display the vendor info to screen
+document.getElementById("DBSvendorDisplay").innerHTML = "blockcypher(default) selected.";            // first time: display the vendor info to screen
 
 //function changeVendor(selTag) {
 $("#DBSchangeVendor").click(function(){
@@ -385,27 +385,27 @@ $("#bsTogBtn1").click(function(){	// PERSONAL 1
 
 
 /* user presses one of the 6 'Spend Buttons that opens detail about one multisig */
-$("#bsTogBtn2").click(function(){	// PERSONAL 1
+$("#bsTogBtn2").click(function(){	// PERSONAL 2
         $("#bankSuitePersonal2PayBox").toggle();
 });
 
 /* user presses one of the 6 'Spend Buttons that opens detail about one multisig */
-$("#bsTogBtn3").click(function(){	// PERSONAL 1
+$("#bsTogBtn3").click(function(){	// Slush 
         $("#bankSuiteSlushPayBox").toggle();
 });
 
 /* user presses one of the 6 'Spend Buttons that opens detail about one multisig */
-$("#bsTogBtn4").click(function(){	// PERSONAL 1
+$("#bsTogBtn4").click(function(){	// Checking	
         $("#bankSuiteCheckingPayBox").toggle();
 });
 
 /* user presses one of the 6 'Spend Buttons that opens detail about one multisig */
-$("#bsTogBtn5").click(function(){	// PERSONAL 1
+$("#bsTogBtn5").click(function(){	// Savings
         $("#bankSuiteSavingsPayBox").toggle();
 });
 
 /* user presses one of the 6 'Spend Buttons that opens detail about one multisig */
-$("#bsTogBtn6").click(function(){	// PERSONAL 1
+$("#bsTogBtn6").click(function(){	// Do Good
         $("#bankSuiteDoGoodFundPayBox").toggle();
 });
 
@@ -787,21 +787,19 @@ var tt2 = [];
 		console.info("bankSuite_wallet_balance. Input Address: " + multisig['address']);
                 $.ajax ({
                         type: "GET",
-                        url: "https://chain.so/api/v2/get_address_balance/DOGE/" + multisig['address'],
+                        //url: "https://chain.so/api/v2/get_address_balance/DOGE/" + multisig['address'],		// chain.so
+			url:  "https://api.blockcypher.com/v1/doge/main/addrs/" + multisig['address'] + "/balance",	// blockcypher
                         dataType: "json",
-                        //error: function(data) {
-                         //       console.error(JSON.stringify(data, null, 4));
-                          //      tt1[idx] = JSON.stringify(data, null, 4);
-//                                console.error("bankSuite_wallet_balance fail: %s",tt1[idx]);
- //                       },
                         error: function(data) {
                                 tt1[idx] = JSON.stringify(data, null, 4);
                                 console.error("bankSuite_wallet_balance fail: %s",tt1[idx]);
                         },
                         success: function(data) {
                                 tt1[idx] = JSON.stringify(data, null, 4);
-				work_balance[idx] = data.data.confirmed_balance;
-				work_unconfirmed_balance[idx] = data.data.unconfirmed_balance;
+				//work_balance[idx] = data.data.confirmed_balance;		// chain.so
+				//work_unconfirmed_balance[idx] = data.data.unconfirmed_balance;  	// chain.so
+				work_balance[idx] = data.balance/100000000;					// blockcypher
+				work_unconfirmed_balance[idx] = data.unconfirmed_balance/100000000;		// blockcypher
 				console.info("bankSuite_wallet_balance: " + tt1[idx]);
 				//work_balance_total += parseFloat(data.data.confirmed_balance);
                         },

@@ -1,7 +1,6 @@
 $(document).ready(function() {
 /******************************************************************
-* 20161014 tcc
-* cakeday
+* 20190816 tcc
 ******************************************************************/
 //window.alert("Hello from the initialization portion of payspot.js. ");
 var tx = coinjs.transaction();
@@ -222,6 +221,7 @@ copyTextareaBtn2.addEventListener('click', function(event) {
 
 /* get from chain.so, then wait before displaying */
 /* tempola TCC20161011- get back and fix this whle function */
+/*
 function payspot_wallet_balance(multisig, urlName, UCurlName) {
 var tt1;
 var tt2;
@@ -261,6 +261,48 @@ console.info("payspot_wallet_balance. Input Address: " + multisig);
 		}
 	});
 return true;
+}
+*/
+
+/* 20190816 use blockcypher.io */
+function payspot_wallet_balance(multisig, urlName, UCurlName) {
+	console.info("20190816 update use blockcypher now");
+	url_text = "https://api.blockcypher.com/v1/doge/main/addrs/" + multisig + "/balance";
+	console.info("url_text = " + url_text);
+	$.ajax ({
+		type: "GET",
+		url: url_text,
+		dataType: "json",
+		error: function(data) {
+			tt1 = JSON.stringify(data, null, 4);
+			console.error("payspot_wallet_balance fail: %s",tt1);
+		},
+		success: function(data) {
+			var tt1 = JSON.stringify(data, null, 4);
+			console.info("payspot_wallet_balance: " + tt1);
+			work_balance = data.balance/100000000;
+			work_unconfirmed_balance = data.unconfirmed_balance/100000000;
+		},
+		complete: function(data, status) {
+			var tempvar = "Unconfirmed Balance: " + work_unconfirmed_balance; // now set unconfirmed if non-0
+			if (parseFloat(work_unconfirmed_balance) > parseFloat("0.00000000") ||
+			    parseFloat(work_unconfirmed_balance) < parseFloat("0.00000000")) {
+				if (parseFloat(work_unconfirmed_balance) > parseFloat("0.00000000")) {
+					var tt1 = "Confirmed Balance: " + parseFloat(work_balance);
+				} else {
+					var tt1 = "Confirmed Balance: " + parseFloat((parseFloat(work_balance) +
+									parseFloat(work_unconfirmed_balance)));
+				}
+				document.getElementById(urlName).innerHTML = tt1;    // display to HTML
+				document.getElementById(UCurlName).innerHTML = tempvar; // display to HTML
+				//$("#getWalletUCBalance").removeClass("hidden");
+				$(UCurlName).removeClass("hidden");
+			} else {
+				var tt1 = "Confirmed Balance: " + parseFloat(work_balance);
+				document.getElementById(urlName).innerHTML = tt1;    // display to HTML
+			}
+		}
+	});
 }
 
 });   /* EOF */
