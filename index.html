@@ -2,8 +2,11 @@
 	<head>
 
 		<title>Dogecoin multisig online wallet</title>
+		                <meta http-equiv="Content-Security-Policy"
+                content="default-src 'none'; font-src 'self'; media-src 'self'; frame-src https://www.youtube.com; script-src 'self' 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https://api.blockcypher.com; img-src 'self' data:; style-src 'self' 'unsafe-inline' 'unsafe-eval'">
+                <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+                <meta http-equiv="content-type" content="text/html;charset=utf-8" />
 
-        	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 		<meta name="keywords" content="dogecoin, online wallet, multisig, dogecoin value" />
 		<meta name="description" content="A Dogecoin multisig wallet written in Javascript, for shibes to use to collaborate using multisignature technology to bring more value to dogecoin. To The Moon!" />
 
@@ -44,7 +47,7 @@
 		<script type="text/javascript" src="js/quatroshibe.js"></script>
 		<script type="text/javascript" src="js/payspot.js"></script>
 		<script type="text/javascript" src="js/microinvoice.js"></script>
-		<script type="text/javascript" src="http://coinmill.com/frame.js"></script>
+		<script type="text/javascript" src="https://coinmill.com/frame.js"></script>
 		<script type="text/javascript" src="js/anbot.js"></script>
 		<script type="text/javascript" src="js/anbotR.js"></script>
 		<script type="text/javascript" src="js/newPaySpot.js"></script>
@@ -352,7 +355,7 @@
 
 						<div class="alert-info">
 						<h3><b>Convert Any Currency to XDG here</b><small> (this will take you off this site) </small></h3>
-						<form method="GET" action="http://coinmill.com/currency" onsubmit="if (this.currencyamount.value==''){alert('Please enter an amount');return false;} return true;">
+						<form method="GET" action="https://coinmill.com/currency" onsubmit="if (this.currencyamount.value==''){alert('Please enter an amount');return false;} return true;">
 						<table border="0" cellpadding="2" cellspacing="0" summary=""><tr><td>
 						Amount:</td><td><input type="text" size="8" name="currencyamount">
 						</td></tr><tr><td>
@@ -650,7 +653,7 @@
 						</td><td>
 						<input type="submit" value="Convert">
 						</td></tr></table>
-						Currency conversion powered by <a href="http://coinmill.com/">coinmill.com</a>
+						Currency conversion powered by <a href="https://coinmill.com/">coinmill.com</a>
 						</form>
 					</div>
 				</div>
@@ -712,7 +715,7 @@
 		<p><strong>This program will support up to 75 unspent transactions per pass.</strong></p>
 		<p>This site is a self-service bankings tool; it does not have a formalized support system.</p>
 		<p><strong>Use F12-Console for detailed information on what the program is doing, etc.</strong></p>
-		<p>Version .283 (this statement last touched 20190211). This website is in<strong> Beta</strong>. This is open source freeware.</p>
+		<p>Version .285 (this statement last touched 20190818). This website is in<strong> Beta</strong>. This is open source freeware.</p>
 		<p><strong>This site is a work in progress</strong><strong> that will continue growing over time.</strong></p>
 		<p>Here's the source code:<a title="dogecoinmultisig.org" href="https://github.com/tomcarbon/dogecoinmultisig/">https://github.com/tomcarbon/dogecoinmultisig</a>. dogecoinmultisig.org is turnkey. Just copy it from github,and run index.html</p>
 		<hr> <p></p>
@@ -1394,8 +1397,8 @@
 						<div class="alert alert-info"> 
 							<p id="TSvendorDisplay"></p>
 							<select id="TSchangeVendor">
-							  <option>chain.so</option>
 							  <option>blockcypher.com</option>
+							  <option>chain.so</option>
 							</select>
 						</div>
 
@@ -1828,8 +1831,8 @@
 						<div class="alert alert-info"> 
 							<p id="DBSvendorDisplay"></p>
 							<select id="DBSchangeVendor">
-							  <option>chain.so</option>
 							  <option>blockcypher.com</option>
+							  <option>chain.so</option>
 							</select>
 						</div>
 
@@ -2398,8 +2401,8 @@
 <div class="alert alert-info"> 
 	<p id="vendorDisplay"></p>
 	<select id="changeVendor">
-	  <option>chain.so</option>
 	  <option>blockcypher.com</option>
+	  <option>chain.so</option>
 	</select>
 </div>
 
@@ -3201,7 +3204,7 @@
 
 		<div id="footer">
 			<div class="container text-right">
-	        		<p class="text-muted">Version .282</p>
+	        		<p class="text-muted">Version .286</p>
 			</div>
 		</div>
 
