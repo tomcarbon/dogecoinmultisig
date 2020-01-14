@@ -1,4 +1,4 @@
-Updated: tcc 20200113
+20200113
 
 TLDR: EDUCATIONAL, also FUNCTIONAL. This is a free multi-address, multi-user cryptocurrency wallet based around multi-sigs (multi-signatures). It is decentralized, meaning that everything is running in Javascript on the browser and the user keeps their own password. Also in the site is a method of receiving payments, and other assorted tools.
 
