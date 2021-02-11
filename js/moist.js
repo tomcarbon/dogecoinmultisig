@@ -176,7 +176,7 @@ return "missing value.";
 ***************************************************/
 $("#moist2").click(function(){
 
-        var iindex = prompt("Please enter your number.", "778");
+        var iindex = prompt("Please enter your number.", "1999");
 	// the map of possible iindex values is currently provided in index.html (TCC20160712)
 
 	tempstring = $("#dogeScript").val();
@@ -191,42 +191,58 @@ $("#moist2").click(function(){
 
 
 /* this for clicking the 'refresh' button on the REDEEM screen */
-$("#walletRefresh").click(function(){
-       	dogecoin_wallet_balance();
-    	$("getWalletBalance").hide(2000, function(){
-    	});
-	if (parseFloat(work_unconfirmed_balance) > parseFloat("0.00000000")) {
-	    	$("getWalletUCBalance").hide(2000, function(){
-		});
-	}
+$("#walletRefresh").click(async function(){
+		try {
+			await dogecoin_wallet_balance();
+			$("getWalletBalance").hide(2000, function(){});
+			if (parseFloat(work_unconfirmed_balance) > parseFloat("0.00000000")) {
+						$("getWalletUCBalance").hide(2000, function(){
+				});
+			}
+		} catch (e) {
+			console.log(e);
+		}
 
 });
 
-
-
-function dogecoin_wallet_balance() {
-	work_multisig_address = $("#dogeScript7").val();
-	var url_text;
-
-	if (work_vendor_select == 1)	// blockcypher
-	{
-		url_text = "https://api.blockcypher.com/v1/doge/main/addrs/" + work_multisig_address + "/balance";
-	} else {
-		url_text = "https://chain.so/api/v2/get_address_balance/DOGE/" + work_multisig_address;	// chain.so = default
+//1999 calls this
+async function get_blockcypher_mining_fee() {
+	try {
+		const data = await $.ajax ({
+				type: "GET",
+				url: "https://api.blockcypher.com/v1/doge/main",
+				dataType: "json"
+		});
+		return data;
+	} catch (err) {
+		console.log(err);
+		return;
 	}
-	console.info("url_text = " + url_text);
+}
 
-                $.ajax ({
-                        type: "GET",
-                        url: url_text,
-                        dataType: "json",
-                        error: function(data) {
-                                //alert(JSON.stringify(data, null, 4));
-                                var tt1 = JSON.stringify(data, null, 4);
-                                console.error("10777 fail: %s",tt1);
-                        },
-                        success: function(data) {
-                                var tt1 = JSON.stringify(data, null, 4);
+async function dogecoin_wallet_balance() {
+	let url_text;
+	try {
+		work_multisig_address = $("#dogeScript7").val();
+
+		if (work_vendor_select == 1)	{		// blockcypher = default
+			url_text = "https://api.blockcypher.com/v1/doge/main/addrs/" + work_multisig_address + "/balance";
+		} else {
+			url_text = "https://chain.so/api/v2/get_address_balance/DOGE/" + work_multisig_address;	// chain.so
+		}
+		console.info("url_text = " + url_text);
+
+		await $.ajax ({
+			type: "GET",
+			url: url_text,
+			dataType: "json",
+			error: function(data) {
+						//alert(JSON.stringify(data, null, 4));
+						var tt1 = JSON.stringify(data, null, 4);
+						console.error("10777 fail: %s",tt1);
+			},
+			success: function(data) {
+				var tt1 = JSON.stringify(data, null, 4);
 				$("#getWalletUCBalance").addClass("hidden");
 				if (work_vendor_select == 1)	// blockcypher
 				{
@@ -241,41 +257,129 @@ function dogecoin_wallet_balance() {
 					console.info("The Dogecoin Balance = " + work_balance);
 				}
 				$("#newDogecoinAddress").val(work_multisig_address);
-                        },
-                        complete: function(data, status) {
-                                console.info("dogecoin_wallet_balance(): work_multisig_address = " + work_multisig_address);
-				
+			},
+			complete: function(data, status) {
+				console.info("dogecoin_wallet_balance(): work_multisig_address = " + work_multisig_address);
 				var tempvar = "Unconfirmed Balance: " + work_unconfirmed_balance; // now set unconfirmed if non-0
 				if (parseFloat(work_unconfirmed_balance) > parseFloat("0.00000000") || 
-			            parseFloat(work_unconfirmed_balance) < parseFloat("0.00000000")) {
+									parseFloat(work_unconfirmed_balance) < parseFloat("0.00000000")) {
 					if (parseFloat(work_unconfirmed_balance) > parseFloat("0.00000000")) {
 						var tt1 = "Confirmed Balance: " + parseFloat(work_balance);
 					} else {
 						var tt1 = "Confirmed Balance: " + parseFloat((parseFloat(work_balance) + 
 										parseFloat(work_unconfirmed_balance)));
 					}
-                			document.getElementById("getWalletBalance").innerHTML = tt1;	// display to HTML
-               				document.getElementById("getWalletUCBalance").innerHTML = tempvar; // display to HTML
-					$("#getWalletUCBalance").removeClass("hidden");
+				document.getElementById("getWalletBalance").innerHTML = tt1;	// display to HTML
+				document.getElementById("getWalletUCBalance").innerHTML = tempvar; // display to HTML
+				$("#getWalletUCBalance").removeClass("hidden");
 				} else {
 					var tt1 = "Confirmed Balance: " + parseFloat(work_balance);
-                			document.getElementById("getWalletBalance").innerHTML = tt1;	// display to HTML
+					document.getElementById("getWalletBalance").innerHTML = tt1;	// display to HTML
 				}
-				if (work_dont_transact == "yes") {
-					// do nothing, we don't want to retrieve transactions after the happy path
-				}
-				else if (work_vendor_select == 1)	// blockcypher
-				{
-					console.info("calling 30778 now...");
-					very_get_info("30778"); 	// start loading the unspent transactions, this might call 30779 as well for big calls.
-				} else {		// default chain.so
-					very_get_info("10778"); 	// start loading the unspent transactions
-				}
-//				very_get_info("20778"); 	// start loading the unspent transactions
-                        }
-                });
+			}
+	});		// end of ajax
+
+		if (work_dont_transact == "yes") {
+			// do nothing, we don't want to retrieve transactions after the happy path
+		}
+		else if (work_vendor_select == 1)	// blockcypher
+		{
+//		very_get_info("30778"); 	// start loading the unspent transactions, this might call 30779 as well for big calls.
+			await get_blockcypher_tx();
+		} else {
+			very_get_info("10778"); 	// chain.so start loading the unspent transactions
+		}
+	} catch (e) {
+		console.log(e);
+	}
 }
 
+async function get_blockcypher_tx() {
+	let hasMoreFlag = false;
+	console.info("top of get_blockcypher_tx()");
+	try {
+		work_txs = [];
+		cum_total = parseFloat("0.0");
+		const url_stg = "https://api.blockcypher.com/v1/doge/main/addrs/" + work_multisig_address + "/full?limit=50";
+		const data = await $.ajax ({
+				type: "GET",
+				url: url_stg,
+				dataType: "json"
+		});
+
+	//	alert(JSON.stringify(data, null, 4));                   
+		let tt1 = JSON.stringify(data, null, 4);
+		console.info("number of transactions to load: " + data.txs.length);
+
+		for (let i=0;i<data.txs.length;i++) {
+			const OUTPUT_LIMIT_SIZE = 20;
+			if (data.txs[i].vout_sz > OUTPUT_LIMIT_SIZE) {		// if there are many outputs, load them all here 
+				let a = data.txs[i].vout_sz - OUTPUT_LIMIT_SIZE;
+				let url = data.txs[i].next_outputs;
+				while (a > 0) {
+					console.info("very outputs! special handling is needed here:" + url + ".");
+					const res = await get_more_blockcypher_outputs(url);
+					console.log(res.outputs);
+					data.txs[i].outputs.push(...res.outputs);
+					a-=OUTPUT_LIMIT_SIZE;
+					url = res.next_outputs;
+				}
+			}
+			for (let z=0;z<data.txs[i].vout_sz;z++) {		// find the right output
+				if (data.txs[i].outputs[z].addresses == work_multisig_address) {
+					if(data.txs[i].outputs[z].hasOwnProperty('spent_by')) {
+							// ignore this tx, it's already been spent!
+					}
+					else {		// otherwise, put it on the queue!
+						const obj = {
+							txid: data.txs[i].hash,
+							output_no: z,
+							value: data.txs[i].outputs[z].value/100000000,
+							script_hex: data.txs[i].outputs[z].script,
+							rel: []
+						}
+						work_txs.push(obj);
+						cum_total = cum_total + (data.txs[i].outputs[z].value/100000000);
+					}
+				}
+//				console.info("TCCDEBUG: we are now on output #" + z);
+			}
+		}
+
+		for (let i=0;i<work_txs.length;i++) {
+			console.info( "blockcypher:TX(" + i + "): " + work_txs[i].txid + ", output_no: " + 
+										work_txs[i].output_no + ", value: " + work_txs[i].value);
+		}
+
+		if (data.hasMore == true) {		// we can do more work here...
+			work = parseInt(data.txs[49].block_height);	// save this  last block to pass it to 30779
+			work_last_count = work_txs.length;	// e.g. 50
+			console.info("30778: hasMore == true, calling 30779 to read in more transactions before block = " + work);
+			hasMoreFlag = true;
+		}
+
+		if (hasMoreFlag == true) {		// we can do more work here...
+				very_get_info("30779"); 	// load the next 10 transactions 
+		}
+	} catch (e) {
+		console.info("ERROR! get_blockcypher_tx");
+		console.log(e);
+	}
+}
+
+async function get_more_blockcypher_outputs(url) {
+	try {
+		const data = await $.ajax ({
+				type: "GET",
+				url: url,
+				dataType: "json"
+		});
+		return data;
+	} catch (err) {
+		console.log(err);
+		return;
+	}
+}
 
 //var decode = script.decodeRedeemScript($("#verifyScript").val());
 /*********************************************************************
@@ -630,10 +734,9 @@ $("#testola").click(function(){
 * 10100 - official Broadcast function (chain.so)
 * 10777 - official redeem script
 * 10778 - get transactions from chain.so
-* 30778 - get transactions from blockcypher.com
 * 30779 - get transactions from blockcypher.com, continued after 30778 for more than 50 transactions.
 ************************************************/
-function very_get_info(iindex){
+async function very_get_info(iindex){
 	switch (iindex)
 	{
         /*****************************************
@@ -680,13 +783,23 @@ function very_get_info(iindex){
                         //        window.alert("complete1");
                         }
                 });
-           break;
-        /*****************************************
-        * INDEX10100: SEND AN OFFICIAL BROADCAST TRANSACTION.
+					 break;
+								
+					 case "1999": 	// get dogecoin mining fee amounts
+						let result = await get_blockcypher_mining_fee();
+						const highfee = result.high_fee_per_kb / 100000000;
+						const midfee = result.medium_fee_per_kb / 100000000;
+						const lowfee = result.low_fee_per_kb / 100000000;
+						console.info(`High Fee  : ${highfee}`);
+						console.info(`Medium Fee: ${midfee}`);
+						console.info(`Low Fee   : ${lowfee}`);
+					 break;
+	/*****************************************
+	* INDEX10100: SEND AN OFFICIAL BROADCAST TRANSACTION.
 	* very POST.
 	* this is the old one not used TCC20160804
-        *****************************************/
-        case "10100":
+	*****************************************/
+	case "10100":
 		/* make a JSON object, tempstring is the hash */
 		var our_send_object = {"network":"DOGE","txid":tempstring};
 		console.info("10100 send transaction. provided hex is: " + our_send_object.txid);
@@ -860,92 +973,6 @@ $.post('https://api.blockcypher.com/v1/doge/main/txs/push/', JSON.stringify(push
 	break;
 
 
-        /*****************************************
-        * INDEX30778: Provide Balance Info from 
-        * address. blockcypher.com	20170820
-        *****************************************/
-        case "30778":
-		var hasMoreFlag = false;
-		work_txs = [];
-		var ttemp = 0;
-		cum_total = parseFloat("0.0");
-		var url_stg = "https://api.blockcypher.com/v1/doge/main/addrs/" + work_multisig_address + "/full?limit=50";
-		//var url_stg = "https://api.blockcypher.com/v1/doge/main/addrs/" + work_multisig_address + "/full?limit=50";
-                   $.ajax ({
-                        type: "GET",
-                        url: url_stg,
-                        dataType: "json",
-                        error: function(data) {
-               //                 alert(JSON.stringify(data, null, 4));
-                                var tt1 = JSON.stringify(data, null, 4);
-                                console.error("30778 fail: %s",tt1);
-                        },
-                        success: function(data) {
-                //                alert(JSON.stringify(data, null, 4));                   
-                                var tt1 = JSON.stringify(data, null, 4);
-                                console.info("30778 success: %s",tt1);
-                                console.info("30778 number of transactions to load: " + data.txs.length);
-
-                                //for (var i=0;i<data.txs.length;i++)
-                                for (var i=0;i<data.txs.length;i++)
-                                {
-					for (var z=0;z<data.txs[i].vout_sz;z++)
-					{
-						if (data.txs[i].outputs[z].addresses == work_multisig_address)
-						{
-							if(data.txs[i].outputs[z].hasOwnProperty('spent_by')) {
-							    // ignore this tx, it's already been spent!
-							}
-							else {		// otherwise, put it on the queue!
-								var obj = {
-									txid: data.txs[i].hash,
-									output_no: z,
-									value: data.txs[i].outputs[z].value/100000000,
-									script_hex: data.txs[i].outputs[z].script,
-									rel: []
-								}
-								work_txs.push(obj);
-								cum_total = cum_total + (data.txs[i].outputs[z].value/100000000);
-							}
-						}
-					}
-                                }
-                                for (var i=0;i<work_txs.length;i++)
-                                {
-					console.info(
-						"blockcypher:TX(" + i + "): " + work_txs[i].txid + 
-						", output_no: " + work_txs[i].output_no + 
-						", value: " + work_txs[i].value);
-                                }
-				if (data.hasMore == true) {		// we can do more work here...
-					work = parseInt(data.txs[49].block_height);	// save this  last block to pass it to 30779
-					work_last_count = work_txs.length;	// e.g. 50
-					console.info("30778: hasMore == true, calling 30779 to read in more transactions before block = " + work);
-					hasMoreFlag = true;
-				}
-                        },
-                        complete: function(data, status) {
-				console.info("Cumulative Total = " + cum_total);
-				/********************************************************************
-				* If the 'has_more' flag had been set, it means that there are more
-				* that 50 transactions to load. If this is the case, call 30779 upon
-				* this completion. At this writing 20170821 the API will only support
-				* 10 transactions, after 50. Since blockcypher (apparently) works
-				* backwards from the top, make it so we're reading the 10 blocks
-				* BEFORE the last block.
-				********************************************************************/
-				console.info("hasMoreFlag (before calling 30779 = " + hasMoreFlag);
-				if (hasMoreFlag == true) {		// we can do more work here...
-				    console.info("Waiting .5 seconds before calling blockcyper.com for next 10 transactions");
-				    setTimeout(function () {
-						very_get_info("30779"); 	// load the next 10 transactions 
-				    }, 500);	// wait 500 ms so as not to p.o. the system
-				}
-                        }
-                   });
-        break;
-
-
 	/*****************************************
 	* INDEX30779: This is the extension for
 	* 30778. This function picks 10 more 
@@ -976,9 +1003,9 @@ $.post('https://api.blockcypher.com/v1/doge/main/txs/push/', JSON.stringify(push
  //                               console.info("30779 success: %s",tt1);
                                 console.info("30779 number of transactions to load: " + data.txs.length);
 
-                                //for (var i=0;i<data.txs.length;i++)
-                                for (var i=0;i<data.txs.length;i++)
-                                {
+				//for (var i=0;i<data.txs.length;i++)
+				for (var i=0;i<data.txs.length;i++)
+				{
 					for (var z=0;z<data.txs[i].vout_sz;z++)
 					{
 						if (data.txs[i].outputs[z].addresses == work_multisig_address)
@@ -999,9 +1026,9 @@ $.post('https://api.blockcypher.com/v1/doge/main/txs/push/', JSON.stringify(push
 							}
 						}
 					}
-                                }
-                                for (var i=work_last_count;i<work_txs.length;i++)
-                                {
+				}
+				for (var i=work_last_count;i<work_txs.length;i++)
+				{
 					console.info(
 						"blockcypher:TX(" + i + "): " + work_txs[i].txid + 
 						", output_no: " + work_txs[i].output_no + 
@@ -1040,6 +1067,16 @@ $.post('https://api.blockcypher.com/v1/doge/main/txs/push/', JSON.stringify(push
                    });
 	break;
 
+	/*****************************************
+	* INDEX30780: blockcypher extension: next_outputs
+	*****************************************/
+	case "30780":
+		try {
+			alert("wow. such outputs.");
+		} catch (err) {
+			console.log(err);
+		}
+	break;
 
 	/*****************************************
 	* INDEX20778: Provide Balance Info from 
@@ -1219,7 +1256,7 @@ $.post('https://api.blockcypher.com/v1/doge/main/txs/push/', JSON.stringify(push
 
 		console.info("20000 start");
 
-		console.info(currency_show_conversion(dollaramount,"USD","XDG"));
+//		console.info(currency_show_conversion(dollaramount,"USD","XDG"));
 
 		console.info("20000 stop");
 	break;

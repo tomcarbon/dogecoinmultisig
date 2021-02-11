@@ -1,6 +1,6 @@
 $(document).ready(function() {
 /******************************************************************
-* tomcarbon20160909
+* tomcarbon2021026
 * fly my pretties!
 ******************************************************************/
 //window.alert("Hello from the initialization portion of banksuite.js. ");
@@ -602,7 +602,7 @@ var bs_multiDoGoodFund;
 
 //	console.info("top of #bankSuiteLoad.\nPubKey1 = " + bs_pubKey1 + "\nPubKey2 = " + bs_pubKey2);
 	/* check if this is a single public key or a double public key or unknown length*/
-	if (bs_pubKey1.length == 130) {
+	if (bs_pubKey1.length == 130 || bs_pubKey1.length == 66) {		// 66 is compressed. Here you go u/MooBaloo
 		console.info("A single public key has been brought into port 1:");
 		keys.push(bs_pubKey1);
 		keys.push(bs_pubKey2);	// the assumption is that it's been populated, but meh

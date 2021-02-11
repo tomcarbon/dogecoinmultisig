@@ -47,7 +47,6 @@
 		<script type="text/javascript" src="js/quatroshibe.js"></script>
 		<script type="text/javascript" src="js/payspot.js"></script>
 		<script type="text/javascript" src="js/microinvoice.js"></script>
-		<script type="text/javascript" src="https://coinmill.com/frame.js"></script>
 		<script type="text/javascript" src="js/anbot.js"></script>
 		<script type="text/javascript" src="js/anbotR.js"></script>
 		<script type="text/javascript" src="js/newPaySpot.js"></script>
@@ -313,7 +312,7 @@
 							<p>778 get Unspent transactions for Ðogecoin address</p>
 							<p>779 get info about a txid</p>
 							<p>780 get Spent transactions for Ðogecoin address</p>
-							<p>20000 Convert USD to Dogecoin (courtesy of coinmill.com) </p>
+							<p>1999 get latest dogecoin fees</p>
 							<!--textarea type="text" id="dogeScript" class="form-control" style="height:125px"></textarea-->
 							<input type="button" class="btn btn-primary" value="Moon!" id="moist2">
 						</div>
@@ -667,13 +666,15 @@
 					<h2>About<small> this website.</small></h2>
 					<p><strong>If you don't know anything about multisigs, or dogecoin/cryptocurrencies for that matter, but you are ready to dive in, then this site is for you.</strong></p>
 					<p>This site/project is associated with the <a href="https://reddit.com/r/dogecoin/">R/DOGECOIN</a> community on reddit. Visit that reddit and say hi, become a shibe.</p>
+					<p><strong>TLDR:</strong>Check out the Dogecoin Bankings Suite, below</p>
 
 		<hr>
 		<h3> Dogecoin Bankings Suite</h3>
-		<p><strong>The <a href="index.html#bankSuite">Dogecoin Bankings Suite</a> (DBS) is a multi-signature multi-wallet: Six separate accounts that are controlled by a single password.</strong>
-		<span>And DBS sits <strong>right </strong>on the blockchain.<small><small><small>(and it's free!)</small></small></small></span>
-		<span>Some users might appreciate being so close to the blockchain!<a href="https://redd.it/5697o0/"> Here</a> is an entry point to learn more.</span></p>
-		<p>This is the <strong>FASTEST AND EASIEST</strong> way to get a Dogecoin Account. And you can make a copy of this website and make your DBS offline.</p>
+		<p><strong>The <a href="index.html#bankSuite">Dogecoin Bankings Suite</a> (DBS) is a multi-signature multi-wallet: Six separate accounts that are controlled by a single password.</strong></p>
+
+		<p>This is the <strong>FASTEST AND EASIEST</strong> way to get a Dogecoin Account. Just store 2 pieces of information in a text file.</p>
+
+		<p>Look for the green HELP button.</p>
 
 		<hr>
 		<h3> TripleShibe </h3>
@@ -713,17 +714,17 @@
 		</strong> Check out the 'How To' section for videos showing you how to use this site. You will need basic cut n'pasting skills, and a little patience.</p>
 
 		<p><strong>All computations are performed in Javascript within the browser. The so-called "Broadcast" transaction takes this Javascript output and loads it to the Dogecoin Network. This means that you are able<em> to create your dogecoin addresses and multisig address (and handle the private key, etc) OFFLINE</em></strong><em> (this is a security feature).</em></p>
-		<p><strong>This program will support up to 75 unspent transactions per pass.</strong></p>
+		<p><strong>This program will support up to 60 unspent transactions per pass.</strong></p>
 		<p>This site is a self-service bankings tool; it does not have a formalized support system.</p>
 		<p><strong>Use F12-Console for detailed information on what the program is doing, etc.</strong></p>
-		<p>Version .285 (this statement last touched 20190818). This website is in<strong> Beta</strong>. This is open source freeware.</p>
+		<p>Version .287 (this statement last touched 20210206). This website is in<strong> Beta</strong>. This is open source freeware.</p>
 		<p><strong>This site is a work in progress</strong><strong> that will continue growing over time.</strong></p>
 		<p>Here's the source code:<a title="dogecoinmultisig.org" href="https://github.com/tomcarbon/dogecoinmultisig/">https://github.com/tomcarbon/dogecoinmultisig</a>. dogecoinmultisig.org is turnkey. Just copy it from github,and run index.html</p>
 		<hr> <p></p>
 
 		<h3><strong>Acknowledgements</strong></h3>
 		<p>This site was started with coinb.in open source source code. Please help support them at: 1CWHWkTWaq1K5hevimJia3cyinQsrgXUvg(BTC)</p>
-		<p><a title="very" href="https://chain.so/DOGE/">chain.so</a> is the primary dogecoin network interface. Please help support them at: 1HTL18EnUAgCjb8n2x3NN7bmVUmmDcnzBZ (BTC)</p>
+		<p><a title="very" href="https://blockcypher.com/">blockcypher.com</a> is the primary dogecoin network interface.</p>
 		<p>岡崎正広created the logo! If you like it let him know with doge! 9vfQTSv7GtBA5YaU58VwhZFKBgGne7rcpX (DOGE)</p>
 		<p>The community at <a title="to" href="https://reddit.com/r/dogecoin/">r/dogecoin</a>. Special thanks to u/1waterhole, u/erkan_yilmaz, u/greenbigfrog, u/pta2002, u/buurp, u/cody50055 and u/neuro-tic (very testing). Very Thanks helping with Translations and stuff: u/Bomsusik, u/pandoge, u/maerco, u/desoroo, u/LeoNeeson, u/tomcarbon, u/peoplma, u/ChateauLafite1827, u/MrDogeMeister, u/to-the-moon-de, u/GeriGeriGeri, u/Cryptodoc </p>
 		<p></p> <hr>
@@ -740,7 +741,7 @@
 		<p>The Public Key can be used to generate both regular and multisig Dogecoin addresses.</p>
 		<p>So, it's the Public Keys that are used to make Multisig Addresses.</p>
 		<p><strong>What is a Multisig?</strong></p>
-		<p>A Multi-Signature &ETH;ogecoin address, or Multisig, is a special &ETH;ogecoin address that is created from one or more regular &ETH;ogecoin Addresses. &ETH;ogecoin multisigs always start with an 'A' or a '9' (regular addresses start with a 'D'). Multisigs do not have a random number generator but instead are created from combinations of Public Keys.</p>
+		<p>A Multi-Signature &ETH;ogecoin address, or Multisig, is a special &ETH;ogecoin address that is created from one or more regular &ETH;ogecoin Public Keys. &ETH;ogecoin multisigs always start with an 'A' or a '9' (regular addresses start with a 'D'). Multisigs do not come from a random number generator like regular addresses, but instead are created from combinations of Public Keys.</p>
 		<p>Here is a sample multisig Address: 9sxA7zvcNyJ57W7vND3CfrqaocrEid2p8Z.</p>
 		<p>Multisigs can be powerful tools. We're really just learning about their potential.</p>
 		
@@ -754,7 +755,7 @@
 		<p>Afterthe<strong> Key Holders</strong> agree on a location to send x amount of &ETH;ogecoins, and then after the required number of<strong> Signatures</strong> are collected, the money moves!</p>
 		<p></p>
 
-		<p><strong>What are somethings you can do with a multisig?</strong></p>
+		<p><strong>What are some things you can do with a multisig?</strong></p>
 		<p>Of course, you can smoosh them altogether into the<a href="index.html#bankSuite"> DBS</a> or the <a href="index.html#tripleshibe">TripleShibe</a>. You can share the private keys or just keep them to yourself and use it personally. Here's a rundown on what we've got, with how-to-use examples:</p>
 
 		<p>A<strong> 1/1 Multisig</strong> is like giving any regular &ETH;ogecoin address an additional address. One Private Key yieldstwo Dogecoin addresses to use: The regular address, and the "new" 1/1 multisig address associated with the Public Key.</p>
@@ -767,7 +768,7 @@
 		<p>This website is an interface to the Dogecoin Network, and while it is tuned for handling multi-signature transactions, non-multisig Dogecoin addresses (the regular ones) can also be used here. The website is designed to be usable offline.</p>
 		<p>Compatible with dogecoin-qt</p>
 		<p>Privacy: Keys are generated on client side and we never ever see them. Nor do we want to see them.</p>
-		<p>Check out dogecoinmultisig.org.  This is something you can take from github and copy onto a memory stick. You can put the memory stick onto a computer that's not connected to the internet, and generate regular and multisig addresses.  Why is that? In terms of this website, it's because the Private Key is generated first, using randomized number information. From the Private Key, the Public Key is generated, and from the Public Key, the Address is generated. These addresses don't need to be connected to some central authority, They don't need to be entered into a database... it's the spend transaction that does that. The blockchain consists of transactions that are weaved together to form the story of your address... that's how your address exists in the blockchain, in the transactions that mention it. To pull transactions from the blockchain, you're going to need access to the internet. Then you can (in theory) take those transactions with you, store them on an offline computer. You can sign them offline, creating the broadcast transaction -- a block of data that will be incorporated into the blockchain. That 'broadcast' happens online. PS: multisigs are also addresses generated from the public keys.</p>
+		<p>Check out dogecoinmultisig.org.  This is something you can take from github and copy onto a memory stick. You can put the memory stick onto a computer that's not connected to the internet, and generate regular and multisig addresses.  Why is that? In terms of this website, it's because the Private Key is generated first, using randomized number information. From the Private Key, the Public Key is generated, and from the Public Key, the Address is generated. These addresses don't need to be connected to some central authority, They don't need to be entered into a database... it's the spend transaction that does that. The blockchain consists of transactions that are weaved together to form the story of your address... that's how your address exists in the blockchain, in the transactions that mention it. To pull transactions from the blockchain, you're going to need access to the internet. Then you can (in theory) take those transactions with you, store them on an offline computer. You can sign them offline, creating the broadcast transaction -- a block of data that will be incorporated into the blockchain. That 'broadcast' happens online.</p>
 		<h3><strong>Thank You</strong></h3>
 </div>
 
@@ -3205,7 +3206,7 @@
 
 		<div id="footer">
 			<div class="container text-right">
-	        		<p class="text-muted">Version .286</p>
+	        		<p class="text-muted">Version .287</p>
 			</div>
 		</div>
 
