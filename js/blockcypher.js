@@ -60,15 +60,21 @@ async function get_the_transactions(address) {
                 }
 
                 if (data.hasMore == true) {             // we can do more work here...
-                        work = parseInt(data.txs[data.txs.length-1].block_height);      // save this  last block to pass it to 30779
+                        work = parseInt(data.txs[data.txs.length-1 < 0 ? 0 : data.txs.length-1].block_height);      // save this  last block to pass it to 30779
                         work_last_count = work_txs.length;      // e.g. 50
                         console.info("30778: hasMore == true, calling 30779 to read in more transactions before block = " + work);
                         hasMoreFlag = true;
                 }
 
-                if (hasMoreFlag == true && data.txs[data.txs.length-1].block_index != -1) {              // we can do more work here...
-                                get_the_next_transactions(address);
+                if (hasMoreFlag == true && data.txs[data.txs.length-1 < 0 ? 0 : data.txs.length-1].block_index != -1) {              // we can do more work here...
+			const res = await get_the_next_transactions(address);
+			console.info("value of res = ");
+			console.log(res);
+			work_txs.push(...res);
                 }
+
+		return work_txs;
+
         } catch (e) {
                 console.log(e);
         }
@@ -79,6 +85,7 @@ async function get_the_transactions(address) {
 async function get_the_next_transactions(address) {
         console.info("top of get_the_next_transactions");
         try {
+		let work_txs = [];
                 var hasMoreFlag = false;
                 var ttemp = 0;
                 /***************************************************************
@@ -141,16 +148,18 @@ async function get_the_next_transactions(address) {
                 }
 
                 console.info(`data.hasMore=${data.hasMore}, work_txs.length=${work_txs.length}`);
-                if (data.hasMore == true && data.txs[data.txs.length-1].block_index != -1) {
-                        work = parseInt(data.txs[data.txs.length-1].block_height);     // save this  last block to pass it to 30779
+                if (data.hasMore == true && data.txs[data.txs.length-1 < 0 ? 0 : data.txs.length-1].block_index != -1) {
+                        work = parseInt(data.txs[data.txs.length-1 < 0 ? 0 : data.txs.length-1].block_height);     // save this  last block to pass it to 30779
                         console.info("hasmore: work=" + work);
                         console.info("  con't(before): work_last_count = " +work_last_count+" and work_txs.length="+work_txs.length);
                         work_last_count = work_txs.length;      // e.g. 60
                         console.info("  con't(after): work_last_count = "+work_last_count+" and work_txs.length="+work_txs.length);
-                        get_the_next_transactions(address);     // async recursion
+                        const res = await get_the_next_transactions(address);     // async recursion
+			work_txs.push(...res);
                 }
 
                 console.info("Cumulative Total = " + cum_total);
+		return work_txs;
         } catch (e) {
                 console.info("ERROR! get_the_next_transactions");
                 console.log(e);

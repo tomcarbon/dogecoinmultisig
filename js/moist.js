@@ -284,7 +284,7 @@ async function dogecoin_wallet_balance() {
 		}
 		else if (work_vendor_select == 1)	// blockcypher
 		{
-			get_the_transactions(work_multisig_address);	// async
+			work_txs = await get_the_transactions(work_multisig_address);	// async
 		} else {
 			very_get_info("10778"); 	// chain.so start loading the unspent transactions
 		}
