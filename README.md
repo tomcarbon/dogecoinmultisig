@@ -1,4 +1,4 @@
-20210414
+20211114
 
 **TLDR**: EDUCATIONAL. Also FUNCTIONAL. This is a free multi-address, multi-user cryptocurrency wallet based around multi-sigs (multi-signatures). It is decentralized, meaning that everything is running in Javascript on the browser and the user keeps their own password. Also in the site is a method of receiving payments, and other assorted tools.
 
@@ -7,7 +7,7 @@
 
 This project is a fork of the github project coinb.in (forked in June 2016). Primarily javascript, this project does not utilize PHP or central server. Copy the whole project into a directory on your server, or locally, and it's ready to go.
 
-*Multiple multisignature wallet designs, decentralized, free, multi-user capable.* The withdraw is broken down into several of the dogecoin network's principal components, allowing the user to verify at each step of the dogecoin-sending process (creating transaction, signing(s), broadcast). If you want to learn how cryptocurrency transactions work, then trying to 'verify' everything you can along the way should prove instructive. As of this writing, the minimum amount to send is 2 doge (1 to send, and 1 for the mining fee). Additional information can be found in the console (F12 on most browsers).
+*Multiple multisignature wallet designs, decentralized, free, multi-user capable.* The withdraw is broken down into several of the dogecoin network's principal components, allowing the user to verify at each step of the dogecoin-sending process (creating transaction, signing(s), broadcast). If you want to learn how cryptocurrency transactions work, then trying to 'verify' everything you can along the way should prove instructive. As of this writing, the minimum amount to send is 1.01 doge (1 to send, and .01 for the mining fee). Additional information can be found in the console (F12 on most browsers).
 
 Here's a Quick Pictorial Guide (ELI5) that demonstrates basic functionality: https://imgur.com/a/fka37.
 

@@ -5,6 +5,7 @@ document.documentElement.scrollTop = 0;			// this makes the page go back to the 
 * Some folks don't like the word moist. Sorry. 
 ******************************************************************/
 //window.alert("Hello from the initialization portion of moist.js");
+const DEFAULT_FEE_AMOUNT = 0.01;
 var tx = coinjs.transaction();
 var tempstring;
 var work;
@@ -1312,20 +1313,19 @@ function populate_unspent_txid() {
 			/* SINGLE SWEEP TRANSACTION. if this is a single transaction for the whole amount, that's special */
 			if (i == 0 && parseFloat(work_amount_to_withdraw) == parseFloat(work_balance) &&
  			    parseFloat(work_txs[i].value) == parseFloat(work_balance)			) {
-				console.info ("SINGLE SWEEP TRANSACTION selected for the amount of " + work_balance 
-						+ "-1 (miners_fee)" + "= 1" );
+				console.info ("SINGLE SWEEP TRANSACTION selected for the amount of " + work_balance + " (miners_fee)");
 				wow_transaction_type = "single sweep transaction";	
 				single_transaction_id = 0;
 				i = work_txs.length + 1; // break outta loop		
 			}
 			/**********************************************************************
 			* SINGLE TRANSACTION. If the value to be paid is less than the value of a single transaction,
-			* plus one doge for the miners fee, use that transaction!
+			* plus the miners fee, use that transaction!
 			***********************************************************************/
-			else if ( (parseFloat(work_amount_to_withdraw) + 1) <= parseFloat(work_txs[i].value)) {	
+			else if ( (parseFloat(work_amount_to_withdraw) + DEFAULT_FEE_AMOUNT) <= parseFloat(work_txs[i].value)) {	
 				console.info("SINGLE TXID TRANSACTION selected. \n" + 
 						"Transaction Index(" + i + ") is larger than amount to be withdrawn,\n" +
-						" so we will use it (and give change). One doge miners fee");
+						" so we will use it (and give change).");
 				wow_transaction_type = "single transaction";	// change address will be utilized in this model
 				single_transaction_id = i;
 				i = work_txs.length + 1; // break outta loop		
@@ -1362,16 +1362,15 @@ function populate_unspent_txid() {
 			/*******************************************************************************
 			* SINGLE TRANSACTION. 
 			* SINGLE SWEEP TRANSACTION.
-			* The withdraw amount requested fits into a single transaction, and can be paid
-			* for with only 1 dogecoin! Construct an output txid and if necessary a 
-			* change txid
+			* The withdraw amount requested fits into a single transaction.
+			* Construct an output txid and if necessary a change txid
 			* The single sweep transaction: in this case the 1 transaction is the totality
-			* of the amount, so we subtract one doge miners_fee from the total_amount.
+			* of the amount, so we subtract miners_fee from the total_amount.
 			*******************************************************************************/
 			case "single transaction":
 			case "single sweep transaction":
 				//console.info("Single Transaction selected in switch statement.");
-				work_miners_fee = 1;		// always 1 for single txid for 1/1, 1/2, 1/3, 2/2.
+				work_miners_fee = DEFAULT_FEE_AMOUNT;
 
 
 				/**********************
@@ -1391,17 +1390,17 @@ function populate_unspent_txid() {
 				/******************************************************
 				* OUTPUTS
 				* Here we make a differentiation in how miner
-				* fees are handled. If it's for the totalilty, subtract 1.
-				* Otherwise, since it's for less than then the total, add 1.
+				* fees are handled. 
 				******************************************************/
 				if (wow_transaction_type == "single sweep transaction") {
-					//console.info("switch(single sweep transaction)");
+					console.info("switch(single sweep transaction)");
 					var signed_size = calculate_multisig_signed_size(
 									work_number_signatures_required,
 									work_number_pubkeys,1,1);
-					tx.addoutput(work_destination_address, work_amount_to_withdraw-1);
+					tx.addoutput(work_destination_address, work_amount_to_withdraw-DEFAULT_FEE_AMOUNT);
 				}
 				else {
+					console.info("switch(single but not a single sweep transaction)");
 					/* first add the primary output */
 					tx.addoutput(work_destination_address, work_amount_to_withdraw);
 					/******************************************************
@@ -1413,7 +1412,7 @@ function populate_unspent_txid() {
 						var signed_size = calculate_multisig_signed_size(
 									work_number_signatures_required,
 									work_number_pubkeys,1,2);	// 2 txs
-						work_miners_fee = parseInt(signed_size/1000) + 1;
+						work_miners_fee = (parseInt(signed_size/1000) + 1) * DEFAULT_FEE_AMOUNT;
 						console.info("Computed miners fee = " + work_miners_fee);
 
 						var change_address_amount = 
@@ -1427,7 +1426,7 @@ function populate_unspent_txid() {
 						var signed_size = calculate_multisig_signed_size(
 									work_number_signatures_required,
 									work_number_pubkeys,1,1);	// 1 tx
-						work_miners_fee = parseInt(signed_size/1000) + 1;
+						work_miners_fee = (parseInt(signed_size/1000) + 1) * DEFAULT_FEE_AMOUNT;
 						console.info("Computed miners fee = " + work_miners_fee);
 
 						/* this is exactly equal - good. Do not add a change address */
@@ -1448,6 +1447,7 @@ function populate_unspent_txid() {
 			* subtract the miner's fee from the totality. No change address.
 			*******************************************************************************/
 			case "sweep transaction":	
+				console.info("sweep transaction");
 				var cum_balance = parseFloat("0.00000000");	// this is mainly used for validation
 				var maximum_transactions_to_process = work_max_trans;
 				console.info("top of sweep transaction. Theoretical maximum # of trans = " + maximum_transactions_to_process);
@@ -1478,7 +1478,7 @@ function populate_unspent_txid() {
 				var signed_size = calculate_multisig_signed_size(
 							work_number_signatures_required,
 							work_number_pubkeys,maximum_transactions_to_process,1);	// 1 output
-				work_miners_fee = parseInt(signed_size/1000) + 1;
+				work_miners_fee = (parseInt(signed_size/1000) + 1) * DEFAULT_FEE_AMOUNT;
 				console.info("Miners fee will be " + work_miners_fee + " doge.");
 
 				/* perform a validation, compare cumulative value to the balance. If not as expected.... */
@@ -1515,7 +1515,6 @@ function populate_unspent_txid() {
 			* subtract the miner's fee from the totality. No change address.
 			*******************************************************************************/
 			case "multi transaction":
-				var work_miners_fee = 0;
 				var cum_balance = parseFloat("0.00000000");	// this is mainly used for validation
 				var maximum_transactions_to_process = work_max_trans;
 				console.info("top of multi transaction");
@@ -1531,7 +1530,7 @@ function populate_unspent_txid() {
 				var signed_size = calculate_multisig_signed_size(
 							work_number_signatures_required,
 							work_number_pubkeys,maximum_transactions_to_process,2);	//  assume change tx is needed.
-				var max_miners_fee = parseInt(signed_size/1000) + 1;
+				var max_miners_fee = (parseInt(signed_size/1000) + 1) * DEFAULT_FEE_AMOUNT;
 				work_miners_fee = max_miners_fee; 		// for now, we'll reduce later
 				console.info("Maximum miners_fee for this would  be " + max_miners_fee + " doge.");
 				/* validate to see if we are attempting to overdraw from the wallet. */
@@ -1566,7 +1565,7 @@ function populate_unspent_txid() {
 						var signed_size = calculate_multisig_signed_size(
 									work_number_signatures_required,
 									work_number_pubkeys,(i+1),2);	// assume change address is needed
-						work_miners_fee = parseFloat(parseInt(signed_size/1000) + 1);
+						work_miners_fee = parseFloat((parseInt(signed_size/1000) + 1) * DEFAULT_FEE_AMOUNT);
 						console.info("computed miners fee = " + work_miners_fee);
 //						if (parseFloat(parseFloat(cum_balance) + parseFloat(work_miners_fee)) >= 
 //							parseFloat(work_amount_to_withdraw)) {		// we've got enough...OLD
@@ -1592,7 +1591,7 @@ function populate_unspent_txid() {
 					var signed_size = calculate_multisig_signed_size(
 								work_number_signatures_required,
 								work_number_pubkeys,work_max_trans,1);	// assume change address is needed
-					work_miners_fee = parseFloat(parseInt(signed_size/1000) + 1);
+					work_miners_fee = parseFloat((parseInt(signed_size/1000) + 1) * DEFAULT_FEE_AMOUNT);
 					console.info("recomputed miners fee = " + work_miners_fee);
 					var bb1 = parseFloat(cum_balance - work_miners_fee);
 					var tt1 = 	"The amount requested to be withdrawn has a higher\namount than the maximum allowed number of transactions\n" + 
@@ -1626,7 +1625,7 @@ function populate_unspent_txid() {
 						var signed_size = calculate_multisig_signed_size(
 									work_number_signatures_required,
 									work_number_pubkeys,num_transactions,2);	// assume change address is needed
-						work_miners_fee = parseFloat(parseInt(signed_size/1000) + 1);
+						work_miners_fee = parseFloat((parseInt(signed_size/1000) + 1) * DEFAULT_FEE_AMOUNT);
 						console.info("final recomputed miners fee = " + work_miners_fee);
 
 						/* formula: change_amt =cum - (amt_to_pay + MF) */
