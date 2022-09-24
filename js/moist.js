@@ -10,7 +10,7 @@ var tx = coinjs.transaction();
 var tempstring;
 var work;
 var work_max_trans = parseInt("99");
-var work_vendor_select = parseInt("1");		// 0 = default = chain.so, 1 = blockcypher.com (20190816: make blockcypher.com the defaul)
+var work_vendor_select = parseInt("2");		// 0 = default = chain.so, 1 = blockcypher.com (20190816: make blockcypher.com the defaul)
 var cum_total = parseFloat("0.0");
 var work_number_signatures_required;
 var work_number_pubkeys;
@@ -43,11 +43,15 @@ document.getElementById("vendorDisplay").innerHTML = "blockcypher (default) sele
 $("#changeVendor").click(function(){
     var x = $("#changeVendor").val();
 
-	if (x == "blockcypher.com")
-	{
+	if (x == "blockcypher.com") {
 	        document.getElementById("vendorDisplay").innerHTML =  x + " selected (60 transactions at a time max at a time) ";
 		work_vendor_select = 1;	
 		console.info("blockcypher.com has been selected. (60 transactions max at a time)");
+		work_max_trans = parseInt("60");
+	} else if (x == "blockcypher(update)") {
+		document.getElementById("vendorDisplay").innerHTML =  x + " selected (60 transactions at a time max at a time) ";
+		work_vendor_select = 1;	
+		console.info("blockcypher(update) has been selected. (60 transactions max at a time)");
 		work_max_trans = parseInt("60");
 	} else {
 	        document.getElementById("vendorDisplay").innerHTML =  x + " selected (99 transactions max at a time) ";
@@ -98,9 +102,9 @@ var tt0;
 		tt0 = _getVerify1[0];
 		console.info("total length = " + _getVerify1[0].length);  // 172 = 130 + 42
 		console.info("_getVerify1[0] = " + _getVerify1[0]);
-		work_vendor_select = 1;	
-		document.getElementById("vendorDisplay").innerHTML =  "using blockcypher.com (latest 60 transactions)";
-		console.info("blockcypher.com has been selected.");
+		work_vendor_select = 2;	
+		document.getElementById("vendorDisplay").innerHTML =  "using blockcypher(update) (latest 60 transactions)";
+		console.info("blockcypher(update) has been selected.");
 		work_max_trans = parseInt("60");
 	}
 
@@ -226,7 +230,7 @@ async function dogecoin_wallet_balance() {
 	try {
 		work_multisig_address = $("#dogeScript7").val();
 
-		if (work_vendor_select == 1)	{		// blockcypher = default
+		if (work_vendor_select == 1 || work_vendor_select == 2)	{		// blockcypher = default
 			url_text = "https://api.blockcypher.com/v1/doge/main/addrs/" + work_multisig_address + "/balance";
 		} else {
 			url_text = "https://chain.so/api/v2/get_address_balance/DOGE/" + work_multisig_address;	// chain.so
@@ -245,7 +249,7 @@ async function dogecoin_wallet_balance() {
 			success: function(data) {
 				var tt1 = JSON.stringify(data, null, 4);
 				$("#getWalletUCBalance").addClass("hidden");
-				if (work_vendor_select == 1)	// blockcypher
+				if (work_vendor_select == 1 || work_vendor_select == 2)	// blockcypher
 				{
 					work_balance = data.balance/100000000;
 					work_unconfirmed_balance = data.unconfirmed_balance/100000000;
@@ -286,6 +290,8 @@ async function dogecoin_wallet_balance() {
 		else if (work_vendor_select == 1)	// blockcypher
 		{
 			work_txs = await get_the_transactions(work_multisig_address);	// async
+		} else if (work_vendor_select == 2) {
+			work_txs = await get_the_transactions_blockcypher_update(work_multisig_address);	// async
 		} else {
 			very_get_info("10778"); 	// chain.so start loading the unspent transactions
 		}

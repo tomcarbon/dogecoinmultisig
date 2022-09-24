@@ -26,7 +26,7 @@ $("#tsMiniPayBox5"   	).toggle("fast","swing");	// hide this at initialization t
 $("#tsMiniPayBox6"   	).toggle("fast","swing");	// hide this at initialization time
 
 
-var work_vendor_select = parseInt("1");			// 20190816 - make blockcypher the default
+var work_vendor_select = parseInt("2");			// 20220924 - make updated blockcypher the default
 document.getElementById("TSvendorDisplay").innerHTML = "blockcypher (default) selected.";            // first time: display the vendor info to screen
 
 //function changeVendor(selTag) {
@@ -38,6 +38,9 @@ $("#TSchangeVendor").click(function(){
         {
                 work_vendor_select = 1;
                 console.info("blockcypher.com has been selected.");
+        } else if (x == "blockcypher(update)") {
+                work_vendor_select = 2;
+                console.info("blockcypher(update) has been selected.");
         } else {
                 work_vendor_select = 0;
                 console.info("chain.so (default) has been selected.");
@@ -492,7 +495,7 @@ $("#tsPayBtn").click(function(){   // NEXT (to go to withdrawl screen
         var amount      = v4.trim();
         var msg = "tripleshibe";
         /* just separate the fields by . */
-	if (work_vendor_select == 1)	{	// use blockcypher.com
+	if (work_vendor_select == 1 || work_vendor_select == 2)	{	// use blockcypher.com
 		var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
                         msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
 	} else {				// use chain.so (default)
@@ -518,7 +521,7 @@ $("#tsMiniPayBtn1").click(function(){   // NEXT (to go to withdrawl screen
         var amount      = v4.trim();
         var msg = "tripleshibe";
         /* just separate the fields by . */
-	if (work_vendor_select == 1)	{	// use blockcypher.com
+	if (work_vendor_select == 1 || work_vendor_select == 2)	{	// use blockcypher.com
 		var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
                         msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
 	} else {				// use chain.so (default)
@@ -543,7 +546,7 @@ $("#tsMiniPayBtn2").click(function(){   // NEXT (to go to withdrawl screen
         var amount      = v4.trim();
         var msg = "tripleshibe";
         /* just separate the fields by . */
-	if (work_vendor_select == 1)	{	// use blockcypher.com
+	if (work_vendor_select == 1 || work_vendor_select == 2)	{	// use blockcypher.com
 		var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
                         msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
 	} else {				// use chain.so (default)
@@ -568,7 +571,7 @@ $("#tsMiniPayBtn3").click(function(){   // NEXT (to go to withdrawl screen
         var amount      = v4.trim();
         var msg = "tripleshibe";
         /* just separate the fields by . */
-	if (work_vendor_select == 1)	{	// use blockcypher.com
+	if (work_vendor_select == 1 || work_vendor_select == 2)	{	// use blockcypher.com
 		var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
                         msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
 	} else {				// use chain.so (default)
@@ -593,7 +596,7 @@ $("#tsMiniPayBtn4").click(function(){   // NEXT (to go to withdrawl screen
         var amount      = v4.trim();
         var msg = "tripleshibe";
         /* just separate the fields by . */
-	if (work_vendor_select == 1)	{	// use blockcypher.com
+	if (work_vendor_select == 1 || work_vendor_select == 2)	{	// use blockcypher.com
 		var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
                         msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
 	} else {				// use chain.so (default)
@@ -618,7 +621,7 @@ $("#tsMiniPayBtn5").click(function(){   // NEXT (to go to withdrawl screen
         var amount      = v4.trim();
         var msg = "tripleshibe";
         /* just separate the fields by . */
-	if (work_vendor_select == 1)	{	// use blockcypher.com
+	if (work_vendor_select == 1 || work_vendor_select == 2)	{	// use blockcypher.com
 		var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
                         msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
 	} else {				// use chain.so (default)
@@ -643,7 +646,7 @@ $("#tsMiniPayBtn6").click(function(){   // NEXT (to go to withdrawl screen
         var amount      = v4.trim();
         var msg = "tripleshibe";
         /* just separate the fields by . */
-	if (work_vendor_select == 1)	{	// use blockcypher.com
+	if (work_vendor_select == 1 || work_vendor_select == 2)	{	// use blockcypher.com
 		var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
                         msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
 	} else {				// use chain.so (default)

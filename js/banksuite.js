@@ -10,7 +10,8 @@ var work;
 var work_balance = [];
 var work_unconfirmed_balance = [];
 var work_balance_total = parseFloat("0.00000000");
-var work_vendor_select = parseInt("1");	// 20190816: make blockcypher.io the default
+//var work_vendor_select = parseInt("1");	// 20190816: make blockcypher.io the default
+var work_vendor_select = parseInt("2");	// 20220924 new and improved blockcypher.io (preserve the original)
 
 /* first time */
 $("#bankSuitePersonal1PayBox"	).toggle("fast","swing");
@@ -32,10 +33,12 @@ $("#DBSchangeVendor").click(function(){
     var x = $("#DBSchangeVendor").val();
 
     document.getElementById("DBSvendorDisplay").innerHTML =  x + " selected. ";
-        if (x == "blockcypher.com")
-        {
+        if (x == "blockcypher.com") {
                 work_vendor_select = 1;
                 console.info("blockcypher.com has been selected.");
+		} else if (x == "blockcypher(update)") {
+                work_vendor_select = 2;
+                console.info("blockcypher(update) has been selected.");
         } else {
                 work_vendor_select = 0;
                 console.info("chain.so (default) has been selected.");
@@ -426,7 +429,7 @@ $("#bankSuitePay1").click(function(){	// PERSONAL 1
 	var amount 	= v4.trim();
 	var msg = "personal1";
 	/* just separate the fields by . */
-	if (work_vendor_select == 1)    {       // use blockcypher.com
+	if (work_vendor_select == 1 || work_vendor_select == 2)    {       // use blockcypher.com
                 var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
                         msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
         } else {                                // use chain.so (default)
@@ -449,7 +452,7 @@ $("#bankSuitePay2").click(function(){	// PERSONAL 2
 	var amount 	= v4.trim();
 	var msg = "personal2";
 	/* just separate the fields by . */
-	if (work_vendor_select == 1)    {       // use blockcypher.com
+	if (work_vendor_select == 1 || work_vendor_select == 2)    {       // use blockcypher.com
                 var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
                         msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
         } else {                                // use chain.so (default)
@@ -471,7 +474,7 @@ $("#bankSuitePay3").click(function(){
 	var amount 	= v4.trim();
 	var msg = "nomsg";
 	/* just separate the fields by . */
-	if (work_vendor_select == 1)    {       // use blockcypher.com
+	if (work_vendor_select == 1 || work_vendor_select == 2)    {       // use blockcypher.com
                 var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
                         msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
         } else {                                // use chain.so (default)
@@ -493,7 +496,7 @@ $("#bankSuitePay4").click(function(){
 	var amount 	= v4.trim();
 	var msg = "nomsg";
 	/* just separate the fields by . */
-	if (work_vendor_select == 1)    {       // use blockcypher.com
+	if (work_vendor_select == 1 || work_vendor_selct == 2)    {       // use blockcypher.com
                 var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
                         msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
         } else {                                // use chain.so (default)
@@ -515,7 +518,7 @@ $("#bankSuitePay5").click(function(){
 	var amount 	= v4.trim();
 	var msg = "nomsg";
 	/* just separate the fields by . */
-	if (work_vendor_select == 1)    {       // use blockcypher.com
+	if (work_vendor_select == 1 || work_vendor_select == 2 )    {       // use blockcypher.com
                 var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
                         msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
         } else {                                // use chain.so (default)
@@ -537,7 +540,7 @@ $("#bankSuitePay6").click(function(){
 	var amount 	= v4.trim();
 	var msg = "nomsg";
 	/* just separate the fields by . */
-	if (work_vendor_select == 1)    {       // use blockcypher.com
+	if (work_vendor_select == 1 || work_vendor_select == 2)    {       // use blockcypher.com
                 var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
                         msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
         } else {                                // use chain.so (default)
