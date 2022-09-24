@@ -496,7 +496,7 @@ $("#bankSuitePay4").click(function(){
 	var amount 	= v4.trim();
 	var msg = "nomsg";
 	/* just separate the fields by . */
-	if (work_vendor_select == 1 || work_vendor_selct == 2)    {       // use blockcypher.com
+	if (work_vendor_select == 1 || work_vendor_select == 2)    {       // use blockcypher.com
                 var tt1 = document.location.origin+''+document.location.pathname+'?redeemMultiSi1='+
                         msg + '.' + address + '.' + redeem_script + '.' + to_address + '.' + amount + '#redeemMultiSig';
         } else {                                // use chain.so (default)
