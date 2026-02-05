@@ -1019,7 +1019,8 @@ alert("milky");
 	}
 
 	
-	function rawSubmitDefault(btn){ 
+	function rawSubmitDefault(btn){
+		var thisbtn = btn;
 		$(thisbtn).val('Please wait, loading...').attr('disabled',true);
 		$.ajax ({
 			    type: "POST",
