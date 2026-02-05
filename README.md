@@ -1,4 +1,4 @@
-20240821
+20260204
 
 THIS WALLET IS NOW LOCALHOST only. For the web-friendly (deprecated) version of this software, view the classic branch for dogecoinmultisig.
 
