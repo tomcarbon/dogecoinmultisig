@@ -157,14 +157,14 @@ copyTextareaBtn2.addEventListener('click', function(event) {
 });
 
 
-/* get from chain.so, then wait before displaying */
+/* get from SoChain, then wait before displaying */
 function microinvoice_wallet_balance(multisig, urlName, UCurlName) {
 var tt1;
 var tt2;
 console.info("microinvoice_wallet_balance. Input Address: " + multisig);
 	$.ajax ({
 		type: "GET",
-		url: "https://chain.so/api/v2/get_address_balance/DOGE/" + multisig,
+		url: "https://sochain.com/api/v3/balance/DOGE/" + multisig,
 		dataType: "json",
 		error: function(data) {
 			tt1 = JSON.stringify(data, null, 4);
@@ -172,8 +172,8 @@ console.info("microinvoice_wallet_balance. Input Address: " + multisig);
 		},
 		success: function(data) {
 			tt1 = JSON.stringify(data, null, 4);
-			work_balance = data.data.confirmed_balance;
-			work_unconfirmed_balance = data.data.unconfirmed_balance;
+			work_balance = data.data.confirmed;
+			work_unconfirmed_balance = data.data.unconfirmed;
 			console.info("microinvoice_wallet_balance: " + tt1);
 		},
 		complete: function(data, status) {

@@ -867,32 +867,36 @@ alert("milky");
 		});
 	}
 
-	/* retrieve unspent data from blockrio for litecoin */
-	function listUnspentChainso_Litecoin(redeem){
+	/* retrieve unspent data from SoChain (API v3, ten per page) for dogecoin */
+	function listUnspentChainso_Litecoin(redeem, page){
+		page = page || 1;
 		$.ajax ({
 			type: "GET",
-			url: "https://chain.so/api/v2/get_tx_unspent/doge/"+redeem.addr,
+			url: "https://sochain.com/api/v3/unspent_outputs/DOGE/"+redeem.addr+"/"+page,
 			dataType: "json",
 			error: function(data) {
 				$("#redeemFromStatus").removeClass('hidden').html('<span class="glyphicon glyphicon-exclamation-sign"></span> Unexpected error, unable to retrieve unspent outputs!');
+				$("#redeemFromBtn").html("Load").attr('disabled',false);
+				totalInputAmount();
 			},
 			success: function(data) {
-				console.log(data);
 				if((data.status && data.data) && data.status=='success'){
-					$("#redeemFromAddress").removeClass('hidden').html('<span class="glyphicon glyphicon-info-sign"></span> Retrieved unspent inputs from address <a href="https://btc.blockr.io/address/info/'+redeem.addr+'" target="_blank">'+redeem.addr+'</a>');
-					for(var i in data.data.txs){
-						var o = data.data.txs[i];
-						var tx = ((o.txid).match(/.{1,2}/g).reverse()).join("")+'';
-						var n = o.output_no;
-						var script = (redeem.isMultisig==true) ? $("#redeemFrom").val() : o.script_hex;
+					$("#redeemFromAddress").removeClass('hidden').html('<span class="glyphicon glyphicon-info-sign"></span> Retrieved unspent inputs from address <a href="https://sochain.com/doge/address/'+redeem.addr+'" target="_blank">'+redeem.addr+'</a>');
+					for(var i in data.data.outputs){
+						var o = data.data.outputs[i];
+						var tx = ((o.hash).match(/.{1,2}/g).reverse()).join("")+'';
+						var n = o.index;
+						var script = (redeem.isMultisig==true) ? $("#redeemFrom").val() : o.script;
 						var amount = o.value;
 						addOutput(tx, n, script, amount);
+					}
+					if(data.data.outputs.length == 10){
+						listUnspentChainso_Litecoin(redeem, page+1);
+						return;
 					}
 				} else {
 					$("#redeemFromStatus").removeClass('hidden').html('<span class="glyphicon glyphicon-exclamation-sign"></span> Unexpected error, unable to retrieve unspent outputs.');
 				}
-			},
-			complete: function(data, status) {
 				$("#redeemFromBtn").html("Load").attr('disabled',false);
 				totalInputAmount();
 			}

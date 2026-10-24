@@ -56,7 +56,7 @@ $("#changeVendor").click(function(){
 	} else {
 	        document.getElementById("vendorDisplay").innerHTML =  x + " selected (99 transactions max at a time) ";
 		work_vendor_select = 0;	
-		console.info("chain.so (default) has been selected (99 transactions max at a time).");
+		console.info("SoChain has been selected (99 transactions max at a time).");
 		work_max_trans = parseInt("99");
 	}
 });
@@ -95,8 +95,8 @@ var tt0;
 		console.info("total length = " + _getVerify[0].length);  // 172 = 130 + 42
 		console.info("_getVerify[0] = " + _getVerify[0]);
 		work_vendor_select = 0;	
-		document.getElementById("vendorDisplay").innerHTML =  "using chain.so (first 99 transactions)";
-		console.info("chain.so (default) has been selected.");
+		document.getElementById("vendorDisplay").innerHTML =  "using SoChain (first 99 transactions)";
+		console.info("SoChain has been selected.");
 		work_max_trans = parseInt("99");
 	} else {
 		tt0 = _getVerify1[0];
@@ -233,7 +233,7 @@ async function dogecoin_wallet_balance() {
 		if (work_vendor_select == 1 || work_vendor_select == 2)	{		// blockcypher = default
 			url_text = "https://api.blockcypher.com/v1/doge/main/addrs/" + work_multisig_address + "/balance";
 		} else {
-			url_text = "https://chain.so/api/v2/get_address_balance/DOGE/" + work_multisig_address;	// chain.so
+			url_text = "https://sochain.com/api/v3/balance/DOGE/" + work_multisig_address;	// SoChain
 		}
 		console.info("url_text = " + url_text);
 
@@ -256,9 +256,9 @@ async function dogecoin_wallet_balance() {
 					if (work_dont_transact == "no") {
 						console.info("The Dogecoin Balance = " + work_balance);	// ok to show
 					}
-				} else {		// default, chain.so
-					work_balance = data.data.confirmed_balance;
-					work_unconfirmed_balance = data.data.unconfirmed_balance;
+				} else {		// SoChain
+					work_balance = data.data.confirmed;
+					work_unconfirmed_balance = data.data.unconfirmed;
 					console.info("The Dogecoin Balance = " + work_balance);
 				}
 				$("#newDogecoinAddress").val(work_multisig_address);
@@ -293,7 +293,7 @@ async function dogecoin_wallet_balance() {
 		} else if (work_vendor_select == 2) {
 			work_txs = await get_the_transactions_blockcypher_update(work_multisig_address);	// async
 		} else {
-			very_get_info("10778"); 	// chain.so start loading the unspent transactions
+			very_get_info("10778"); 	// SoChain: start loading the unspent transactions
 		}
 	} catch (e) {
 		console.log(e);
@@ -643,7 +643,7 @@ $("#testola").click(function(){
 
 /************************************************
 * function very_get_info(iindex): do something based on a number.
-* This function (currently) uses chain.so and GET commands to
+* This function uses SoChain, blockcypher and GET commands to
 * access the dogecoin network. Provide an indexed value to
 * zip to that particular function, where you may be prompted
 * for additional information. If you add to this use comments or
@@ -651,11 +651,45 @@ $("#testola").click(function(){
 * This function will also POST in addition to GET.
 *
 * SOME INTERNALS:
-* 10100 - official Broadcast function (chain.so)
+* 10100 - old Broadcast function (blockcypher)
 * 10777 - official redeem script
-* 10778 - get transactions from chain.so
+* 10778 - get unspent transactions from SoChain
 * 30779 - get transactions from blockcypher.com, continued after 30778 for more than 50 transactions.
 ************************************************/
+/************************************************
+* sochain_unspent_outputs(address, max): the address's unspent outputs
+* from SoChain's API v3, ten per page, up to max of them, in the same
+* shape as the blockcypher loaders give: txid, output_no, value (DOGE)
+* and script_hex.
+************************************************/
+async function sochain_unspent_outputs(address, max){
+	var outputs = [];
+	for (var page = 1; outputs.length < max; page++) {
+		var data = await $.ajax ({
+			type: "GET",
+			url: "https://sochain.com/api/v3/unspent_outputs/DOGE/" + address + "/" + page,
+			dataType: "json"
+		});
+		if (!data || data.status != "success") {
+			throw data;
+		}
+		var batch = data.data.outputs;
+		for (var i=0; i<batch.length && outputs.length < max; i++) {
+			outputs.push({
+				txid: batch[i].hash,
+				output_no: batch[i].index,
+				value: parseFloat(batch[i].value),
+				script_hex: batch[i].script,
+				rel: []
+			});
+		}
+		if (batch.length < 10) {
+			break;
+		}
+	}
+	return outputs;
+}
+
 async function very_get_info(iindex){
 	switch (iindex)
 	{
@@ -667,7 +701,7 @@ async function very_get_info(iindex){
         case "99":
                 $.ajax ({
                         type: "GET",
-                        url: "https://chain.so/api/v2/get_info/DOGE",
+                        url: "https://sochain.com/api/v3/network_info/DOGE",
                         dataType: "json",
                         error: function(data) {
                                 console.error(JSON.stringify(data, null, 4));
@@ -684,20 +718,18 @@ async function very_get_info(iindex){
         * INDEX100: SEND A CP(100)TRANSACTION.
         *****************************************/
         case "100":
-        //POST /api/v2/send_tx/{NETWORK}
+        //POST https://api.blockcypher.com/v1/doge/main/txs/push (SoChain's API has no broadcast)
                 tempstring = prompt("100 - Send the following signed transaction","your transaction here");
 
                 $.ajax ({
                         type: "POST",
-                        url: "https://chain.so/api/v2/send_tx/DOGE/"+tempstring,
-                        dataType: "json",
+                        url: "https://api.blockcypher.com/v1/doge/main/txs/push",
+                        data: JSON.stringify({"tx":tempstring}),
                         error: function(data) {
                                 alert(JSON.stringify(data, null, 4));
-                                var fooboy = "https://chain.so/api/v2/send_tx/DOGE/"+tempstring;
-                                console.error(JSON.stringify(fooboy));
                         },
                         success: function(data) {
-                                console.error(JSON.stringify(data, null, 4));
+                                console.info(JSON.stringify(data, null, 4));
                         },
                         complete: function(data, status) {
                         //        window.alert("complete1");
@@ -721,18 +753,13 @@ async function very_get_info(iindex){
 	*****************************************/
 	case "10100":
 		/* make a JSON object, tempstring is the hash */
-		var our_send_object = {"network":"DOGE","txid":tempstring};
-		console.info("10100 send transaction. provided hex is: " + our_send_object.txid);
-		console.info("                        provided network is: " + our_send_object.network);
+		console.info("10100 send transaction. provided hex is: " + tempstring);
               	$.ajax ({
                         type: "POST",
-//                        url: "https://chain.so/api/v2/send_tx/DOGE/"+tempstring,
-                        url: "https://chain.so/api/v2/send_tx/DOGE/"+our_send_object.txid,
-                        dataType: "json",
+                        url: "https://api.blockcypher.com/v1/doge/main/txs/push",	// SoChain's API has no broadcast
+                        data: JSON.stringify({"tx":tempstring}),
                         error: function(data) {
                                 console.error(JSON.stringify(data, null, 4));
-				var fooboy = "https://chain.so/api/v2/send_tx/DOGE/"+our_send_object.txid;
-				console.error(JSON.stringify(fooboy));
                         },
                         success: function(data) {
                                 console.info(JSON.stringify(data, null, 4));                   
@@ -834,7 +861,7 @@ $.post('https://api.blockcypher.com/v1/doge/main/txs/push/', JSON.stringify(push
 	//	}
               	$.ajax ({
                         type: "GET",
-                        url: "https://chain.so/api/v2/get_address_balance/DOGE/" + work_multisig_address,
+                        url: "https://sochain.com/api/v3/balance/DOGE/" + work_multisig_address,
                         dataType: "json",
                         error: function(data) {
                                 //alert(JSON.stringify(data, null, 4));
@@ -843,7 +870,7 @@ $.post('https://api.blockcypher.com/v1/doge/main/txs/push/', JSON.stringify(push
                         },
                         success: function(data) {
                                 var tt1 = JSON.stringify(data, null, 4);                   
-				work_balance = data.data.confirmed_balance;
+				work_balance = data.data.confirmed;
 				console.info("10777 success: %s",tt1);
 				console.info("Balance = " + work_balance);
                         },
@@ -862,34 +889,18 @@ $.post('https://api.blockcypher.com/v1/doge/main/txs/push/', JSON.stringify(push
 	case "10778":
 		work_txs = [];
 		cum_total = parseFloat("0.0");
-              	$.ajax ({
-                        type: "GET",
-                        url: "https://chain.so/api/v2/get_tx_unspent/DOGE/" + work_multisig_address,
-                        dataType: "json",
-                        error: function(data) {
-               //                 alert(JSON.stringify(data, null, 4));
-                                var tt1 = JSON.stringify(data, null, 4);
-				console.error("10778 fail: %s",tt1);
-                        },
-                        success: function(data) {
-                //                alert(JSON.stringify(data, null, 4));                   
-                                var tt1 = JSON.stringify(data, null, 4);                   
-				console.info("10778 success: %s",tt1);
-				console.info("10778 data.network = " + data.data.network);
-				console.info("10778 data.network = " + data.data.address);
-				console.info("10778 number of transactions to load: " + data.data.txs.length);
-				work_txs = data.data.txs;		// work_txs
-				
-				for (var i=0;i<data.data.txs.length;i++)		
-				{
-  				  console.info("chain.so:TX(" + i + "): " + work_txs[i].txid + ", vout: " + work_txs[i].output_no + ", value: " + work_txs[i].value);
-				  cum_total = cum_total + parseFloat(work_txs[i].value); 
-				}
-                        },
-                       	complete: function(data, status) {
-				console.info("Cumulative Total = " + cum_total);
-                        }
-                });
+		try {
+			work_txs = await sochain_unspent_outputs(work_multisig_address, work_max_trans);
+			console.info("10778 number of transactions to load: " + work_txs.length);
+			for (var i=0;i<work_txs.length;i++)
+			{
+			  console.info("SoChain:TX(" + i + "): " + work_txs[i].txid + ", vout: " + work_txs[i].output_no + ", value: " + work_txs[i].value);
+			  cum_total = cum_total + work_txs[i].value;
+			}
+		} catch (e) {
+			console.error("10778 fail: %s", JSON.stringify(e, null, 4));
+		}
+		console.info("Cumulative Total = " + cum_total);
 	break;
 
 
@@ -1051,7 +1062,7 @@ $.post('https://api.blockcypher.com/v1/doge/main/txs/push/', JSON.stringify(push
   	var dogeaddress = prompt("777 - Please provide the address you would like to check","A9A3sB2S7J5VLKTwNvF1rTkyyQ35PkaTU4"); //777
               $.ajax ({
                         type: "GET",
-                        url: "https://chain.so/api/v2/get_address_balance/DOGE/" + dogeaddress,
+                        url: "https://sochain.com/api/v3/balance/DOGE/" + dogeaddress,
                         dataType: "json",
                         error: function(data) {
                                 console.error(JSON.stringify(data, null, 4));
@@ -1069,31 +1080,17 @@ $.post('https://api.blockcypher.com/v1/doge/main/txs/push/', JSON.stringify(push
 	* INDEX778:  Get Unspent TXs for Addr
 	*****************************************/
         case "778":
-	//GET /api/v2/get_tx_unspent/{NETWORK}/{ADDRESS}[/{AFTER TXID}]
+	//GET https://sochain.com/api/v3/unspent_outputs/{NETWORK}/{ADDRESS}[/{PAGE}]
         var dogeaddress = prompt("778 - Please provide the address you would like to check unspent transactions for","A9A3sB2S7J5VLKTwNvF1rTkyyQ35PkaTU4");
-              $.ajax ({
-                        type: "GET",
-                        url: "https://chain.so/api/v2/get_tx_unspent/DOGE/" + dogeaddress,
-                        dataType: "json",
-                        error: function(data) {
-                                console.error(JSON.stringify(data, null, 4));
-                        },
-                        success: function(data) {
-                                var tt1 = JSON.stringify(data, null, 4);                   
-				console.info("10778 success: %s",tt1);
-				console.info("10778 data.network = " + data.data.network);
-				console.info("10778 data.network = " + data.data.address);
-				var temp_txs = data.data.txs;		// work_txs
-				
-				for (var i=0;i<data.data.txs.length;i++)		
-				{
-					console.info("chain.so:TX(" + i + "): " + temp_txs[i].txid + ", vout: " + temp_txs[i].output_no + ", value: " + temp_txs[i].value);
-				}
-                        },
-                        complete: function(data, status) {
-                        //        window.alert("complete1");
-                        }
-                });
+		try {
+			var temp_txs = await sochain_unspent_outputs(dogeaddress, work_max_trans);
+			for (var i=0;i<temp_txs.length;i++)
+			{
+				console.info("SoChain:TX(" + i + "): " + temp_txs[i].txid + ", vout: " + temp_txs[i].output_no + ", value: " + temp_txs[i].value);
+			}
+		} catch (e) {
+			console.error(JSON.stringify(e, null, 4));
+		}
 
            break;
 	/*****************************************
@@ -1126,11 +1123,11 @@ $.post('https://api.blockcypher.com/v1/doge/main/txs/push/', JSON.stringify(push
         * INDEX779: Get Transaction Information.
         *****************************************/
         case "779":
-	//GET /api/v2/get_tx/{NETWORK}/{TXID}
+	//GET https://sochain.com/api/v3/transaction/{NETWORK}/{TXID}
         var dogeaddress = prompt("779 - Please provide the txid you'd like information for","186ee19e0d84d8c14a4ad1c4409aac0ba947655290dfa41d023dd091a85a3ceb");
               $.ajax ({
                         type: "GET",
-                        url: "https://chain.so/api/v2/get_tx/DOGE/" + dogeaddress,
+                        url: "https://sochain.com/api/v3/transaction/DOGE/" + dogeaddress,
                         dataType: "json",
                         error: function(data) {
                                 console.info(JSON.stringify(data, null, 4));
@@ -1149,11 +1146,11 @@ $.post('https://api.blockcypher.com/v1/doge/main/txs/push/', JSON.stringify(push
         * INDEX780:  Get Spent TXs for Addr
         *****************************************/
         case "780":
-        //GET /api/v2/get_tx_spent/{NETWORK}/{ADDRESS}[/{AFTER TXID}]
+        //GET https://sochain.com/api/v3/transactions/{NETWORK}/{ADDRESS}?direction=out
         var dogeaddress = prompt("780 - Please provide the address you would like to check Spent transactions for","A9A3sB2S7J5VLKTwNvF1rTkyyQ35PkaTU4");
               $.ajax ({
                         type: "GET",
-                        url: "https://chain.so/api/v2/get_tx_spent/DOGE/" + dogeaddress,
+                        url: "https://sochain.com/api/v3/transactions/DOGE/" + dogeaddress + "?direction=out",
                         dataType: "json",
                         error: function(data) {
                                 console.info(JSON.stringify(data, null, 4));
@@ -1187,54 +1184,21 @@ $.post('https://api.blockcypher.com/v1/doge/main/txs/push/', JSON.stringify(push
         var dollaramount = prompt("20001 - Provide the dollar value you want to convert into number of dogecoins:",100.00);
 	var dogesum = 0.0;
 		console.info("20001: BEGIN:");
-		console.info("20001: first getting BTC amount from multiple exchanges:");
+		console.info("20001: getting the DOGE price in USD from SoChain's price endpoint:");
                 $.ajax ({
                         type: "GET",
-			url: "https://chain.so/api/v2/get_price/BTC/USD",
+			url: "https://sochain.com/api/v3/price/DOGE",
                         dataType: "json",
-                        error: function(data) { //                 alert(JSON.stringify(data, null, 4));
+                        error: function(data) {
                                 var tt1 = JSON.stringify(data, null, 4);
                                 console.error("20001 fail: %s",tt1);
                         },
-                        success: function(data) { //                alert(JSON.stringify(data, null, 4));                   
+                        success: function(data) {
                                 var tt1 = JSON.stringify(data, null, 4);
                                 console.info("20001 success: %s",tt1);
-				  for (var i=0;i<data.data.prices.length;i++)
-					{
-						console.info("price from "+ data.data.prices[i].price_base + "(" +  i + ") = " + data.data.prices[i].price);
-						dogesum = parseFloat(dogesum) + parseFloat(data.data.prices[i].price);
-					}
-				var dogesum_average = parseFloat(parseFloat(dogesum)/data.data.prices.length);
-				console.info("Here is the averaged value from the " + data.data.prices.length + " exchanges: "  + dogesum_average);
-				var dogefinal = parseFloat(dollaramount/dogesum_average);
+				var dogeprice = parseFloat(data.data.value);
+				var dogefinal = parseFloat(dollaramount/dogeprice);
 				console.info("Final amount for $" + dollaramount + " is " + dogefinal + " dogecoins.");
-                        },
-                        complete: function(data, status) {
-				console.info("20001: next getting BTC/DOGE conversion:");
-				$.ajax ({
-					type: "GET",
-					url: "https://chain.so/api/v2/get_price/BTC/DOGE",
-					dataType: "json",
-					error: function(data) { //                 alert(JSON.stringify(data, null, 4));
-						var tt1 = JSON.stringify(data, null, 4);
-						console.error("20001 fail: %s",tt1);
-					},
-					success: function(data) { //                alert(JSON.stringify(data, null, 4));                   
-						var tt1 = JSON.stringify(data, null, 4);
-						console.info("20001 success: %s",tt1);
-						  for (var i=0;i<data.data.prices.length;i++)
-							{
-								console.info("price from "+ data.data.prices[i].price_base + "(" +  i + ") = " + data.data.prices[i].price);
-								dogesum = parseFloat(dogesum) + parseFloat(data.data.prices[i].price);
-							}
-						var dogesum_average = parseFloat(parseFloat(dogesum)/data.data.prices.length);
-						console.info("Here is the averaged value from the " + data.data.prices.length + " exchanges: "  + dogesum_average);
-						var dogefinal = parseFloat(dollaramount/dogesum_average);
-						console.info("Final amount for $" + dollaramount + " is " + dogefinal + " dogecoins.");
-					},
-					complete: function(data, status) {
-					}
-				});
                         }
                 });
 	break;
@@ -1607,7 +1571,7 @@ function populate_unspent_txid() {
 							"We can use the first " + work_max_trans + " transactions to pay a \n" + 
 							"total of " + bb1 + " to the output address.\n" + 
 							"(you can repeat with subsequent transaction(s) until the desired amount is paid.)\n" +
-							"(you can also try to switch vendors: chain.so takes the earliest 99 transactions,\n" +
+							"(you can also try to switch vendors: SoChain takes the earliest 99 transactions,\n" +
 							"blockcypher.com takes the latest 60 transactions)\n" +
 							"There will be no change transaction this time.\n" + 
  							"DO YOU STILL WISH TO PROCEED?" ; 

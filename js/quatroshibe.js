@@ -660,7 +660,7 @@ copyTextareaBtn2.addEventListener('click', function(event) {
 });
 
 
-/* get from chain.so, then wait before displaying */
+/* get from SoChain, then wait before displaying */
 function quatroshibe_wallet_balance(multisig, urlName, UCurlName, idx) {
 var tt1 = [];
 var tt2 = [];
@@ -668,7 +668,7 @@ var tempvar = [];
 console.info("quatroshibe_wallet_balance. Input Address: " + multisig['address']);
 	$.ajax ({
 		type: "GET",
-		url: "https://chain.so/api/v2/get_address_balance/DOGE/" + multisig['address'],
+		url: "https://sochain.com/api/v3/balance/DOGE/" + multisig['address'],
 		dataType: "json",
 		error: function(data) {
 			tt1[idx] = JSON.stringify(data, null, 4);
@@ -676,8 +676,8 @@ console.info("quatroshibe_wallet_balance. Input Address: " + multisig['address']
 		},
 		success: function(data) {
 			tt1[idx] = JSON.stringify(data, null, 4);
-			work_balance[idx] = data.data.confirmed_balance;
-			work_unconfirmed_balance[idx] = data.data.unconfirmed_balance;
+			work_balance[idx] = data.data.confirmed;
+			work_unconfirmed_balance[idx] = data.data.unconfirmed;
 			console.info("quatroshibe_wallet_balance: " + tt1[idx]);
 		},
 		complete: function(data, status) {
